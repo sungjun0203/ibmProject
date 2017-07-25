@@ -7,8 +7,8 @@
 
 <style>
     body {
-        padding-top: 120px;
-        padding-bottom: 40px;
+        padding-top: 200px;
+        padding-bottom: 100px;
         background-color: #eee;
 
     }
@@ -99,7 +99,7 @@
 <div id="fullscreen_bg" class="fullscreen_bg"/>
 
 <div class="container">
-    <form class="form-signin">
+    <form class="form-signin" method="POST">
         <h1 class="form-signin-heading text-muted">Dankook Univ Meeting</h1>
         <input type="text" class="form-control" placeholder="Email address" required="" autofocus="">
         <input type="password" class="form-control" placeholder="Password" required="">
