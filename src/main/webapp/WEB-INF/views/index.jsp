@@ -24,7 +24,7 @@
 <div class="container">
     <div class="top">
         <h1 id="title" ><span id="logo">DanKook Univ <br>
-        Metting System</span></h1>
+        Meeting System</span></h1>
     </div>
     <div class="login-box animated fadeInUp">
         <div class="box-header">
@@ -34,7 +34,7 @@
         <form class="form-signin" id="indexForm" name ="indexForm" method="POST">
             <label for="username">E-Mail</label>
             <br/>
-            <input type="text" id="email" name="email" required="a@a.com" autofocus="">
+            <input type="text" id="email" name="email" value="a@a.com" required="" autofocus="">
             <br/>
             <label for="password">Password</label>
             <br/>

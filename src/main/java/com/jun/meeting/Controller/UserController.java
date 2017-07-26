@@ -33,7 +33,7 @@ public class UserController {
     @RequestMapping("/signUpSuccess")
     public String signUpSuccess(HttpServletRequest request){
         userSignUpService.userSignUpSuccess(request);
-        return "/main/main";
+        return "/";
     }
 
     @RequestMapping("/loginCheck")

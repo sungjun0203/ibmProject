@@ -30,6 +30,5 @@ public class MainController {
         mainModelAndView.setViewName("/main/main");
 
         return mainModelAndView;
-
     }
 }

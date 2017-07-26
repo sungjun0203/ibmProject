@@ -5,7 +5,6 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet">
 
-
 <style>
 /* CSS used here will be applied after bootstrap.css */
 .navbar {

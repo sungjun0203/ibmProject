@@ -11,6 +11,10 @@
 <link rel="stylesheet" type="text/css" href="/resources/bootstrap/cosmo.css"/>
 <link rel="stylesheet/less" type="text/css" href="/resources/bootstrap/bootswatch.less"/>
 <link rel="stylesheet/less" type="text/css" href="/resources/bootstrap/variables.less"/>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet">
 <html>
 <head>
     <title>메인</title>
@@ -20,7 +24,7 @@
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a href="../" class="navbar-brand">DKU Metting</a>
+            <a onclick ="main()" class="navbar-brand">DKU Metting</a>
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -31,15 +35,15 @@
             <ul class="nav navbar-nav">
 
                 <li>
-                    <a href="../help/">공지사항</a>
+                    <a onclick ="notice()" >공지사항</a>
                 </li>
 
                 <li>
-                    <a href="../help/">소개팅</a>
+                    <a onclick ="dating()">소개팅</a>
                 </li>
 
                 <li>
-                    <a href="../help/">미팅</a>
+                    <a onclick ="meeting()">미팅</a>
                 </li>
 
             </ul>
@@ -161,9 +165,17 @@
 
 
     </div>
+
+    <div class="container">
+        <center>
+            <p class="footer_text">이용약관 | 개인정보 취급방침 | Copyright® ParkSungJun</p>
+        </center>
+    </div>
 </div>
 
 
+
+</body>
 
 <script language="javascript" type="text/javascript">
     <!-- Begin
@@ -200,7 +212,24 @@
             run = setInterval("chgImg(1)", delay);
         }
     }
+
+    function main(){
+        location.reload();
+    }
+
+    function notice(){
+        location.href="/board/notice";
+    }
+
+    function dating(){
+        location.href="/board/dating";
+    }
+
+    function meeting(){
+        location.href="/board/meeting";
+    }
     //  End -->
 </script>
-</body>
+
+
 </html>
