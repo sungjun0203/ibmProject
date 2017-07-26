@@ -7,7 +7,7 @@
         <package name="com.jun.meeting.Dao"/>
     </typeAliases>
     <mappers>
-        <mapper resource="mapper/TestMapper.xml"/>
+        <mapper resource="mapper/UserMapper.xml"/>
     </mappers>
 </configuration>
 

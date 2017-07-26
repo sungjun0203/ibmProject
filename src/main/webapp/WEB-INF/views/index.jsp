@@ -99,11 +99,11 @@
 <div id="fullscreen_bg" class="fullscreen_bg"/>
 
 <div class="container">
-    <form class="form-signin" method="POST">
+    <form class="form-signin" id="indexForm" name ="indexForm" method="POST">
         <h1 class="form-signin-heading text-muted">Dankook Univ Meeting</h1>
-        <input type="text" class="form-control" placeholder="Email address" required="" autofocus="">
-        <input type="password" class="form-control" placeholder="Password" required="">
-        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="signIn();">
+        <input type="text" class="form-control" name="email" placeholder="Email address" required="" autofocus="">
+        <input type="text" class="form-control" name="password" placeholder="Password" required="">
+        <button class="btn btn-lg btn-primary btn-block" onclick="signIn();">
             Sign In
         </button>
 
@@ -116,6 +116,29 @@
 </html>
 
 <script>
+    function signIn(){
+        $.ajax({
+            url : "/user/loginCheck",
+            dataType : "json",
+            async : false,
+            type : "post",
+            data : $('#indexForm').serializeArray(),
+            success: function(data) {
+                if(data.resultData=="loginSuccess") {
+                    document.indexForm.action = "/main/main";
+                    document.indexForm.submit();
+                }
+                else{
+                    alert("loginFail");
+                }
+            },
+            error:function(request,status,error){
+                alert("code:"+request.status+"\n"+"error:"+error);
+            }
+
+        });
+
+    }
 
     function signUp(){
         location.href="/user/signUp"

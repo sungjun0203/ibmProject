@@ -49,7 +49,7 @@ color: #777;
             <div class="form-group">
                 <label for="inputPassword" class="col-sm-2 control-label" name="inputPassword">비밀번호</label>
                 <div class="col-sm-3">
-                    <input type="password" class="form-control" id="inputPassword" placeholder="비밀번호">
+                    <input type="text" class="form-control" id="inputPassword" placeholder="비밀번호">
 
                 </div>
 
@@ -61,7 +61,7 @@ color: #777;
             <div class="form-group">
                 <label for="inputPasswordCheck" class="col-sm-2 control-label" name="inputPasswordCheck">비밀번호 확인</label>
                 <div class="col-sm-3">
-                    <input type="password" class="form-control" id="inputPasswordCheck" placeholder="비밀번호 확인">
+                    <input type="text" class="form-control" id="inputPasswordCheck" placeholder="비밀번호 확인">
                 </div>
 
                 <div class="col-sm-3">
@@ -96,23 +96,23 @@ color: #777;
                 <label for="inputCollege" class="col-sm-2 control-label">전공</label>
                 <div class="col-sm-3">
                     <select class="form-control" id = "inputCollege" name = "inputCollege" onchange="setMajorSelectBox()">
-                        <option value="law">법과대학</option>
-                        <option value="liberal ">문과대학</option>
-                        <option value="social">사회과학대학</option>
-                        <option value="architecture">건축대학</option>
-                        <option value="engineering">공과대학</option>
-                        <option value="education">사범대학</option>
-                        <option value="art">예술디자인대학</option>
-                        <option value="music">음악대학</option>
-                        <option value="international">국제대학</option>
-                        <option value="refinement">교양교육대학</option>
+                        <option value="법과대학">법과대학</option>
+                        <option value="문과대학 ">문과대학</option>
+                        <option value="사회과학대학">사회과학대학</option>
+                        <option value="건축대학">건축대학</option>
+                        <option value="공과대학">공과대학</option>
+                        <option value="사범대학">사범대학</option>
+                        <option value="예술디자인대학">예술디자인대학</option>
+                        <option value="음악대학">음악대학</option>
+                        <option value="국제대학">국제대학</option>
+                        <option value="교양교육대학">교양교육대학</option>
                     </select>
                 </div>
 
                 <div class="col-sm-3">
 
                     <select class="form-control" id = "inputMajor" name="inputMajor">
-                        <option value="liberal ">법학과</option>
+                        <option value="법학과 ">법학과</option>
                     </select>
                 </div>
             </div>
@@ -169,91 +169,91 @@ color: #777;
 
         if(collegeValue =="문과대학"){
             $("#inputMajor").html("<option value='a'>국어국문학과</option> " +
-                "<option value='a'>사학과</option> " +
-                "<option value='a'>철학과</option>" +
-                "<option value='a'>영어인문학과</option>" +
-                "<option value='a'>중어중문학과</option>" +
-                "<option value='a'>일어일문학과</option>" +
-                "<option value='a'>영어영문학과</option>");
+                "<option value='사학과'>사학과</option> " +
+                "<option value='철학과'>철학과</option>" +
+                "<option value='영어인문학과'>영어인문학과</option>" +
+                "<option value='중어중문학과'>중어중문학과</option>" +
+                "<option value='일어일문학과'>일어일문학과</option>" +
+                "<option value='영어영문학과'>영어영문학과</option>");
 
         }
 
         if(collegeValue =="법과대학"){
-            $("#inputMajor").html("<option value='a'>법학과</option>");
+            $("#inputMajor").html("<option value='법학과'>법학과</option>");
         }
 
         if(collegeValue =="사회과학대학"){
 
-            $("#inputMajor").html("<option value='a'>정치외교학과</option> " +
-                "<option value='a'>행정학과</option> " +
-                "<option value='a'>도시계획-부동산학부</option>" +
-                "<option value='a'>커뮤니케이션학부</option>" +
-                "<option value='a'>응용통계학과</option>" +
-                "<option value='a'>상담학과</option>" );
+            $("#inputMajor").html("<option value='정치외교학과'>정치외교학과</option> " +
+                "<option value='행정학과'>행정학과</option> " +
+                "<option value='도시계획-부동산학부'>도시계획-부동산학부</option>" +
+                "<option value='커뮤니케이션학부'>커뮤니케이션학부</option>" +
+                "<option value='응용통계학과'>응용통계학과</option>" +
+                "<option value='상담학과'>상담학과</option>" );
         }
 
         if(collegeValue =="상경대학"){
 
             $("#inputMajor").html("<option value='a'>경제학과</option> " +
-                "<option value='a'>무역학과</option> " +
-                "<option value='a'>경영학부</option>");
+                "<option value='무역학과'>무역학과</option> " +
+                "<option value='경영학부'>경영학부</option>");
 
         }
 
         if(collegeValue =="건축대학"){
 
             $("#inputMajor").html("<option value='a'>건축학과</option> " +
-                "<option value='a'>건축공학과</option> ");
+                "<option value='건축공학과'>건축공학과</option> ");
         }
 
         if(collegeValue =="공과대학"){
 
             $("#inputMajor").html("<option value='a'>전자전기공학부</option> " +
-                "<option value='a'>고분자공학과</option> " +
-                "<option value='a'>파이버시스템공학과</option>" +
-                "<option value='a'>소프트웨어학과</option>" +
-                "<option value='a'>응용컴퓨터공학과</option>" +
-                "<option value='a'>토목한광경학과</option>" +
-                "<option value='a'>기계공학과</option>"+
-                "<option value='a'>화학공학과</option>");
+                "<option value='고분자공학과'>고분자공학과</option> " +
+                "<option value='파이버시스템공학과'>파이버시스템공학과</option>" +
+                "<option value='소프트웨어학과'>소프트웨어학과</option>" +
+                "<option value='응용컴퓨터공학과'>응용컴퓨터공학과</option>" +
+                "<option value='토목한광경학과'>토목한광경학과</option>" +
+                "<option value='기계공학과'>기계공학과</option>"+
+                "<option value='화학공학과'>화학공학과</option>");
         }
 
         if(collegeValue =="사범대학"){
 
             $("#inputMajor").html("<option value='a'>한문교육과</option> " +
-                "<option value='a'>특수교육과</option> " +
-                "<option value='a'>수학교육과</option>" +
-                "<option value='a'>과학교육과</option>" +
-                "<option value='a'>체육교육과</option>" +
-                "<option value='a'>교직교육과</option>");
+                "<option value='특수교육과'>특수교육과</option> " +
+                "<option value='수학교육과'>수학교육과</option>" +
+                "<option value='과학교육과'>과학교육과</option>" +
+                "<option value='체육교육과'>체육교육과</option>" +
+                "<option value='교직교육과'>교직교육과</option>");
         }
 
         if(collegeValue =="예술디자인대학"){
 
             $("#inputMajor").html("<option value='a'>도예과</option> " +
-                "<option value='a'>커뮤니케이션디자인과</option> " +
-                "<option value='a'>공연영화학부</option>" +
-                "<option value='a'>패션산업디자인과</option>" +
-                "<option value='a'>무용과</option>");
+                "<option value='커뮤니케이션디자인과'>커뮤니케이션디자인과</option> " +
+                "<option value='공연영화학부'>공연영화학부</option>" +
+                "<option value='패션산업디자인과'>패션산업디자인과</option>" +
+                "<option value='무용과'>무용과</option>");
         }
 
         if(collegeValue =="음악대학"){
 
             $("#inputMajor").html("<option value='a'>기악과</option> " +
-                "<option value='a'>성악과</option> " +
-                "<option value='a'>작곡과</option>" +
-                "<option value='a'>국악과</option>");
+                "<option value='성악과'>성악과</option> " +
+                "<option value='작곡과'>작곡과</option>" +
+                "<option value='국악과'>국악과</option>");
         }
 
         if(collegeValue =="국제대학"){
 
-            $("#inputMajor").html("<option value='a'>국제경영학과</option> " +
-                "<option value='a'>모바일시스템공학과</option> " +
-                "<option value='a'>국제자유전공학부</option>");
+            $("#inputMajor").html("<option value='국제경영학과'>국제경영학과</option> " +
+                "<option value='모바일시스템공학과'>모바일시스템공학과</option> " +
+                "<option value='국제자유전공학부'>국제자유전공학부</option>");
         }
 
         if(collegeValue =="교양교육대학"){
-            $("#inputMajor").html("<option value='a'>교양학부</option> ");
+            $("#inputMajor").html("<option value='교양학부'>교양학부</option> ");
         }
     }
 
