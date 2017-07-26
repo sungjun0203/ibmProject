@@ -34,7 +34,7 @@
         <form class="form-signin" id="indexForm" name ="indexForm" method="POST">
             <label for="username">E-Mail</label>
             <br/>
-            <input type="text" id="username" name="email" required="" autofocus="">
+            <input type="text" id="email" name="email" required="a@a.com" autofocus="">
             <br/>
             <label for="password">Password</label>
             <br/>
@@ -70,6 +70,7 @@
     });
 
     function signIn(){
+
         $.ajax({
             url : "/user/loginCheck",
             dataType : "json",

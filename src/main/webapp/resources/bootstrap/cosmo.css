@@ -3626,15 +3626,15 @@ tbody.collapse.in {
 .dropup .caret,
 .navbar-fixed-bottom .dropdown .caret {
     border-top: 0;
-    border-bottom: 4px dashed;
-    border-bottom: 4px solid \9;
+    border-bottom: 10px dashed;
+    border-bottom: 10px solid \9;
     content: "";
 }
 .dropup .dropdown-menu,
 .navbar-fixed-bottom .dropdown .dropdown-menu {
     top: auto;
     bottom: 100%;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 @media (min-width: 768px) {
     .navbar-right .dropdown-menu {

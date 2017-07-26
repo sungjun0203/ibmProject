@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: IONCOMMUNICATIONS
@@ -44,6 +45,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                <li><a> ${userEmail} 님 안녕하세요 </a></li>
                 <li><a href="http://builtwithbootstrap.com/" target="_blank">내 정보</a></li>
                 <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">고객센터</a></li>
             </ul>
@@ -55,7 +57,7 @@
             <%--<a href="javascript:chgImg(-1)">Previous</a>--%>
             <%--<a href="javascript:chgImg(1)">Next</a>--%>
 
-            <img src="/resources/image/test1.jpg" name="slideshow" width="500" height="300">
+            <img src="/resources/image/image1.jpg" name="slideshow" width="100%" height="140">
         </div>
 
 
@@ -167,14 +169,13 @@
     <!-- Begin
     var imagepath = "/resources/image/"
     NewImg = new Array (
-        "test1.jpg",
-        "test2.jpg",
-        "test3.jpg",
-        "test4.jpg"
+        "image1.jpg",
+        "image2.gif"
+
     );
     var ImgNum = 0;
     var ImgLength = NewImg.length - 1;
-    var delay = 2000; //자동전환시 시간설정(1000=1초)
+    var delay = 2500; //자동전환시 시간설정(1000=1초)
     var lock = false;
     var run;
     function chgImg(direction) {
