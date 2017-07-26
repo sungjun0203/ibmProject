@@ -145,6 +145,7 @@ color: #777;
                 <label for="inputName" class="col-sm-2 control-label"></label>
                 <div class="col-sm-6">
                     <button type="submit" class="btn btn-primary">회원가입</button>
+                    <button type="button" class="btn btn-danger" onclick="returnIndex();">돌아가기</button>
                 </div>
             </div>
         </form>
@@ -160,6 +161,10 @@ color: #777;
 
 
 <script type="text/javascript">
+
+    function returnIndex(){
+        location.href="/";
+    }
 
     function setMajorSelectBox(){
 

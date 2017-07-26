@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <title>DanKook Univ Meeting System</title>
+    <title>Daily UI - Day 1 Sign In</title>
 
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
@@ -34,11 +34,11 @@
         <form class="form-signin" id="indexForm" name ="indexForm" method="POST">
             <label for="username">E-Mail</label>
             <br/>
-            <input type="text" id="username" name="email" required="" autofocus="">
+            <input type="text" id="username" name="email"  required="" autofocus="">
             <br/>
             <label for="password">Password</label>
             <br/>
-            <input type="password" id="password" name="password" value="0000" required="">
+            <input type="password" id="password" name="password"  required="">
             <br/>
             <button type="submit" onclick="signIn();" >LOGIN</button>
             <button type="button" onclick ="signUp();">SIGN UP</button>
@@ -97,5 +97,6 @@
         location.href="/user/signUp"
     }
 </script>
+
 
 </html>
