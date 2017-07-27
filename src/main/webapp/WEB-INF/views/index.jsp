@@ -32,7 +32,7 @@
         </div>
 
         <form class="form-signin" id="indexForm" name ="indexForm" method="POST">
-            <label for="username">E-Mail</label>
+            <label for="email">E-Mail</label>
             <br/>
             <input type="text" id="email" name="email" value="a@a.com" required="" autofocus="">
             <br/>
@@ -75,7 +75,7 @@
             url : "/user/loginCheck",
             dataType : "json",
             async : false,
-            type : "post",
+            type : "POST",
             data : $('#indexForm').serializeArray(),
             success: function(data) {
                 if(data.resultData=="loginSuccess") {

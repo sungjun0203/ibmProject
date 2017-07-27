@@ -12,9 +12,6 @@
 <link rel="stylesheet/less" type="text/css" href="/resources/bootstrap/bootswatch.less"/>
 <link rel="stylesheet/less" type="text/css" href="/resources/bootstrap/variables.less"/>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet">
 <html>
 <head>
     <title>메인</title>
@@ -56,22 +53,48 @@
 
         </div>
 
+        <hr size="1" >
+
         <div>
 
             <%--<a href="javascript:chgImg(-1)">Previous</a>--%>
             <%--<a href="javascript:chgImg(1)">Next</a>--%>
 
-            <img src="/resources/image/image1.jpg" name="slideshow" width="100%" height="140">
+            <img src="/resources/image/image1.jpg" name="slideshow" width="60%" height="140">
+
+            <table class="text-center" width="40%" style="display:inline;" >
+                <tr>
+                    <td rowspan="4" width="50%">
+                         <img src="/resources/image/myImage.jpg" align="center" width="140" style="height: auto;">
+                    </td>
+                    <td width="30%" > 이름 </td>
+                </tr>
+                <tr>
+                    <td width="30%" > 쪽지 </td>
+                </tr>
+                <tr>
+                    <td width="30%" > 내가 보낸거</td>
+                </tr>
+                <tr>
+                    <td width="30%"> 요청 받은거</td>
+                </tr>
+
+
+            </table>
+
         </div>
 
+        &nbsp;
 
-        <table class="table table-striped table-hover ">
+
+        <table class="table table-striped table-hover text-center">
             <thead>
-            <tr>
-                <th>#</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
+            <tr class="info">
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>등록일</th>
+                <th>조회수</th>
             </tr>
             </thead>
             <tbody>
@@ -83,30 +106,6 @@
             </tr>
             <tr>
                 <td>2</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr class="info">
-                <td>3</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr class="success">
-                <td>4</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr class="danger">
-                <td>5</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr class="warning">
-                <td>6</td>
                 <td>Column content</td>
                 <td>Column content</td>
                 <td>Column content</td>
@@ -114,13 +113,15 @@
             </tbody>
         </table>
 
-        <table class="table table-striped table-hover ">
+        &nbsp;
+        <table class="table table-striped table-hover text-center">
             <thead>
-            <tr>
-                <th>#</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
+            <tr class="warning">
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>등록일</th>
+                <th>조회수</th>
             </tr>
             </thead>
             <tbody>
@@ -132,30 +133,6 @@
             </tr>
             <tr>
                 <td>2</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr class="info">
-                <td>3</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr class="success">
-                <td>4</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr class="danger">
-                <td>5</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr class="warning">
-                <td>6</td>
                 <td>Column content</td>
                 <td>Column content</td>
                 <td>Column content</td>
