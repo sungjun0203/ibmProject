@@ -18,29 +18,24 @@
 
 </head>
 <body>
-<div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
+<div class="page-header">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="navbar-header">
-            <a onclick ="main()" class="navbar-brand">DKU Metting</a>
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+            <a onclick="main()" class="navbar-brand">DKU Metting</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
 
-                <li>
-                    <a onclick ="notice()" >공지사항</a>
+                <li class="active">
+                    <a onclick="notice()">공지사항</a>
                 </li>
 
                 <li>
-                    <a onclick ="dating()">소개팅</a>
+                    <a onclick="dating()">소개팅</a>
                 </li>
 
                 <li>
-                    <a onclick ="meeting()">미팅</a>
+                    <a onclick="meeting()">미팅</a>
                 </li>
 
             </ul>
@@ -50,104 +45,104 @@
                 <li><a href="http://builtwithbootstrap.com/" target="_blank">내 정보</a></li>
                 <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">고객센터</a></li>
             </ul>
-
         </div>
-
-        <hr size="1" >
-
-        <div>
-
-            <%--<a href="javascript:chgImg(-1)">Previous</a>--%>
-            <%--<a href="javascript:chgImg(1)">Next</a>--%>
-
-            <img src="/resources/image/image1.jpg" name="slideshow" width="60%" height="140">
-
-            <table class="text-center" width="40%" style="display:inline;" >
-                <tr>
-                    <td rowspan="4" width="50%">
-                         <img src="/resources/image/myImage.jpg" align="center" width="140" style="height: auto;">
-                    </td>
-                    <td width="30%" > 이름 </td>
-                </tr>
-                <tr>
-                    <td width="30%" > 쪽지 </td>
-                </tr>
-                <tr>
-                    <td width="30%" > 내가 보낸거</td>
-                </tr>
-                <tr>
-                    <td width="30%"> 요청 받은거</td>
-                </tr>
-
-
-            </table>
-
-        </div>
-
-        &nbsp;
-
-
-        <table class="table table-striped table-hover text-center">
-            <thead>
-            <tr class="info">
-                <th>번호</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>등록일</th>
-                <th>조회수</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            </tbody>
-        </table>
-
-        &nbsp;
-        <table class="table table-striped table-hover text-center">
-            <thead>
-            <tr class="warning">
-                <th>번호</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>등록일</th>
-                <th>조회수</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            </tbody>
-        </table>
-
-
     </div>
+</div>
 
-    <div class="container">
-        <center>
-            <p class="footer_text">이용약관 | 개인정보 취급방침 | Copyright® ParkSungJun</p>
-        </center>
-    </div>
+
+
+<div class="container">
+
+    <%--<a href="javascript:chgImg(-1)">Previous</a>--%>
+    <%--<a href="javascript:chgImg(1)">Next</a>--%>
+
+    <img src="/resources/image/image1.jpg" name="slideshow" width="60%" height="140">
+
+    <table class="text-center" width="40%" style="display:inline;" >
+        <tr>
+            <td rowspan="4" width="50%">
+                 <img src="/resources/image/myImage.jpg" align="center" width="140" style="height: auto;">
+            </td>
+            <td width="30%" > 이름 </td>
+        </tr>
+        <tr>
+            <td width="30%" > 쪽지 </td>
+        </tr>
+        <tr>
+            <td width="30%" > 내가 보낸거</td>
+        </tr>
+        <tr>
+            <td width="30%"> 요청 받은거</td>
+        </tr>
+
+
+    </table>
+
+
+
+&nbsp;
+
+
+<table class="table table-striped table-hover text-center">
+    <thead>
+    <tr class="info">
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>등록일</th>
+        <th>조회수</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td>Column content</td>
+        <td>Column content</td>
+        <td>Column content</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Column content</td>
+        <td>Column content</td>
+        <td>Column content</td>
+    </tr>
+    </tbody>
+</table>
+
+&nbsp;
+<table class="table table-striped table-hover text-center">
+    <thead>
+    <tr class="warning">
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>등록일</th>
+        <th>조회수</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td>Column content</td>
+        <td>Column content</td>
+        <td>Column content</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Column content</td>
+        <td>Column content</td>
+        <td>Column content</td>
+    </tr>
+    </tbody>
+</table>
+
+
+</div>
+
+<div class="modal-footer">
+<center>
+    <p class="footer_text">이용약관 | 개인정보 취급방침 | Copyright® ParkSungJun</p>
+</center>
 </div>
 
 
