@@ -63,20 +63,19 @@
             <th class = text-center>조회수</th>
         </tr>
         </thead>
+
+<c:forEach items="${noticeInformation}" var="notice">
+
         <tbody>
         <tr>
-            <td width="10%">1</td>
-            <td width="40%">김우현 바보</td>
-            <td width="20%">박성준 짱짱맨</td>
-            <td width="20%">2017.07.27 04:25</td>
+            <td width="10%">${notice.noticeNumber}</td>
+            <td width="40%">${notice.noticeTitle}</td>
+            <td width="20%">${notice.noticeWriter}</td>
+            <td width="20%">${notice.noticeDate}</td>
             <td width="10%">120022</td>
         </tr>
-        <tr>
-            <td>2</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
+</c:forEach>
+
 
         </tbody>
     </table>
@@ -120,7 +119,7 @@
     }
 
     function notice() {
-        location.href = "/board/notice";
+        location.href = "/notice/noticeList";
     }
 
     function dating() {
@@ -132,7 +131,24 @@
     }
 
     function noticeWrite(){
-        location.href= "/notice/write";
+
+        $.ajax({
+            url: "/common/userTypeCheck",
+            dataType : "text",
+            type:"POST",
+            success : function(data){
+                if(data=="관리자"){
+                    location.href= "/notice/write";
+                }
+                else{
+                    alert("당신은 관리자가 아닙니다");
+                }
+            },
+            error:function(request,status,error){
+                alert("code:"+request.status+"\n"+"error:"+error);
+            }
+        });
+
     }
 </script>
 

@@ -26,7 +26,7 @@
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
 
-                <li class="active">
+                <li>
                     <a onclick="notice()">공지사항</a>
                 </li>
 
@@ -41,9 +41,9 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a> ${userEmail} 님 안녕하세요 </a></li>
-                <li><a href="http://builtwithbootstrap.com/" target="_blank">내 정보</a></li>
-                <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">고객센터</a></li>
+                <li><a> '${userInformation.name}'님 안녕하세요 </a></li>
+                <li><a target="_blank" onclick="contact()">내 정보</a></li>
+                <li><a target="_blank" onclick="contact()">고객센터</a></li>
             </ul>
         </div>
     </div>
@@ -63,7 +63,7 @@
             <td rowspan="4" width="50%">
                  <img src="/resources/image/myImage.jpg" align="center" width="140" style="height: auto;">
             </td>
-            <td width="30%" > 이름 </td>
+            <td width="30%" > ${userInformation.name} </td>
         </tr>
         <tr>
             <td width="30%" > 쪽지 </td>
@@ -81,60 +81,64 @@
 
 
 &nbsp;
+    <div style="margin-top:11px; margin-bottom:11px;">
+        <span class="label label-primary">공지사항</span>
+
+        <span class="label label-default" style="float: right" name="noticeMore" id="noticeMore" onclick="notice()">더 보기 </span>
+
+    </div>
+    <table class="table table-striped table-hover text-center">
+        <thead>
+        <tr class="info">
+            <td width="10%"> </td>
+            <td width="40%">제목</td>
+            <td width="20%">작성자</td>
+            <td width="20%">등록일</td>
+            <td width="10%"> </td>
+        </tr>
+        </thead>
 
 
-<table class="table table-striped table-hover text-center">
-    <thead>
-    <tr class="info">
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>등록일</th>
-        <th>조회수</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>1</td>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-    </tr>
-    </tbody>
-</table>
+        <tbody>
+<c:forEach items="${recentNoticeList}" var="notice">
+        <tr>
+            <td width="10%"> </td>
+            <td width="40%">${notice.noticeTitle}</td>
+            <td width="20%">${notice.noticeWriter}</td>
+            <td width="20%">${notice.noticeDate}</td>
+            <td width="10%"> </td>
+        </tr>
+</c:forEach>
+        </tbody>
+    </table>
 
-&nbsp;
-<table class="table table-striped table-hover text-center">
-    <thead>
-    <tr class="warning">
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>등록일</th>
-        <th>조회수</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>1</td>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-    </tr>
-    </tbody>
-</table>
+
+    &nbsp;
+    <table class="table table-striped table-hover text-center">
+        <thead>
+        <tr class="warning">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>등록일</th>
+            <th>조회수</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+        </tr>
+        </tbody>
+    </table>
 
 
 </div>
@@ -190,7 +194,7 @@
     }
 
     function notice(){
-        location.href="/board/notice";
+        location.href="/notice/noticeList";
     }
 
     function dating(){
@@ -200,6 +204,12 @@
     function meeting(){
         location.href="/board/meeting";
     }
+
+    function contact(){
+        location.href="/contact/";
+    }
+
+
     //  End -->
 </script>
 

@@ -1,5 +1,6 @@
 package com.jun.meeting.Controller;
 
+import com.jun.meeting.Service.NoticeListService;
 import com.jun.meeting.Service.NoticeWriteSubmitService;
 import com.jun.meeting.Service.UserSignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by IONCOMMUNICATIONS on 2017-07-27.
@@ -19,28 +22,41 @@ import javax.servlet.http.HttpSession;
 public class NoticeController {
 
     @Autowired
-    private NoticeWriteSubmitService noticeWriteSubmitService;
+    NoticeWriteSubmitService noticeWriteSubmitService;
+
+    @Autowired
+    NoticeListService noticeListService;
+
+    @RequestMapping(value = "/noticeList")
+    public ModelAndView notice(HttpServletRequest request, HttpSession session){
+        String userEmail = (String) session.getAttribute("userEmail");
+        System.out.println(userEmail);
+
+        ArrayList<HashMap<String,Object>> noticeInformation = noticeListService.noticeList();
+
+        System.out.println(noticeInformation);
+
+        ModelAndView noticeListResult = new ModelAndView();
+        noticeListResult.setViewName("/notice/noticeList");
+        noticeListResult.addObject("noticeInformation",noticeInformation);
+        return noticeListResult;
+    }
 
     @RequestMapping("/write")
     public ModelAndView noticeWrite(HttpSession session){
-        System.out.println("Write!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
         ModelAndView resultModel = new ModelAndView();
-
-        resultModel.setViewName("/board/noticeWrite");
+        resultModel.setViewName("/notice/noticeWrite");
 
         return resultModel;
     }
 
     @RequestMapping("/writeSubmit")
-    public ModelAndView noticeWriteSubmit(HttpSession session, HttpServletRequest request){
+    public String noticeWriteSubmit(HttpSession session, HttpServletRequest request){
 
         String noticeContent = request.getParameter("noticeContent");
-        System.out.println("공지사항 작성완료");
         noticeWriteSubmitService.noticeWriteSubmit(request,session);
 
-        ModelAndView resultModel = new ModelAndView();
-        resultModel.setViewName("/board/notice");
-        return resultModel;
+        return "redirect:/notice/noticeList";
     }
 }

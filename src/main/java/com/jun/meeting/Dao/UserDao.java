@@ -6,9 +6,10 @@ import java.util.Map;
 @Mapper
 public interface UserDao {
 
-    Integer getCurrentDateTime();
     Integer userSignUp(HashMap<String,Object> userInformation);
     Integer userLogin(HashMap<String,Object> loginInformation);
+    String userTypeCheck(String userEmail);
+    HashMap<String,Object> userInformation(String userEmail);
 
 
 }

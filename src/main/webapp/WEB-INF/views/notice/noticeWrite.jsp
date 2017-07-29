@@ -94,8 +94,8 @@
 
 <script>
     function noticeSubmit() {
-        oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FIELD", []);
 
+        var noticeHTMLValue = oEditors.getById["noticeContent"].exec("UPDATE_CONTENTS_FIELD", []);
         $("#noticeWrite").submit();
     }
 </script>
