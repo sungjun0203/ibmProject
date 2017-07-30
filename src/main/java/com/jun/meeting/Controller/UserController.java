@@ -8,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
 /**
@@ -33,7 +35,7 @@ public class UserController {
     @RequestMapping("/signUpSuccess")
     public String signUpSuccess(HttpServletRequest request){
         userSignUpService.userSignUpSuccess(request);
-        return "///";
+        return "redirect:/";
     }
 
     @RequestMapping("/loginCheck")

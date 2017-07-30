@@ -9,6 +9,8 @@
     <mappers>
         <mapper resource="mapper/UserMapper.xml"/>
         <mapper resource="mapper/NoticeMapper.xml"/>
+        <mapper resource="mapper/ContactMapper.xml"/>
+        <mapper resource="mapper/FileMapper.xml"/>
     </mappers>
 </configuration>
 

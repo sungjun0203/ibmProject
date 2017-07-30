@@ -11,15 +11,17 @@
     </select>
 
     <select id="noticeList" resultType="HashMap">
-        select *
-        from notice
-        ORDER BY notice.NoticeDate DESC;
+        select n.* , u.name
+        from notice n, user_information u
+        where u.email = n.noticeWriter
+        ORDER BY n.noticeDate DESC
     </select>
 
     <select id="recentNoticeList" resultType="HashMap">
-        select *
-        from notice
-        ORDER BY notice.noticeDate DESC
+        select n.* , u.name
+        from notice n, user_information u
+        where u.email = n.noticeWriter
+        ORDER BY n.noticeDate DESC
         LIMIT 3;
     </select>
 

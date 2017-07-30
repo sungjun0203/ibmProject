@@ -104,7 +104,7 @@
         <tr>
             <td width="10%"> </td>
             <td width="40%">${notice.noticeTitle}</td>
-            <td width="20%">${notice.noticeWriter}</td>
+            <td width="20%">${notice.name}</td>
             <td width="20%">${notice.noticeDate}</td>
             <td width="10%"> </td>
         </tr>

@@ -6,25 +6,25 @@
 
 
     <select id="userSignUp" resultType="INTEGER" parameterType="HashMap">
-        insert INTO USER
-        VALUES (#{email}, #{password}, #{name}, #{birth}, #{college}, #{major}, #{phone}, #{gender}, #{signUpDate}, #{userType})
+        insert INTO user_Information
+        VALUES (#{email}, #{password}, #{name}, #{birth}, #{college}, #{major}, #{phone}, #{gender}, #{signUpDate}, #{userType},#{nickName})
     </select>
 
     <select id="userLogin" resultType="INTEGER" parameterType="HashMap">
         select count(*)
-        from user
+        from user_information
         where email=#{email} and password=#{password}
     </select>
 
     <select id="userTypeCheck" resultType="String" parameterType="String">
         select userType
-        from USER
+        from user_information
         where email = #{email};
     </select>
 
     <select id="userInformation" resultType="HashMap" parameterType="String">
         select *
-        from USER
+        from user_information
         where email = #{userEmail};
     </select>
 

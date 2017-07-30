@@ -28,23 +28,66 @@ color: #777;
 }
 </style>
 
+<script type="text/javascript">
+    $(function() {
+        $("#file").on('change', function(){
+            readURL(this);
+        });
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+</script>
+
 <div class="contentwrap">
     <article class="container">
         <div class="page-header">
             <h1>회원가입 <small>일반회원가입</small></h1>
         </div>
-        <form class="form-horizontal" method="POST" action="/user/signUpSuccess">
+        <form class="form-horizontal" method="POST" action="/user/signUpSuccess" enctype="multipart/form-data"  >
+
+            <div class="form-group">
+                <label for="blah" class="col-sm-2 control-label">사진</label>
+                <div class="col-sm-3">
+                    <img style="width:120px; height:160px" id="blah" src="#" alt="3:4 비율 Image" />
+                </div>
+
+                <div class="col-sm-4">
+                    <input type="file" class="form-control" id="file" name="file" placeholder="사진">
+                </div>
+            </div>
             <div class="form-group">
                 <label for="inputEmail" class="col-sm-2 control-label">이메일</label>
                 <div class="col-sm-3">
                     <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="이메일">
-                    <p class="help-block">학교 이메일을 작성해주세요 <br>단국대학교 학생인증에 사용됩니다 </p>
+                    <p class="help-block">단국대 이메일을 작성해주세요 <br> Ex)32120000@dankook.ac.kr </p>
                 </div>
-
                 <div class="col-sm-2">
                     <a class="btn btn-default" href="#" role="button">인증번호 전송</a>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="inputNumberCheck" class="col-sm-2 control-label">인증번호 확인</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="inputNumberCheck" placeholder="인증번호">
+                </div>
+
+                <div class="col-sm-2">
+                    <a class="btn btn-default" href="#" role="button">인증번호 확인</a>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label for="inputPassword" class="col-sm-2 control-label">비밀번호</label>
                 <div class="col-sm-3">
@@ -69,11 +112,24 @@ color: #777;
             </div>
 
             <div class="form-group">
+                <label for="inputNickName" class="col-sm-2 control-label">닉네임</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="inputNickName" name="inputNickName" placeholder="닉네임">
+                </div>
+
+                <div class="col-sm-2">
+                    <a class="btn btn-default" href="#" role="button">닉네임 중복확인</a>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="inputName" class="col-sm-2 control-label">이름</label>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" id="inputName" name="inputName" placeholder="이름">
                 </div>
             </div>
+
+
 
             <div class="form-group">
                 <label for="inputBirthDay" class="col-sm-2 control-label">생년월일</label>
@@ -121,17 +177,8 @@ color: #777;
                 <div class="col-sm-3">
                     <input type="text" class="form-control" id="inputNumber" name="inputNumber" placeholder="- 없이 적어주세요">
                 </div>
-                <div class="col-sm-2">
-                    <a class="btn btn-default" href="#" role="button">인증번호 전송</a>
-                </div>
             </div>
-            <div class="form-group">
-                <label for="inputNumberCheck" class="col-sm-2 control-label">인증번호 확인</label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" id="inputNumberCheck" placeholder="인증번호">
-                    <p class="help-block">전송된 인증번호를 입력해주세요.</p>
-                </div>
-            </div>
+
             <div class="form-group">
                 <label for="inputAgree" class="col-sm-2 control-label">약관 동의</label>
                 <div class="col-sm-6 checkbox">

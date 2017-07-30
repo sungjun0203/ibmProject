@@ -1,8 +1,10 @@
 package com.jun.meeting.Controller;
 
+import com.jun.meeting.Dao.UserDao;
 import com.jun.meeting.Service.NoticeListService;
 import com.jun.meeting.Service.NoticeWriteSubmitService;
 import com.jun.meeting.Service.UserSignUpService;
+import com.jun.meeting.VO.BoardPager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,14 +29,15 @@ public class NoticeController {
     @Autowired
     NoticeListService noticeListService;
 
+    @Autowired
+    UserDao userDao;
+
     @RequestMapping(value = "/noticeList")
     public ModelAndView notice(HttpServletRequest request, HttpSession session){
         String userEmail = (String) session.getAttribute("userEmail");
         System.out.println(userEmail);
 
         ArrayList<HashMap<String,Object>> noticeInformation = noticeListService.noticeList();
-
-        System.out.println(noticeInformation);
 
         ModelAndView noticeListResult = new ModelAndView();
         noticeListResult.setViewName("/notice/noticeList");
@@ -50,6 +53,7 @@ public class NoticeController {
 
         return resultModel;
     }
+
 
     @RequestMapping("/writeSubmit")
     public String noticeWriteSubmit(HttpSession session, HttpServletRequest request){
