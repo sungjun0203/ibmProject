@@ -12,9 +12,6 @@
 <link rel="stylesheet/less" type="text/css" href="/resources/bootstrap/bootswatch.less"/>
 <link rel="stylesheet/less" type="text/css" href="/resources/bootstrap/variables.less"/>
 
-
-
-
 <!-- Libraries CSS Files -->
 <link href="/resources/bell/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
@@ -27,36 +24,43 @@
 <body>
 <div class="page-header">
     <div class="navbar navbar-default navbar-fixed-top">
-        <div class="navbar-header">
-            <a onclick="main()" class="navbar-brand">DKU Metting</a>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-            <ul class="nav navbar-nav">
+        <div class="container">
+            <div class="navbar-header">
+                <a onclick="main()" class="navbar-brand">DanKook University Meeting System</a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
 
-                <li class="active">
-                    <a onclick="notice()">공지사항</a>
-                </li>
+                    <li>
+                        <a onclick="notice()">공지사항</a>
+                    </li>
 
-                <li>
-                    <a onclick="dating()">소개팅</a>
-                </li>
+                    <li>
+                        <a onclick="dating()">소개팅</a>
+                    </li>
 
-                <li>
-                    <a onclick="meeting()">미팅</a>
-                </li>
+                    <li>
+                        <a onclick="meeting()">미팅</a>
+                    </li>
 
-            </ul>
+                </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><a> ${userEmail} 님 안녕하세요 </a></li>
-                <li><a href="http://builtwithbootstrap.com/" target="_blank">내 정보</a></li>
-                <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">고객센터</a></li>
-            </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a> '${userInformation.name}'님 안녕하세요 </a></li>
+                    <li><a target="_blank" onclick="contact()">내 정보</a></li>
+                    <li><a target="_blank" onclick="contact()">고객센터</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="container">
+
+    <div class="well">
+        고객센터
+    </div>
+
     <section id="contact">
         <div class="container">
             <div class="row">

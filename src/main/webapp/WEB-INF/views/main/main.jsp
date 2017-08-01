@@ -20,146 +20,179 @@
 <body>
 <div class="page-header">
     <div class="navbar navbar-default navbar-fixed-top">
-        <div class="navbar-header">
-            <a onclick="main()" class="navbar-brand">DKU Metting</a>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-            <ul class="nav navbar-nav">
+        <div class="container">
+            <div class="navbar-header">
+                <a onclick="main()" class="navbar-brand">DanKook University Meeting System</a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
 
-                <li>
-                    <a onclick="notice()">공지사항</a>
-                </li>
+                    <li>
+                        <a onclick="notice()">공지사항</a>
+                    </li>
 
-                <li>
-                    <a onclick="dating()">소개팅</a>
-                </li>
+                    <li>
+                        <a onclick="dating()">소개팅</a>
+                    </li>
 
-                <li>
-                    <a onclick="meeting()">미팅</a>
-                </li>
+                    <li>
+                        <a onclick="meeting()">미팅</a>
+                    </li>
 
-            </ul>
+                </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><a> '${userInformation.name}'님 안녕하세요 </a></li>
-                <li><a target="_blank" onclick="contact()">내 정보</a></li>
-                <li><a target="_blank" onclick="contact()">고객센터</a></li>
-            </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a> '${userInformation.name}'님 안녕하세요 </a></li>
+                    <li><a target="_blank" onclick="contact()">내 정보</a></li>
+                    <li><a target="_blank" onclick="contact()">고객센터</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
+<div>
+    <div class="container">
+        <div class="container">
+
+            <div class="col-sm-12">
+                <div class="col-sm-6" >
+                    <img src="/resources/image/image1.jpg" name="slideshow" height="140">
+                </div>
+
+                <div class="com-sm-3 col-sm-offset-8">
+                    <table class="text-center" width="40%" style="display:inline;">
+                        <tr>
+                            <td rowspan="4" width="50%">
+                                <img src="/resources/image/myImage.jpg" align="center" width="140"
+                                     style="height: auto;">
+                            </td>
+                            <td width="30%"> ${userInformation.name} </td>
+                        </tr>
+                        <tr>
+                            <td width="30%"> 쪽지</td>
+                        </tr>
+                        <tr>
+                            <td width="30%"> 내가 보낸거</td>
+                        </tr>
+                        <tr>
+                            <td width="30%"> 요청 받은거</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+            &nbsp;
+            <div class="col-sm-12" style="margin-top:11px; margin-bottom:11px;">
+                <span class="label label-primary">공지사항</span>
+
+                <span class="label label-default" style="float: right" name="noticeMore" id="noticeMore"
+                      onclick="notice()">더 보기 </span>
+
+            </div>
+            <div class="col-sm-12">
+                <table class="table table-striped table-hover text-center">
+                    <thead>
+                    <tr class="info">
+                        <td width="10%"></td>
+                        <td width="40%">제목</td>
+                        <td width="20%">작성자</td>
+                        <td width="20%">등록일</td>
+                        <td width="10%"></td>
+                    </tr>
+                    </thead>
 
 
-<div class="container">
+                    <tbody>
+                    <c:forEach items="${recentNoticeList}" var="notice">
+                        <tr>
+                            <td width="10%"></td>
+                            <td width="40%">${notice.noticeTitle}</td>
+                            <td width="20%">${notice.name}</td>
+                            <td width="20%">${notice.noticeDate}</td>
+                            <td width="10%"></td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table> &nbsp;
+            </div>
 
-    <%--<a href="javascript:chgImg(-1)">Previous</a>--%>
-    <%--<a href="javascript:chgImg(1)">Next</a>--%>
+            <div>
+                <div class="col-sm-6">
+                    <table class="table table-striped table-hover text-center " width=48%>
+                        <thead>
+                        <tr class="warning">
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th>등록일</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-    <img src="/resources/image/image1.jpg" name="slideshow" width="60%" height="140">
+                <div class="col-sm-6">
+                    <table class="table table-striped table-hover text-center" width="48%">
+                        <thead>
+                        <tr class="warning">
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th>등록일</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-    <table class="text-center" width="40%" style="display:inline;" >
-        <tr>
-            <td rowspan="4" width="50%">
-                 <img src="/resources/image/myImage.jpg" align="center" width="140" style="height: auto;">
-            </td>
-            <td width="30%" > ${userInformation.name} </td>
-        </tr>
-        <tr>
-            <td width="30%" > 쪽지 </td>
-        </tr>
-        <tr>
-            <td width="30%" > 내가 보낸거</td>
-        </tr>
-        <tr>
-            <td width="30%"> 요청 받은거</td>
-        </tr>
 
-
-    </table>
-
-
-
-&nbsp;
-    <div style="margin-top:11px; margin-bottom:11px;">
-        <span class="label label-primary">공지사항</span>
-
-        <span class="label label-default" style="float: right" name="noticeMore" id="noticeMore" onclick="notice()">더 보기 </span>
-
+        </div>
     </div>
-    <table class="table table-striped table-hover text-center">
-        <thead>
-        <tr class="info">
-            <td width="10%"> </td>
-            <td width="40%">제목</td>
-            <td width="20%">작성자</td>
-            <td width="20%">등록일</td>
-            <td width="10%"> </td>
-        </tr>
-        </thead>
-
-
-        <tbody>
-<c:forEach items="${recentNoticeList}" var="notice">
-        <tr>
-            <td width="10%"> </td>
-            <td width="40%">${notice.noticeTitle}</td>
-            <td width="20%">${notice.name}</td>
-            <td width="20%">${notice.noticeDate}</td>
-            <td width="10%"> </td>
-        </tr>
-</c:forEach>
-        </tbody>
-    </table>
-
-
-    &nbsp;
-    <table class="table table-striped table-hover text-center">
-        <thead>
-        <tr class="warning">
-            <th>번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>등록일</th>
-            <th>조회수</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>1</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        </tbody>
-    </table>
-
-
 </div>
 
 <div class="modal-footer">
-<center>
-    <p class="footer_text">이용약관 | 개인정보 취급방침 | Copyright® ParkSungJun</p>
-</center>
+    <center>
+        <p class="footer_text">이용약관 | 개인정보 취급방침 | Copyright® ParkSungJun</p>
+    </center>
 </div>
-
-
 
 </body>
 
 <script language="javascript" type="text/javascript">
-    <!-- Begin
+
     var imagepath = "/resources/image/"
-    NewImg = new Array (
+    NewImg = new Array(
         "image1.jpg",
         "image2.gif"
-
     );
     var ImgNum = 0;
     var ImgLength = NewImg.length - 1;
@@ -175,7 +208,7 @@
             if (ImgNum < 0) {
                 ImgNum = ImgLength;
             }
-            document.slideshow.src = imagepath+NewImg[ImgNum];
+            document.slideshow.src = imagepath + NewImg[ImgNum];
         }
     }
     window.onload = function auto() {
@@ -189,24 +222,24 @@
         }
     }
 
-    function main(){
+    function main() {
         location.reload();
     }
 
-    function notice(){
-        location.href="/notice/noticeList";
+    function notice() {
+        location.href = "/notice/noticeList";
     }
 
-    function dating(){
-        location.href="/board/dating";
+    function dating() {
+        location.href = "/board/dating";
     }
 
-    function meeting(){
-        location.href="/board/meeting";
+    function meeting() {
+        location.href = "/board/meeting";
     }
 
-    function contact(){
-        location.href="/contact/";
+    function contact() {
+        location.href = "/contact/";
     }
 
 

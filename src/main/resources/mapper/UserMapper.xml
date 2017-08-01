@@ -28,5 +28,19 @@
         where email = #{userEmail};
     </select>
 
+    <select id="userEmailDuplicateCheck" resultType="Integer" parameterType="String">
+        select count(*)
+        from user_information
+        where email = #{userEmail};
+    </select>
+
+    <select id="userNicknameDuplicateCheck" resultType="Integer" parameterType="String">
+        select count(*)
+        from user_information
+        where nickname = #{userNickname};
+    </select>
+
+
+
 
 </mapper>

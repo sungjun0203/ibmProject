@@ -3,6 +3,8 @@ package com.jun.meeting.Service;
 import com.jun.meeting.Dao.FileDao;
 import com.jun.meeting.Dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -31,8 +33,72 @@ public class UserSignUpService {
     @Autowired
     FileDao fileDao;
 
+    @Autowired
+    public JavaMailSender emailSender;
+
     private static String CODE_USERTYPE_01 = "일반사용자";
     private static String CODE_USERTYPE_02 = "관리자";
+    private static Integer DUPLICATE = 1;
+    private static Integer NOTDUPLICATE = 0;
+
+
+    public HashMap<String,Object> emailCheck(HttpServletRequest request) {
+
+        HashMap<String, Object> resultData = new HashMap<String, Object>();
+        String resultString = null;
+        String email =null;
+        int randomNum=0;
+        email = request.getParameter("email");
+
+        System.out.println((userDao.userEmailDuplicateCheck(email)));
+
+        if (!email.endsWith("@dankook.ac.kr")) {
+            resultString = "notDANKOOK";
+        } else if (userDao.userEmailDuplicateCheck(email) > 0) {
+            resultString = "duplicate";
+        } else {
+
+            Random rand = new Random();
+            int min = 10000;
+            int max = 100000;
+            randomNum = rand.nextInt(max - min + 1) + min;
+
+            String subject = "DKU Meeting System 이메일 인증";
+            String text = "DKU Meeting System 이메일 인증번호 : '" + randomNum + "' 를입력해주세요";
+
+            SimpleMailMessage message = new SimpleMailMessage();
+
+            message.setTo(email);
+            message.setSubject(subject);
+            message.setText(text);
+            emailSender.send(message);
+
+            resultString = "sendOK";
+        }
+        resultData.put("resultString",resultString);
+        resultData.put("randomNum",randomNum);
+        return resultData;
+    }
+
+
+
+
+    public HashMap<String,Object> nicknameCheck(HttpServletRequest request) {
+
+        HashMap<String,Object> resultData = new HashMap<String,Object>();
+        String nickname = request.getParameter("nickName");
+        String resultString = null;
+        if(userDao.userNicknameDuplicateCheck(nickname)==DUPLICATE){
+            resultString="a";
+        }
+        else
+            resultString="notDuplicate";
+
+        resultData.put("resultData",resultString);
+
+        return resultData;
+    }
+
 
     public void userSignUpSuccess(HttpServletRequest request) {
 
@@ -94,7 +160,7 @@ public class UserSignUpService {
                     fileInformation.put("file_path", sFile.getAbsolutePath()); //물리적 저장 경로
                     fileInformation.put("file_size", sFile.length()); //파일 크기
                     fileInformation.put("file_orig", origName); //원래 파일 명
-                    fileInformation.put("userEmail",email);
+                    fileInformation.put("userEmail", email);
                     fileDao.insertFileToDB(fileInformation);
                 }
             }
@@ -103,6 +169,4 @@ public class UserSignUpService {
             e.printStackTrace();
         }
     }
-
-
 }

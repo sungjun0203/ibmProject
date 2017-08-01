@@ -10,6 +10,7 @@ public interface UserDao {
     Integer userLogin(HashMap<String,Object> loginInformation);
     String userTypeCheck(String userEmail);
     HashMap<String,Object> userInformation(String userEmail);
-
+    Integer userEmailDuplicateCheck(String userEmail);
+    Integer userNicknameDuplicateCheck(String userNickname);
 
 }

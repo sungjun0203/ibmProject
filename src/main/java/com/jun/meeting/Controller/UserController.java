@@ -32,6 +32,29 @@ public class UserController {
     @Autowired
     private UserLoginService userLoginService;
 
+    @ResponseBody
+    @RequestMapping("/signUpEmailSend")
+    public HashMap<String, Object> signUpEmailSend(HttpServletRequest request){
+        HashMap<String,Object> result = userSignUpService.emailCheck(request);
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping("/nicknameCheck")
+    public HashMap<String, Object> nicknameCheck(HttpServletRequest request){
+        HashMap<String,Object> result = userSignUpService.nicknameCheck(request);
+        return result;
+    }
+
+
+//    @ResponseBody
+//    @RequestMapping("/signUpNicknameCheck")
+//    public String signUpNicknameCheck(HttpServletRequest request){
+//        String result = userSignUpService.emailCheck(request);
+//        return result;
+//    }
+
+
     @RequestMapping("/signUpSuccess")
     public String signUpSuccess(HttpServletRequest request){
         userSignUpService.userSignUpSuccess(request);
@@ -45,9 +68,6 @@ public class UserController {
         HashMap<String,Object> resultMap = new HashMap<String,Object>();
         String resultString = userLoginService.userLoginService(request);
         resultMap.put("resultData",resultString);
-
-        System.out.println("로그인 성공여부 : "+resultString);
-
         return resultMap;
     }
 

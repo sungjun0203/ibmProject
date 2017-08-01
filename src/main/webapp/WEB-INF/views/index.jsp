@@ -70,7 +70,6 @@
     });
 
     function signIn(){
-
         $.ajax({
             url : "/user/loginCheck",
             dataType : "json",

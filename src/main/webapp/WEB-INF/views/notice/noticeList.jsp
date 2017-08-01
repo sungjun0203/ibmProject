@@ -18,37 +18,38 @@
 <body>
 <div class="page-header">
     <div class="navbar navbar-default navbar-fixed-top">
-        <div class="navbar-header">
-            <a onclick="main()" class="navbar-brand">DKU Metting</a>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-            <ul class="nav navbar-nav">
+        <div class="container">
+            <div class="navbar-header">
+                <a onclick="main()" class="navbar-brand">DanKook University Meeting System</a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
 
-                <li class="active">
-                    <a onclick="notice()">공지사항</a>
-                </li>
+                    <li>
+                        <a onclick="notice()">공지사항</a>
+                    </li>
 
-                <li>
-                    <a onclick="dating()">소개팅</a>
-                </li>
+                    <li>
+                        <a onclick="dating()">소개팅</a>
+                    </li>
 
-                <li>
-                    <a onclick="meeting()">미팅</a>
-                </li>
+                    <li>
+                        <a onclick="meeting()">미팅</a>
+                    </li>
 
-            </ul>
+                </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><a> ${userEmail} 님 안녕하세요 </a></li>
-                <li><a href="http://builtwithbootstrap.com/" target="_blank">내 정보</a></li>
-                <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">고객센터</a></li>
-            </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a> '${userInformation.name}'님 안녕하세요 </a></li>
+                    <li><a target="_blank" onclick="contact()">내 정보</a></li>
+                    <li><a target="_blank" onclick="contact()">고객센터</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="container">
-
     <div class="well">
         공지사항
     </div>
@@ -56,15 +57,15 @@
     <table class="table table-striped table-hover text-center">
         <thead>
         <tr class=info>
-            <th class = text-center>번호</th>
-            <th class = text-center>제목</th>
-            <th class = text-center>작성자</th>
-            <th class = text-center>등록일</th>
-            <th class = text-center>조회수</th>
+            <th class=text-center>번호</th>
+            <th class=text-center>제목</th>
+            <th class=text-center>작성자</th>
+            <th class=text-center>등록일</th>
+            <th class=text-center>조회수</th>
         </tr>
         </thead>
 
-<c:forEach items="${noticeInformation}" var="notice">
+        <c:forEach items="${noticeInformation}" var="notice">
 
         <tbody>
         <tr>
@@ -74,19 +75,19 @@
             <td width="20%">${notice.noticeDate}</td>
             <td width="10%">120022</td>
         </tr>
-</c:forEach>
+        </c:forEach>
 
 
         </tbody>
     </table>
 
-    <div >
+    <div>
         <table width="100%" style="margin-top:5px;">
             <tr>
                 <td width="20%"></td>
                 <td width="60%" style="text-align: center;">
                     <div>
-                        <ul class="pagination" style="text-align: center" >
+                        <ul class="pagination" style="text-align: center">
                             <li class="disabled"><a href="#">&laquo;</a></li>
                             <li class="active"><a href="#">1</a></li>
                             <li><a href="#">2</a></li>
@@ -104,11 +105,13 @@
             </tr>
         </table>
     </div>
-
-
 </div>
 
-
+<div class="modal-footer">
+    <center>
+        <p class="footer_text">이용약관 | 개인정보 취급방침 | Copyright® ParkSungJun</p>
+    </center>
+</div>
 
 
 </body>
@@ -130,25 +133,29 @@
         location.href = "/board/meeting";
     }
 
-    function noticeWrite(){
+    function noticeWrite() {
 
         $.ajax({
             url: "/common/userTypeCheck",
-            dataType : "text",
-            type:"POST",
-            success : function(data){
-                if(data=="관리자"){
-                    location.href= "/notice/write";
+            dataType: "text",
+            type: "POST",
+            success: function (data) {
+                if (data == "관리자") {
+                    location.href = "/notice/write";
                 }
-                else{
+                else {
                     alert("당신은 관리자가 아닙니다");
                 }
             },
-            error:function(request,status,error){
-                alert("code:"+request.status+"\n"+"error:"+error);
+            error: function (request, status, error) {
+                alert("code:" + request.status + "\n" + "error:" + error);
             }
         });
 
+    }
+
+    function contact() {
+        location.href = "/contact/";
     }
 </script>
 
