@@ -12,5 +12,7 @@ public interface NoticeDao {
     Integer noticeSubmit(HashMap<String,Object> noticeInformation);
     ArrayList<HashMap<String,Object>> noticeList();
     ArrayList<HashMap<String,Object>> recentNoticeList();
+    
+    Integer test();
 
 }

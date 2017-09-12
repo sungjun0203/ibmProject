@@ -24,5 +24,11 @@
         ORDER BY n.noticeDate DESC
         LIMIT 3;
     </select>
+    
+    <select id="test" resultType="INTEGER">
+     	select count(*)
+		from USER_INFORMATION
+    
+    </select>
 
 </mapper>

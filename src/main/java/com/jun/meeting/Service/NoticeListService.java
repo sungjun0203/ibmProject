@@ -27,4 +27,8 @@ public class NoticeListService {
         ArrayList<HashMap<String,Object>> recentNoticeList = noticeDao.recentNoticeList();
         return recentNoticeList;
     }
+    
+    public Integer test() {
+    	return noticeDao.test();
+    }
 }

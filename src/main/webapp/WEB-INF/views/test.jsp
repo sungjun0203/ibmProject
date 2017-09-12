@@ -5,7 +5,6 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet">
 
-<!DOCTYPE html>
 <head>
     <meta charset="utf-8">
     <title>Daily UI - Day 1 Sign In</title>
