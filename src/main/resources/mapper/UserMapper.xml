@@ -6,8 +6,8 @@
 
 
     <select id="userSignUp" resultType="INTEGER" parameterType="HashMap">
-        insert INTO user_Information
-        VALUES (#{email}, #{password}, #{name}, #{birth}, #{college}, #{major}, #{phone}, #{gender}, #{signUpDate}, #{userType},#{nickName})
+        INSERT INTO USER_INFORMATION (USER_EMAIL,USER_PASSWORD,USER_NAME,USER_PHONE,USER_GENDER,USER_AUTHORITY)
+        VALUES (#{USER_EMAIL}, #{USER_PASSWORD},#{USER_NAME},#{USER_PHONE},#{USER_GENDER},#{USER_AUTHORITY})
     </select>
 
     <select id="userLogin" resultType="INTEGER" parameterType="HashMap">
@@ -31,16 +31,7 @@
     <select id="userEmailDuplicateCheck" resultType="Integer" parameterType="String">
         select count(*)
         from user_information
-        where email = #{userEmail};
+        where USER_EMAIL = #{userEmail}
     </select>
-
-    <select id="userNicknameDuplicateCheck" resultType="Integer" parameterType="String">
-        select count(*)
-        from user_information
-        where nickname = #{userNickname};
-    </select>
-
-
-
 
 </mapper>

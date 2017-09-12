@@ -39,22 +39,6 @@ public class UserController {
         return result;
     }
 
-    @ResponseBody
-    @RequestMapping("/nicknameCheck")
-    public HashMap<String, Object> nicknameCheck(HttpServletRequest request){
-        HashMap<String,Object> result = userSignUpService.nicknameCheck(request);
-        return result;
-    }
-
-
-//    @ResponseBody
-//    @RequestMapping("/signUpNicknameCheck")
-//    public String signUpNicknameCheck(HttpServletRequest request){
-//        String result = userSignUpService.emailCheck(request);
-//        return result;
-//    }
-
-
     @RequestMapping("/signUpSuccess")
     public String signUpSuccess(HttpServletRequest request){
         userSignUpService.userSignUpSuccess(request);

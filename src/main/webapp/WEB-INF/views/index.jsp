@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DanKook Univ Meeting System</title>
+    <title>IBM Board Project</title>
 
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
@@ -22,8 +22,8 @@
 <body>
 <div class="container">
     <div class="top">
-        <h1 id="title" ><span id="logo">DanKook Univ <br>
-        Meeting System</span></h1>
+        <h1 id="title" ><span id="logo">IBM <br>
+        Board Project</span></h1>
     </div>
     <div class="login-box animated fadeInUp">
         <div class="box-header">

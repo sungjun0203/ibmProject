@@ -24,149 +24,84 @@ import java.util.*;
 @Service
 public class UserSignUpService {
 
-    @Autowired
-    private UserDao userDao;
+	@Autowired
+	private UserDao userDao;
 
-    @Autowired
-    FileService fileService;
+	@Autowired
+	FileService fileService;
 
-    @Autowired
-    FileDao fileDao;
+	@Autowired
+	FileDao fileDao;
 
-    @Autowired
-    public JavaMailSender emailSender;
+	@Autowired
+	public JavaMailSender emailSender;
 
-    private static String CODE_USERTYPE_01 = "일반사용자";
-    private static String CODE_USERTYPE_02 = "관리자";
-    private static Integer DUPLICATE = 1;
-    private static Integer NOTDUPLICATE = 0;
+	private static String CODE_USERTYPE_01 = "일반사용자";
+	private static String CODE_USERTYPE_02 = "관리자";
+	private static Integer DUPLICATE = 1;
+	private static Integer NOTDUPLICATE = 0;
 
+	public HashMap<String, Object> emailCheck(HttpServletRequest request) {
 
-    public HashMap<String,Object> emailCheck(HttpServletRequest request) {
-
-        HashMap<String, Object> resultData = new HashMap<String, Object>();
-        String resultString = null;
-        String email =null;
-        int randomNum=0;
-        email = request.getParameter("email");
-
-        System.out.println((userDao.userEmailDuplicateCheck(email)));
-
-        if (!email.endsWith("@dankook.ac.kr")) {
-            resultString = "notDANKOOK";
-        } else if (userDao.userEmailDuplicateCheck(email) > 0) {
-            resultString = "duplicate";
-        } else {
-
-            Random rand = new Random();
-            int min = 10000;
-            int max = 100000;
-            randomNum = rand.nextInt(max - min + 1) + min;
-
-            String subject = "DKU Meeting System 이메일 인증";
-            String text = "DKU Meeting System 이메일 인증번호 : '" + randomNum + "' 를입력해주세요";
-
-            SimpleMailMessage message = new SimpleMailMessage();
-
-            message.setTo(email);
-            message.setSubject(subject);
-            message.setText(text);
-            emailSender.send(message);
-
-            resultString = "sendOK";
-        }
-        resultData.put("resultString",resultString);
-        resultData.put("randomNum",randomNum);
-        return resultData;
-    }
+		HashMap<String, Object> resultData = new HashMap<String, Object>();
+		String resultString = null;
+		String email = null;
+		int randomNum = 0;
+		email = request.getParameter("email");
+		
+		System.out.println(email);
 
 
+		if (userDao.userEmailDuplicateCheck(email) > 0) {
+			resultString = "duplicate";
+		} else {
 
+			Random rand = new Random();
+			int min = 10000;
+			int max = 100000;
+			randomNum = rand.nextInt(max - min + 1) + min;
 
-    public HashMap<String,Object> nicknameCheck(HttpServletRequest request) {
+			String subject = "IBM Board 이메일 인증";
+			String text = "IBM Board 이메일 인증번호 : '" + randomNum + "' 를입력해주세요";
 
-        HashMap<String,Object> resultData = new HashMap<String,Object>();
-        String nickname = request.getParameter("nickName");
-        String resultString = null;
-        if(userDao.userNicknameDuplicateCheck(nickname)==DUPLICATE){
-            resultString="a";
-        }
-        else
-            resultString="notDuplicate";
+			SimpleMailMessage message = new SimpleMailMessage();
 
-        resultData.put("resultData",resultString);
+			message.setTo(email);
+			message.setSubject(subject);
+			message.setText(text);
+			emailSender.send(message);
 
-        return resultData;
-    }
+			resultString = "sendOK";
+		}
+		resultData.put("resultString", resultString);
+		resultData.put("randomNum", randomNum);
+		return resultData;
+	}
 
+	public void userSignUpSuccess(HttpServletRequest request) {
 
-    public void userSignUpSuccess(HttpServletRequest request) {
+		// -----------------------------------------------------------------------------------------------------------------------------
 
-//-----------------------------------------------------------------------------------------------------------------------------
+		long dateTime = System.currentTimeMillis(); // 또는 System.nanoTime();
+		SimpleDateFormat date = new SimpleDateFormat("yyyy:MM:dd-hh:mm:ss");
 
-        long dateTime = System.currentTimeMillis();  // 또는 System.nanoTime();
-        SimpleDateFormat date = new SimpleDateFormat("yyyy:MM:dd-hh:mm:ss");
-        String stringDateTime = date.format(new Date(dateTime));
+		String email = request.getParameter("inputEmail");
+		String password = request.getParameter("inputPassword"); // null
+		String name = request.getParameter("inputName");
+		String gender = request.getParameter("gender");
+		String phone = request.getParameter("inputNumber");
 
-        String email = request.getParameter("inputEmail");
-        String password = request.getParameter("inputPassword"); // null
-        String name = request.getParameter("inputName");
-        String birth = request.getParameter("inputBirthDay");
-        String gender = request.getParameter("gender");
-        String college = request.getParameter("inputCollege");
-        String major = request.getParameter("inputMajor"); // 수정
-        String phone = request.getParameter("inputNumber");
-        String nickName = request.getParameter("inputNickName");
+		HashMap<String, Object> userInformation = new HashMap<String, Object>();
 
-        HashMap<String, Object> userInformation = new HashMap<String, Object>();
+		userInformation.put("USER_EMAIL", email);
+		userInformation.put("USER_PASSWORD", password);
+		userInformation.put("USER_NAME", name);
+		userInformation.put("USER_GENDER", gender);
+		userInformation.put("USER_PHONE", phone);
+		userInformation.put("USER_AUTHORITY", CODE_USERTYPE_01);
 
-        userInformation.put("email", email);
-        userInformation.put("password", password);
-        userInformation.put("name", name);
-        userInformation.put("birth", birth);
-        userInformation.put("gender", gender);
-        userInformation.put("college", college);
-        userInformation.put("major", major);
-        userInformation.put("phone", phone);
-        userInformation.put("signUpDate", stringDateTime);
-        userInformation.put("userType", CODE_USERTYPE_01);
-        userInformation.put("nickName", nickName);
+		System.out.println(userInformation);
+		userDao.userSignUp(userInformation);
 
-        System.out.println(userInformation);
-        userDao.userSignUp(userInformation);
-
-
-        String path = "c://aaa";
-
-        Map fileInfo = null;
-        HashMap<String, Object> fileInformation = new HashMap<String, Object>();
-
-        try {
-
-            fileInfo = fileService.fileUpload(request, path); //해당 디렉토리 위치에 파일 업로드
-            List files = (List) fileInfo.get("files");
-
-            if (files.size() > 0) {
-
-                fileInformation.put("file_gbn", "BD");
-
-                for (int i = 0; i < files.size(); i++) {
-                    Map file = (Map) files.get(i);
-
-                    String origName = (String) file.get("origName");
-                    File sFile = (File) file.get("sfile");
-
-                    fileInformation.put("file_name", sFile.getName()); //복호화된 파일 이름
-                    fileInformation.put("file_path", sFile.getAbsolutePath()); //물리적 저장 경로
-                    fileInformation.put("file_size", sFile.length()); //파일 크기
-                    fileInformation.put("file_orig", origName); //원래 파일 명
-                    fileInformation.put("userEmail", email);
-                    fileDao.insertFileToDB(fileInformation);
-                }
-            }
-
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-    }
+	}
 }
