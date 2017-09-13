@@ -13,7 +13,7 @@
     <select id="userLogin" resultType="INTEGER" parameterType="HashMap">
         select count(*)
         from user_information
-        where email=#{email} and password=#{password}
+        where USER_EMAIL=#{email} and USER_PASSWORD=#{password}
     </select>
 
     <select id="userTypeCheck" resultType="String" parameterType="String">

@@ -14,7 +14,7 @@ public class IndexController {
 
 
     @RequestMapping("/")
-    public String test(){
+    public String indexPage(){
     	   
         return "index";
     }
