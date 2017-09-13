@@ -43,7 +43,6 @@
             <button type="button" onclick ="signUp();">SIGN UP</button>
             <br/>
         </form>
-        <a href="#"><p class="small">Forgot your password?</p></a>
     </div>
 </div>
 </body>
