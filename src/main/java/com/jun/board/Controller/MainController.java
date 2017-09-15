@@ -1,4 +1,4 @@
-package com.jun.meeting.Controller;
+package com.jun.board.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

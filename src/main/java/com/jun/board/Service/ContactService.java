@@ -1,11 +1,13 @@
-package com.jun.meeting.Service;
+package com.jun.board.Service;
 
-import com.jun.meeting.Dao.ContactDao;
+import com.jun.board.Dao.ContactDao;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import java.util.HashMap;
 
 /**

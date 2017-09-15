@@ -1,4 +1,4 @@
-package com.jun.meeting.Dao;
+package com.jun.board.Dao;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,7 @@
-package com.jun.meeting.Service;
+package com.jun.board.Service;
 
-import com.jun.meeting.Dao.UserDao;
+import com.jun.board.Dao.UserDao;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,6 +10,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

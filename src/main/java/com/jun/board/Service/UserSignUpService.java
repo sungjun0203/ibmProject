@@ -1,7 +1,8 @@
-package com.jun.meeting.Service;
+package com.jun.board.Service;
 
-import com.jun.meeting.Dao.FileDao;
-import com.jun.meeting.Dao.UserDao;
+import com.jun.board.Dao.FileDao;
+import com.jun.board.Dao.UserDao;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

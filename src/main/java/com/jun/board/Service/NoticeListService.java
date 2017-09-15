@@ -1,4 +1,4 @@
-package com.jun.meeting.Service;
+package com.jun.board.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;

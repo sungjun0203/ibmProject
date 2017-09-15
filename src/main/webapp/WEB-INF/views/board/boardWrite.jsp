@@ -4,7 +4,6 @@
 <link rel="stylesheet" type="text/css" href="/resources/bootstrap/cosmo.css"/>
 <link rel="stylesheet/less" type="text/css" href="/resources/bootstrap/bootswatch.less"/>
 <link rel="stylesheet/less" type="text/css" href="/resources/bootstrap/variables.less"/>
-<script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <html>
 <head>
     <title>Title</title>
@@ -45,27 +44,33 @@
     </div>
 </div>
 
-<form id="noticeWrite" name="noticeWrite" method="POST" action="/notice/writeSubmit">
+<form id="boardWrite" name="boardWrite" method="POST" action="/board/writeSubmit">
+<input type="hidden" id="imgSrc" name="imgSrc">
     <div class="container">
         <div>
             <div class="well">
-                공지사항 작성
+                게시글 작성
             </div>
         </div>
 
         <div class="form-group has-error">
-            <label class="control-label" for="noticeTitle">제목</label>
+            <label class="control-label" for="boardTitle">제목</label>
             <input type="text" class="form-control" id="noticeTitle" name="noticeTitle">
         </div>
+        
+        <div class="form-group has-warning">
+            <label class="control-label" for="boardTitle">사진(jpg, png, gif) 첨부</label>
+            <input type="file" class="form-control" id="file" name="file" placeholder="사진" onchange="imageCheck()">
+        </div>
 
-        <textarea style="width: 100%" rows="25" name="noticeContent" id="noticeContent" cols="200"></textarea>
+        <textarea style="width: 100%" rows="25" name="boardContent" id="boardContent" cols="200"></textarea>
 
         <div style="text-align: right; margin-top: 5px; margin-bottom: 5px">
             <button type="button" class="btn btn-warning btn-sm">Back</button>
-            <button type="button" class="btn btn-success btn-sm" onclick="noticeSubmit();">Success</button>
+            <button type="button" class="btn btn-success btn-sm" onclick="boardSubmit();">Success</button>
         </div>
     </div>
-
+    
     <div class="modal-footer">
         <center>
             <p class="footer_text">이용약관 | 개인정보 취급방침 | Copyright® IBM 3조</p>
@@ -76,9 +81,34 @@
 </body>
 </html>
 
-<script>
-    function noticeSubmit() {
-        var noticeHTMLValue = oEditors.getById["noticeContent"].exec("UPDATE_CONTENTS_FIELD", []);
-        $("#noticeWrite").submit();
-    }
+<script type="text/javascript">
+
+
+	function imageCheck() {
+		
+		var fileSrc = $("#file").val();
+		var fileName = fileSrc.slice(fileSrc.lastIndexOf("\\") + 1).toLowerCase();
+		
+		$("#imgSrc").val(fileName);
+		alert($("#imgSrc").val());
+
+		var ext = fileSrc.slice(fileSrc.lastIndexOf(".") + 1).toLowerCase();
+
+		if (!(ext == "gif" || ext == "jpg" || ext == "png")) {
+			alert("이미지파일 (.jpg, .png, .gif ) 만 업로드 가능합니다.");
+			$("#file").val("");
+		}
+	}
+
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+
+			var reader = new FileReader();
+
+			reader.onload = function(e) {
+				$('#blah').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
 </script>

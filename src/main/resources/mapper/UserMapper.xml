@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.jun.meeting.Dao.UserDao">
+<mapper namespace="com.jun.board.Dao.UserDao">
 
 
     <select id="userSignUp" resultType="INTEGER" parameterType="HashMap">

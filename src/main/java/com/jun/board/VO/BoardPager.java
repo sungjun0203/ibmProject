@@ -1,4 +1,4 @@
-package com.jun.meeting.VO;
+package com.jun.board.VO;
 
 /**
  * Created by Jun on 2017-07-29.

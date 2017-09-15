@@ -143,7 +143,7 @@
 				<div class="col-sm-12" style="margin-top: 11px; margin-bottom: 11px;">
 
 					<div class="col-sm-9">
-						<a href="#" class="btn btn-primary" > 글쓰기  </a>
+						<button class="btn btn-primary" onclick="boardWrite();"> 글쓰기  </button>
 					</div>
 
 					<div class="col-sm-3">
@@ -218,6 +218,10 @@
 
     function admin() {
         location.href = "/admin/index";
+    }
+    
+    function boardWrite(){
+    	location.href= "/board/boardWrite";
     }
 
 

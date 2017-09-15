@@ -1,4 +1,4 @@
-package com.jun.meeting.Controller;
+package com.jun.board.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jun.meeting.Dao.UserDao;
-import com.jun.meeting.Service.CommonService;
+import com.jun.board.Dao.UserDao;
+import com.jun.board.Service.CommonService;
 
 @Controller
 @RequestMapping("/notice")

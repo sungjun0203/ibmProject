@@ -1,8 +1,8 @@
-package com.jun.meeting.Controller;
+package com.jun.board.Controller;
 
-import com.jun.meeting.Dao.UserDao;
-import com.jun.meeting.Service.UserLoginService;
-import com.jun.meeting.Service.UserSignUpService;
+import com.jun.board.Dao.UserDao;
+import com.jun.board.Service.UserLoginService;
+import com.jun.board.Service.UserSignUpService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
