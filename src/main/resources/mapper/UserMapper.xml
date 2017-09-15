@@ -17,9 +17,9 @@
     </select>
 
     <select id="userTypeCheck" resultType="String" parameterType="String">
-        select userType
-        from user_information
-        where email = #{email};
+        select USER_AUTHORITY
+        from USER_INFORMATION
+        where USER_EMAIL = #{userEmail}
     </select>
 
     <select id="userInformation" resultType="HashMap" parameterType="String">
@@ -32,6 +32,12 @@
         select count(*)
         from user_information
         where USER_EMAIL = #{userEmail}
+    </select>
+    
+    <select id="userAdminCheck" resultType="String" parameterType="String">
+    	SELECT USER_AUTHORITY
+		FROM USER_INFORMATION
+		WHERE USER_EMAIL = #{userEmail}
     </select>
 
 </mapper>

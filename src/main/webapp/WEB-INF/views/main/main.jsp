@@ -39,7 +39,7 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li><a> '${userInformation.name}'님 안녕하세요 </a></li>
 						<li><a target="_blank" onclick="contact()">고객센터</a></li>
-						<li><a target="_blank" onclick="contact()">관리자</a></li>
+						<li><a target="_blank" onclick="admin()">관리자</a></li>
 					</ul>
 				</div>
 			</div>
@@ -216,8 +216,8 @@
         location.href = "/board/meeting";
     }
 
-    function contact() {
-        location.href = "/contact/";
+    function admin() {
+        location.href = "/admin/index";
     }
 
 

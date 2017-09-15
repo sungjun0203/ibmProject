@@ -7,8 +7,7 @@
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 <link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"
-	rel="stylesheet">
+	href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"	rel="stylesheet">
 
 <style>
 /* CSS used here will be applied after bootstrap.css */
@@ -62,15 +61,12 @@
 			회원가입 <small>일반회원가입</small>
 		</h1>
 	</div>
-	<form class="form-horizontal" method="POST" id="signUpSubmit"
-		name="signUpSubmit" action="/user/signUpSuccess"
-		enctype="multipart/form-data">
+	<form class="form-horizontal" method="POST" id="signUpSubmit" name="signUpSubmit" action="/user/signUpSuccess" enctype="multipart/form-data">
 
 		<div class="form-group">
 			<label for="inputEmail" class="col-sm-2 control-label">이메일</label>
 			<div class="col-sm-3">
-				<input type="email" class="form-control" id="inputEmail"
-					name="inputEmail" placeholder="이메일">
+				<input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="이메일">
 				<p class="help-block">
 					이메일을 작성해주세요 <br> Ex)abcd@naver.com
 				</p>
@@ -85,13 +81,11 @@
 			<label for="inputAuthNumber" class="col-sm-2 control-label">인증번호
 				확인</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="inputAuthNumber"
-					name="inputAuthNumber" placeholder="인증번호">
+				<input type="text" class="form-control" id="inputAuthNumber" name="inputAuthNumber" placeholder="인증번호">
 			</div>
 
 			<div class="col-sm-2">
-				<a class="btn btn-default" onclick="emailAuth();" role="button">인증번호
-					확인</a>
+				<a class="btn btn-default" onclick="emailAuth();" role="button">인증번호 확인</a>
 			</div>
 		</div>
 
@@ -146,16 +140,14 @@
 		<div class="form-group">
 			<label for="inputNumber" class="col-sm-2 control-label">휴대폰번호</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="inputNumber"
-					name="inputNumber" placeholder="- 없이 적어주세요">
+				<input type="text" class="form-control" id="inputNumber" name="inputNumber" placeholder="- 없이 적어주세요">
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label for="inputAgree" class="col-sm-2 control-label">약관 동의</label>
 			<div class="col-sm-6 checkbox">
-				<label> <input id="inputAgree" name="inputAgree"
-					type="checkbox" onchange="accessTermsFunction()"> <a
+				<label> <input id="inputAgree" name="inputAgree"type="checkbox" onchange="accessTermsFunction()"> <a
 					href="/agreement"> 이용약관</a>에 동의합니다.
 				</label>
 			</div>
@@ -163,13 +155,13 @@
 		<div class="form-group">
 			<label for="inputName" class="col-sm-2 control-label"></label>
 			<div class="col-sm-6">
-				<button type="button" id=signUpSubmitBtn name=signUpSubmitBtn
-					onclick="signUpSubmitFunction()" class="btn btn-primary" disabled>회원가입</button>
+				<button type="button" id=signUpSubmitBtn name=signUpSubmitBtn onclick="signUpSubmitFunction()" class="btn btn-primary" disabled>회원가입</button>
 				<button type="button" class="btn btn-danger"
 					onclick="returnIndex();">돌아가기</button>
 			</div>
 		</div>
-	</form>
+		
+		</form>
 	</article>
 </div>
 <footer class="footer" id="page_footer">
@@ -185,15 +177,16 @@
 
     var randomValue;
     var emailAuthNumber;
-
     var emailSendCheck = false;
     var emailAuthCheck = false;
     var passwordCheck = false;
     var passwordSameCheck = false;
+    
+    var name = $("#inputName").val()
 
     function signUpSubmitFunction(){
-        if($("#file")=="" || emailAuthCheck==false||passwordCheck==false||passwordSameCheck==false||
-            inputName==""||inputNumber==""){
+    	
+        if(emailAuthCheck==false||passwordCheck==false||passwordSameCheck==false||$("#inputName").val()==""||$("#inputNumber").val()==""){
             alert("모든 정보를 입력해주세요");
         }
         else{

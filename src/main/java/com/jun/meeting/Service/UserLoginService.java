@@ -28,6 +28,8 @@ public class UserLoginService {
         loginInformation.put("password",password);
 
         int loginCheck = userDao.userLogin(loginInformation);
+        
+        System.out.println("loginCheck"+loginCheck);
 
         if(loginCheck==1){
             return "loginSuccess";

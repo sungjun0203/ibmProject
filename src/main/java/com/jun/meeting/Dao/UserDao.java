@@ -12,5 +12,6 @@ public interface UserDao {
     HashMap<String,Object> userInformation(String userEmail);
     Integer userEmailDuplicateCheck(String userEmail);
     Integer userNicknameDuplicateCheck(String userNickname);
+    String userAdminCheck(String userEmail);
 
 }

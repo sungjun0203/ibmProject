@@ -50,6 +50,7 @@ public class UserSignUpService {
 		email = request.getParameter("email");
 		
 		System.out.println(email);
+		System.out.println(userDao.userEmailDuplicateCheck(email));
 
 
 		if (userDao.userEmailDuplicateCheck(email) > 0) {

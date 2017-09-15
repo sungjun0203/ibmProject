@@ -8,6 +8,4 @@ import java.util.HashMap;
 @Mapper
 public interface ContactDao {
     int contactInsert(HashMap<String,Object> contractInformation);
-
-
 }

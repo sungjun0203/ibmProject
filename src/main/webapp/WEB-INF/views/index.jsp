@@ -33,11 +33,11 @@
         <form class="form-signin" id="indexForm" name ="indexForm" method="POST">
             <label for="email">E-Mail</label>
             <br/>
-            <input type="text" id="email" name="email" value="a@a.com" required="" autofocus="">
+            <input type="text" id="email" name="email" value="sungjun0204@naver.com" required="" autofocus="">
             <br/>
             <label for="password">Password</label>
             <br/>
-            <input type="password" id="password" name="password" value="0000" required="">
+            <input type="password" id="password" name="password" value="1q2w3e4r!" required="">
             <br/>
             <button type="submit" onclick="signIn();" >LOGIN</button>
             <button type="button" onclick ="signUp();">SIGN UP</button>
