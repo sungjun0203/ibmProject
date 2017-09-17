@@ -44,7 +44,7 @@
     </div>
 </div>
 
-<form id="boardWrite" name="boardWrite" method="POST" action="/board/writeSubmit">
+<form id="boardWrite" name="boardWrite" method="POST" action="/board/boardWriteSubmit" enctype="multipart/form-data">
 <input type="hidden" id="imgSrc" name="imgSrc">
     <div class="container">
         <div>
@@ -55,7 +55,7 @@
 
         <div class="form-group has-error">
             <label class="control-label" for="boardTitle">제목</label>
-            <input type="text" class="form-control" id="noticeTitle" name="noticeTitle">
+            <input type="text" class="form-control" id="boardTitle" name="boardTitle">
         </div>
         
         <div class="form-group has-warning">
@@ -83,6 +83,10 @@
 
 <script type="text/javascript">
 
+	function boardSubmit(){
+		$("#boardWrite").submit();
+	}
+
 
 	function imageCheck() {
 		
@@ -98,6 +102,7 @@
 			alert("이미지파일 (.jpg, .png, .gif ) 만 업로드 가능합니다.");
 			$("#file").val("");
 		}
+
 	}
 
 	function readURL(input) {

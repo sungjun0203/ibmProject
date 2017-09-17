@@ -7,6 +7,6 @@ import java.util.HashMap;
 
 @Mapper
 public interface BoardDao {
-    int onlyTextWrite(HashMap<String,Object> boardInformation);
+    void onlyTextWrite(HashMap<String,Object> boardInformation);
     int imgTextWrite(HashMap<String,Object> boardInformation);
 }

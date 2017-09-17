@@ -17,14 +17,17 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping("/boardWrite")
-	public String boardWrite(HttpServletRequest request, HttpSession session){
-		
-		boardService.boardWrite(request, session);
-		
-		
+	public String boardWrite(){
 		return "/board/boardWrite";
 		
+	}
+	
+	@RequestMapping("/boardWriteSubmit")
+	public String boardWriteSubmit(HttpServletRequest request, HttpSession session){
 		
+		boardService.boardWriteSubmit(request, session);
+		
+		return "/index";
 	}
 	
 	

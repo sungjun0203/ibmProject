@@ -2,6 +2,7 @@ package com.jun.board.Service;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,8 +23,9 @@ public class BoardService {
 	
 	@Autowired
 	BoardDao boardDao;
+	
 
-	public String boardWrite(HttpServletRequest request, HttpSession session) {
+	public String boardWriteSubmit(HttpServletRequest request, HttpSession session) {
 		
 		HashMap<String,Object> boardInformation = new HashMap<String,Object>();
 		
@@ -32,12 +34,16 @@ public class BoardService {
 		String boardContent = request.getParameter("boardContent");
 		
 		long dateTime = System.currentTimeMillis(); 
-		SimpleDateFormat nowDate = new SimpleDateFormat("yyyy:MM:dd-hh:mm:ss");
+		SimpleDateFormat nowDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String stringDateTime = nowDate.format(new Date(dateTime));
 		
 		boardInformation.put("userEmail", userEmail);
 		boardInformation.put("boardTitle", boardTitle);
 		boardInformation.put("boardContent",boardContent);
-		boardInformation.put("boardDate",nowDate);
+		boardInformation.put("boardDate",stringDateTime);
+		
+		System.out.println(boardInformation);
+		
 
 		String path = "c://ibmProject//imgFile";
 
@@ -62,6 +68,7 @@ public class BoardService {
 				boardInformation.put("file_size", sFile.length()); // 파일 크기
 				boardInformation.put("file_orig", origName); // 원래 파일 명
 				boardDao.imgTextWrite(boardInformation);
+				
 			}
 		}
 		
@@ -70,7 +77,7 @@ public class BoardService {
 			
 		}
 
-		return "/board/boardWrite";
+		return "/index";
 	}
 
 }

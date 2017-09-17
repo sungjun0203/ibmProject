@@ -5,9 +5,10 @@
 <mapper namespace="com.jun.board.Dao.BoardDao">
 
 
-    <select id="onlyTextWrite" resultType="INTEGER" parameterType="HashMap">
+ 
+    <select id="onlyTextWrite" parameterType="HashMap">
         INSERT INTO BOARD_INFORMATION (BOARD_NUMBER,BOARD_TITLE,BOARD_CONTENT,BOARD_WRITER,BOARD_DATE)
-        VALUES (#{BOARD_NUMBER.NEXTVAL}, #{boardTitle},#{boardContent},#{userEmail},#{nowDate})
+        VALUES (BOARD_NUMBER.NEXTVAL, #{boardTitle},#{boardContent},#{userEmail},TO_DATE(#{boardDate},'RRRR/MM/DD HH:MI:SS'))
     </select>
 
 
