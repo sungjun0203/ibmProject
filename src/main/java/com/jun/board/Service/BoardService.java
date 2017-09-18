@@ -2,6 +2,7 @@ package com.jun.board.Service;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -24,8 +25,13 @@ public class BoardService {
 	@Autowired
 	BoardDao boardDao;
 	
+	public ArrayList<HashMap<String,Object>> boardList(){
+		ArrayList<HashMap<String,Object>> boardList = boardDao.boardList();
+		
+		return boardList;
+	}
 
-	public String boardWriteSubmit(HttpServletRequest request, HttpSession session) {
+	public void boardWriteSubmit(HttpServletRequest request, HttpSession session) {
 		
 		HashMap<String,Object> boardInformation = new HashMap<String,Object>();
 		
@@ -34,16 +40,13 @@ public class BoardService {
 		String boardContent = request.getParameter("boardContent");
 		
 		long dateTime = System.currentTimeMillis(); 
-		SimpleDateFormat nowDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		SimpleDateFormat nowDate = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 		String stringDateTime = nowDate.format(new Date(dateTime));
 		
 		boardInformation.put("userEmail", userEmail);
 		boardInformation.put("boardTitle", boardTitle);
 		boardInformation.put("boardContent",boardContent);
 		boardInformation.put("boardDate",stringDateTime);
-		
-		System.out.println(boardInformation);
-		
 
 		String path = "c://ibmProject//imgFile";
 
@@ -63,21 +66,17 @@ public class BoardService {
 				String origName = (String) file.get("origName");
 				File sFile = (File) file.get("sfile");
 
-				boardInformation.put("file_name", sFile.getName()); // 복호화된 파일 이름
-				boardInformation.put("file_path", sFile.getAbsolutePath()); // 물리적
-				boardInformation.put("file_size", sFile.length()); // 파일 크기
-				boardInformation.put("file_orig", origName); // 원래 파일 명
+				boardInformation.put("boardFileName", sFile.getName()); // 복호화된 파일 이름
+				boardInformation.put("boardFilePath", sFile.getAbsolutePath()); // 물리적
+				boardInformation.put("boardFileSize", sFile.length()); // 파일 크기
+				boardInformation.put("boardFileOrig", request.getParameter("imgSrc")); // 원래 파일 명
 				boardDao.imgTextWrite(boardInformation);
-				
 			}
 		}
 		
 		else{
 			boardDao.onlyTextWrite(boardInformation);
-			
 		}
-
-		return "/index";
 	}
 
 }

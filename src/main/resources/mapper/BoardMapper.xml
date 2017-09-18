@@ -10,6 +10,17 @@
         INSERT INTO BOARD_INFORMATION (BOARD_NUMBER,BOARD_TITLE,BOARD_CONTENT,BOARD_WRITER,BOARD_DATE)
         VALUES (BOARD_NUMBER.NEXTVAL, #{boardTitle},#{boardContent},#{userEmail},TO_DATE(#{boardDate},'RRRR/MM/DD HH:MI:SS'))
     </select>
+    
+    <select id="imgTextWrite" parameterType="HashMap">
+        INSERT INTO BOARD_INFORMATION (BOARD_NUMBER,BOARD_TITLE,BOARD_CONTENT,BOARD_WRITER,BOARD_DATE,BOARD_FILE_NAME,BOARD_FILE_PATH,BOARD_FILE_SIZE,BOARD_FILE_ORIG)
+        VALUES (BOARD_NUMBER.NEXTVAL, #{boardTitle},#{boardContent},#{userEmail},TO_DATE(#{boardDate},'RRRR/MM/DD HH:MI:SS'),#{boardFileName},#{boardFilePath},#{boardFileSize},#{boardFileOrig})
+    </select>
+    
+    <select id="boardList" resultType="HashMap">
+    	SELECT boardInfo.*, userInfo.USER_NAME
+		FROM BOARD_INFORMATION boardInfo, USER_INFORMATION userInfo
+		WHERE boardInfo.BOARD_WRITER = userInfo.USER_EMAIL
+    </select>
 
 
  

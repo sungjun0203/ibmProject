@@ -27,7 +27,7 @@ public class BoardController {
 		
 		boardService.boardWriteSubmit(request, session);
 		
-		return "/index";
+		return "/main/main";
 	}
 	
 	

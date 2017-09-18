@@ -8,5 +8,6 @@ import java.util.HashMap;
 @Mapper
 public interface BoardDao {
     void onlyTextWrite(HashMap<String,Object> boardInformation);
-    int imgTextWrite(HashMap<String,Object> boardInformation);
+    void imgTextWrite(HashMap<String,Object> boardInformation);
+    ArrayList<HashMap<String,Object>> boardList();
 }

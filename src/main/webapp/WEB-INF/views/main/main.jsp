@@ -49,101 +49,88 @@
 	<div>
 		<div class="container">
 
-			<div style="height:30%">
-				<div class="col-sm-6">
-					&nbsp;
-					<div class="col-sm-12"
-						style="margin-top: 11px; margin-bottom: 11px;">
-						<span class="label label-primary">공지사항</span> <span
-							class="label label-default" style="float: right"
-							name="noticeMore" id="noticeMore" onclick="notice()">더 보기
-						</span>
+			<div style="height: 30%">
 
+				<div class="col-sm-12">
+					<div class="col-sm-8">
+						&nbsp;
+						<div class="col-sm-12"
+							style="margin-top: 11px; margin-bottom: 11px;">
+							<span class="label label-primary">공지사항</span> <span
+								class="label label-default" style="float: right"
+								name="noticeMore" id="noticeMore" onclick="notice()">더 보기
+							</span>
+
+						</div>
+
+						<table class="table table-striped table-hover text-center">
+							<thead>
+								<tr class="warning">
+									<th>번호</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>등록일</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Column content</td>
+									<td>Column content</td>
+									<td>Column content</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Column content</td>
+									<td>Column content</td>
+									<td>Column content</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Column content</td>
+									<td>Column content</td>
+									<td>Column content</td>
+								</tr>
+
+							</tbody>
+						</table>
 					</div>
 
-					<table class="table table-striped table-hover text-center">
-						<thead>
-							<tr class="warning">
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>등록일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Column content</td>
-								<td>Column content</td>
-								<td>Column content</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Column content</td>
-								<td>Column content</td>
-								<td>Column content</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Column content</td>
-								<td>Column content</td>
-								<td>Column content</td>
-							</tr>
+
+
+					<div class="col-sm-4">
+
+						&nbsp;
+						<div class="col-sm-12"
+							style="margin-top: 11px; margin-bottom: 11px;">
+							<span class="label label-primary">내 정보</span>
+						</div>
+
+						<div class="col-sm-12">
+
+							<ul class="list-group">
 							
-						</tbody>
-					</table>
-				</div>
-
-				<div class="col-sm-6">
-
-					&nbsp;
-					<div class="col-sm-12"
-						style="margin-top: 11px; margin-bottom: 11px;">
-						<span class="label label-primary">최근 가입자</span> <span
-							class="label label-default" style="float: right"
-							name="noticeMore" id="noticeMore" onclick="notice()">더 보기
-						</span>
-
+								<li class="list-group-item">박성준</li>
+								<li class="list-group-item">sungjun0204@naver.com</li>
+								<li class="list-group-item"><span class="badge">14</span>
+									내가 쓴 글</li>
+								<li class="list-group-item"><span class="badge">2</span>
+									내가 쓴 댓글</li>
+								
+							</ul>
+						</div>
 					</div>
-					<table class="table table-striped table-hover text-center">
-						<thead>
-							<tr class="warning">
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>등록일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Column content</td>
-								<td>Column content</td>
-								<td>Column content</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Column content</td>
-								<td>Column content</td>
-								<td>Column content</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Column content</td>
-								<td>Column content</td>
-								<td>Column content</td>
-							</tr>
-						</tbody>
-					</table>
 				</div>
 			</div>
 
 			<div>
 				&nbsp;
-				<div class="col-sm-12" style="margin-top: 11px; margin-bottom: 11px;">
+				<div class="col-sm-12"
+					style="margin-top: 11px; margin-bottom: 11px;">
 
 					<div class="col-sm-9">
-						<button class="btn btn-primary" onclick="boardWrite();"> 글쓰기  </button>
+						<button class="btn btn-primary" onclick="boardWrite();">
+							글쓰기</button>
 					</div>
 
 					<div class="col-sm-3">
@@ -159,23 +146,24 @@
 					<table class="table table-striped table-hover text-center">
 						<thead>
 							<tr class="info">
-								<td width="10%"></td>
+								<td width="10%">번호</td>
 								<td width="40%">제목</td>
-								<td width="20%">작성자</td>
+								<td width="10%">작성자</td>
 								<td width="20%">등록일</td>
-								<td width="10%"></td>
+								<td width="10%">좋아요 수</td>
+								<td width="10%">좋아요</td>
 							</tr>
 						</thead>
 
-
 						<tbody>
-							<c:forEach items="${recentNoticeList}" var="notice">
+							<c:forEach items="${boardList}" var="boardList">
 								<tr>
-									<td width="10%"></td>
-									<td width="40%">${notice.noticeTitle}</td>
-									<td width="20%">${notice.name}</td>
-									<td width="20%">${notice.noticeDate}</td>
-									<td width="10%"></td>
+									<td width="10%">${boardList.BOARD_NUMBER}</td>
+									<td width="40%">${boardList.BOARD_TITLE}</td>
+									<td width="10%">${boardList.USER_NAME}</td>
+									<td width="20%">${boardList.BOARD_DATE}</td>
+									<td width="10%">0</td>
+									<td width="10%">0</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -199,33 +187,30 @@
 </body>
 
 <script language="javascript" type="text/javascript">
+	function main() {
+		location.reload();
+	}
 
-    function main() {
-        location.reload();
-    }
+	function notice() {
+		location.href = "/notice/noticeList";
+	}
 
-    function notice() {
-        location.href = "/notice/noticeList";
-    }
+	function dating() {
+		location.href = "/board/dating";
+	}
 
-    function dating() {
-        location.href = "/board/dating";
-    }
+	function meeting() {
+		location.href = "/board/meeting";
+	}
 
-    function meeting() {
-        location.href = "/board/meeting";
-    }
+	function admin() {
+		location.href = "/admin/index";
+	}
 
-    function admin() {
-        location.href = "/admin/index";
-    }
-    
-    function boardWrite(){
-    	location.href= "/board/boardWrite";
-    }
-
-
-    //  End -->
+	function boardWrite() {
+		location.href = "/board/boardWrite";
+	}
+//  End -->
 </script>
 
 
