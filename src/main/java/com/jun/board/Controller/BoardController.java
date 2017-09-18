@@ -32,10 +32,15 @@ public class BoardController {
 		return "/main/main";
 	}
 	
-	@RequestMapping(value="/boardRead", method=RequestMethod.GET)
+	@RequestMapping("/boardRead")
 	public ModelAndView boardRead(HttpServletRequest request, HttpSession session){
 		
+		System.out.println("hello");
+		System.out.println(request.getParameter("boardSeq"));
+		
 		ModelAndView boardRead = new ModelAndView();
+		boardRead.setViewName("/board/boardRead");
+		
 		
 		
 		return boardRead;
