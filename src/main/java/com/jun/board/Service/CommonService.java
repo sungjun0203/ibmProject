@@ -28,10 +28,11 @@ public class CommonService {
     public String userTypeCheck(HttpSession session) {
 
         String userEmail = (String) session.getAttribute("userEmail");
-        System.out.println("a~~~~~~~~~~" + userEmail);
         String userType = userDao.userTypeCheck(userEmail);
-
-        System.out.println(userType);
         return userType;
+    }
+    
+    public void logout(HttpSession session){
+    	session.invalidate();
     }
 }

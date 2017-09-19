@@ -25,10 +25,47 @@ public class BoardService {
 	@Autowired
 	BoardDao boardDao;
 	
+	@Autowired
+	CommonService commonService;
+	
 	public ArrayList<HashMap<String,Object>> boardList(){
 		ArrayList<HashMap<String,Object>> boardList = boardDao.boardList();
 		
 		return boardList;
+	}
+	
+	public HashMap<String,Object> boardRead(HttpServletRequest request, HttpSession session){
+		
+		Integer boardSeq = Integer.parseInt(request.getParameter("boardSeq"));
+		HashMap<String,Object> boardRead = boardDao.boardRead(boardSeq);
+		
+		System.out.println(boardRead);
+		return boardRead;
+	}
+	
+	public String boardDelete(HttpServletRequest request, HttpSession session){
+		
+		String userEmail = (String)session.getAttribute("userEmail");
+		String userType = commonService.userTypeCheck(session);
+		Integer boardNumber = Integer.parseInt(request.getParameter("boardNumber"));
+		String deleteResult = null;
+		
+		if(userType.equals("관리자")){
+			boardDao.boardDelete(boardNumber);
+			deleteResult = "admin";
+		}
+		else{
+			String boardWriter = boardDao.getBoardWriter(boardNumber);
+			if(userEmail.equals(boardWriter)){
+				boardDao.boardDelete(boardNumber);
+				deleteResult = "userDeleteSuccess";
+			}
+			else{
+				deleteResult = "userDeleteFail";
+			}
+		}
+		
+		return deleteResult;
 	}
 
 	public void boardWriteSubmit(HttpServletRequest request, HttpSession session) {
@@ -48,7 +85,7 @@ public class BoardService {
 		boardInformation.put("boardContent",boardContent);
 		boardInformation.put("boardDate",stringDateTime);
 
-		String path = "c://ibmProject//imgFile";
+		String path = "c://webProject//ibmProject//src//main//resources//boardImage";
 
 		Map fileInfo = null;
 		fileInfo = fileService.fileUpload(request, path); // 해당 디렉토리 위치에 파일 업로드

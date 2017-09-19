@@ -1,6 +1,7 @@
 package com.jun.board.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 
     @RequestMapping("/")
-    public String indexPage(){
-    	System.out.println("abb");
+    public String indexPage(HttpSession session){
+    	session.invalidate();
         return "index"; 
     }
 }

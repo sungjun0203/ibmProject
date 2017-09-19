@@ -25,7 +25,6 @@ public class UserInformationService {
         String userEmail = (String)session.getAttribute("userEmail");
 
         HashMap<String,Object> userInformation = userDao.userInformation(userEmail);
-        System.out.println(userInformation);
         return userInformation;
     }
 }

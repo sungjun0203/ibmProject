@@ -21,13 +21,13 @@ public class MainController {
 	@Autowired
 	BoardService boardService;
 	
-
-
-	@RequestMapping(value = "/main", method = RequestMethod.POST)
+	@RequestMapping(value = "/main", method = {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView main(HttpSession session, HttpServletRequest request) {
 
 		String userEmail = request.getParameter("email");
-		session.setAttribute("userEmail", userEmail);
+		if(session.getAttribute("userEmail")==null){
+			session.setAttribute("userEmail", userEmail);
+		}
 
 //		HashMap<String, Object> userInformation = userInformationService
 //				.userInformation(session);
@@ -37,7 +37,6 @@ public class MainController {
 		ModelAndView mainModelAndView = new ModelAndView();
 		//mainModelAndView.addObject("userInformation", userInformation);
 		mainModelAndView.addObject("boardList",boardList);
-		System.out.println(boardList);
 
 		mainModelAndView.setViewName("/main/main");
 

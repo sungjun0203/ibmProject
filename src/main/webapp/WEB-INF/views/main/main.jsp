@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"
 	type="text/javascript"></script>
 <link rel="stylesheet" type="text/css"
@@ -22,6 +23,7 @@
 
 </head>
 <body>
+
 	<div class="page-header">
 		<div class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
@@ -37,10 +39,10 @@
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
-						<li><a> '${userInformation.name}'님 안녕하세요 </a></li>
-						<li><a target="_blank" onclick="contact()">고객센터</a></li>
 						<li><a target="_blank" onclick="admin()">관리자</a></li>
+						<li><a target="_blank" style="color:red" onclick="logout();">로그아웃</a></li>
 					</ul>
+					
 				</div>
 			</div>
 		</div>
@@ -194,8 +196,17 @@
 		$('#boardReadForm').submit();
 		
 	}
-
-
+	
+	function logout(){
+		
+		$.ajax({
+            url : "/common/logout",
+            type : "POST",
+            success: function(data) {
+                location.href="/";
+            }
+        });
+	}
 
 	function main() {
 		location.reload();

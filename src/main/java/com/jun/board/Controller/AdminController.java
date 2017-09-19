@@ -42,7 +42,6 @@ public class AdminController {
     	
     	 HashMap<String,Object> resultMap = new HashMap<String,Object>();
          String resultString = adminManagementService.reLogin(session,request);
-         System.out.println(resultString);
          resultMap.put("resultData",resultString);
          return resultMap;
     }

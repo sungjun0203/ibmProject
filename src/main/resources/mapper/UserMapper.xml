@@ -25,7 +25,7 @@
     <select id="userInformation" resultType="HashMap" parameterType="String">
         select *
         from user_information
-        where email = #{userEmail};
+        where USER_EMAIL = #{userEmail}
     </select>
 
     <select id="userEmailDuplicateCheck" resultType="Integer" parameterType="String">

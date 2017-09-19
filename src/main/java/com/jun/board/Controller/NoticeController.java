@@ -27,7 +27,6 @@ public class NoticeController {
     @RequestMapping(value = "/noticeList")
     public ModelAndView noticeList(HttpServletRequest request, HttpSession session){
         String userEmail = (String) session.getAttribute("userEmail");
-        System.out.println(userEmail);
 
         //ArrayList<HashMap<String,Object>> noticeInformation = noticeListService.noticeList();
 

@@ -21,8 +21,23 @@
 		FROM BOARD_INFORMATION boardInfo, USER_INFORMATION userInfo
 		WHERE boardInfo.BOARD_WRITER = userInfo.USER_EMAIL
     </select>
-
-
- 
+    
+    <select id="boardRead" resultType="HashMap" parameterType="Integer">
+  		SELECT board.* , userI.USER_NAME
+		FROM BOARD_INFORMATION board, USER_INFORMATION userI
+		WHERE board.BOARD_NUMBER = #{boardSeq} and board.BOARD_WRITER = userI.USER_EMAIL
+    </select>
+    
+    <select id="boardDelete" parameterType="Integer">
+    	DELETE
+    	FROM BOARD_INFORMATION
+    	WHERE BOARD_NUMBER = #{boardNumber}
+    </select>
+    
+    <select id="getBoardWriter" parameterType="Integer" resultType="String">
+    	SELECT BOARD_WRITER
+    	FROM BOARD_INFORMATION
+    	WHERE BOARD_NUMBER = #{boardNumber}
+    </select>
 
 </mapper>

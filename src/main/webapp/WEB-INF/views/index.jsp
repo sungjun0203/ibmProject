@@ -5,7 +5,14 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet">
 
+<%
+	session.invalidate();
+	
+%>
+
 <head>
+
+
     <meta charset="utf-8">
     <title>IBM Board Project</title>
 
@@ -33,7 +40,7 @@
         <form class="form-signin" id="indexForm" name ="indexForm" method="POST">
             <label for="email">E-Mail</label>
             <br/>
-            <input type="text" id="email" name="email" value="shb4178@gmail.com" required="" autofocus="">
+            <input type="text" id="email" name="email" value="sungjun0204@naver.com" required="" autofocus="">
             <br/>
             <label for="password">Password</label>
             <br/>
@@ -49,7 +56,13 @@
 
 
 
-<script>
+<script type="text/javascript">
+
+history.pushState(null, null, location.href);
+window.onpopstate = function(event) {
+	history.go(1);
+};
+
     $(document).ready(function () {
         $('#logo').addClass('animated fadeInDown');
         $("input:text:visible:first").focus();
@@ -68,7 +81,6 @@
     });
 
     function signIn(){
-    	alert();
         $.ajax({
             url : "/user/loginCheck",
             dataType : "json",

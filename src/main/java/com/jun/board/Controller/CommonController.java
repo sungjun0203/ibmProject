@@ -30,5 +30,11 @@ public class CommonController {
 
         return userType;
     }
+    
+    @RequestMapping("/logout")
+    @ResponseBody
+    public void logout(HttpSession session){
+    	commonService.logout(session);
+    }
 
 }

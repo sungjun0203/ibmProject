@@ -50,10 +50,6 @@ public class UserSignUpService {
 		String email = null;
 		int randomNum = 0;
 		email = request.getParameter("email");
-		
-		System.out.println(email);
-		System.out.println(userDao.userEmailDuplicateCheck(email));
-
 
 		if (userDao.userEmailDuplicateCheck(email) > 0) {
 			resultString = "duplicate";
@@ -103,8 +99,6 @@ public class UserSignUpService {
 		userInformation.put("USER_PHONE", phone);
 		userInformation.put("USER_AUTHORITY", CODE_USERTYPE_01);
 
-		System.out.println(userInformation);
 		userDao.userSignUp(userInformation);
-
 	}
 }
