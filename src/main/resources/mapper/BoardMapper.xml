@@ -4,6 +4,39 @@
 
 <mapper namespace="com.jun.board.Dao.BoardDao">
 
+	<select id="myLikeCount" parameterType="HashMap" resultType="Integer">
+		SELECT COUNT(*)
+		FROM LIKE_INFORMATION
+		WHERE BOARD_NUMBER = #{boardNumber} AND LIKE_WRITER = #{userEmail}
+	</select>
+	
+	<select id="allLikeCount" parameterType="HashMap" resultType="Integer">
+		SELECT COUNT(*)
+		FROM LIKE_INFORMATION
+		WHERE BOARD_NUMBER = #{boardNumber}
+	</select>
+
+	<select id="likeInsert" parameterType="HashMap">
+		INSERT INTO LIKE_INFORMATION (LIKE_NUMBER,LIKE_WRITER,LIKE_TIME,BOARD_NUMBER)
+		VALUES (LIKE_NUMBER.NEXTVAL, #{likeWriter},TO_DATE(#{likeTime},'RRRR/MM/DD HH:MI:SS'),#{boardNumber})
+	</select>
+	
+	<select id="likeDelete" parameterType="HashMap">
+		DELETE
+		FROM LIKE_INFORMATION
+		WHERE BOARD_NUMBER = #{boardNumber} and LIKE_WRITER = #{likeWriter}
+	</select>
+
+	<select id="replyRead" parameterType="Integer" resultType="HashMap">
+		SELECT *
+		FROM REPLY_INFORMATION
+		WHERE BOARD_NUMBER = #{boardNumber}
+	</select>
+
+	<select id="replyInsert" parameterType="HashMap">
+		INSERT INTO REPLY_INFORMATION (REPLY_NUMBER, REPLY_WRITER, REPLY_CONTENT, BOARD_NUMBER, REPLY_DATE)
+		VALUES (REPLY_NUMBER.NEXTVAL, #{replyWriter},#{replyContent},#{boardNumber},TO_DATE(#{replyTime},'RRRR/MM/DD HH:MI:SS'))
+	</select>
 
  
     <select id="onlyTextWrite" parameterType="HashMap">
@@ -23,9 +56,9 @@
     </select>
     
     <select id="boardRead" resultType="HashMap" parameterType="Integer">
-  		SELECT board.* , userI.USER_NAME
-		FROM BOARD_INFORMATION board, USER_INFORMATION userI
-		WHERE board.BOARD_NUMBER = #{boardSeq} and board.BOARD_WRITER = userI.USER_EMAIL
+  		SELECT board.*
+		FROM BOARD_INFORMATION board
+		WHERE board.BOARD_NUMBER = #{boardNumber}
     </select>
     
     <select id="boardDelete" parameterType="Integer">
@@ -39,5 +72,21 @@
     	FROM BOARD_INFORMATION
     	WHERE BOARD_NUMBER = #{boardNumber}
     </select>
+    
+    <select id="onlyTextUpdate" parameterType="HashMap">
+    	UPDATE BOARD_INFORMATION
+		SET BOARD_TITLE = #{boardTitle}, BOARD_CONTENT=#{boardContent}, BOARD_EDITOR=#{boardUpdateWriter},BOARD_EDIT_DATE=TO_DATE(#{boardUpdateDate},'RRRR/MM/DD HH:MI:SS')
+		WHERE BOARD_NUMBER= #{boardNumber} 
+    </select>
+    	
+     <select id="imgTextUpdate" parameterType="HashMap">
+    	UPDATE BOARD_INFORMATION
+		SET BOARD_TITLE = #{boardTitle}, BOARD_CONTENT=#{boardContent}, BOARD_EDITOR=#{boardUpdateWriter},BOARD_EDIT_DATE=TO_DATE(#{boardUpdateDate},'RRRR/MM/DD HH:MI:SS'),
+			BOARD_FILE_NAME= #{boardFileName}, BOARD_FILE_PATH=#{boardFilePath}, BOARD_FILE_SIZE=#{boardFileSize}, BOARD_FILE_ORIG =#{boardFileOrig}
+		WHERE BOARD_NUMBER= #{boardNumber} 
+    </select>
+    
+    
+
 
 </mapper>

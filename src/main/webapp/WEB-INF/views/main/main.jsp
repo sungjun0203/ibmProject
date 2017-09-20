@@ -145,29 +145,31 @@
 
 				</div>
 				<form id="boardReadForm" name="boardReadForm" method="POST" action="/board/boardRead">
-				<input type = "hidden" id="boardSeq" name="boardSeq">
+				<input type = "hidden" id="boardNumber" name="boardNumber">
 					<div class="col-sm-12">
-						<table class="table table-striped table-hover text-center">
+						<table class="table table-striped table-hover text-center " style=""">
 							<thead>
 								<tr class="info">
-									<td width="10%">번호</td>
+									<td width="5%">번호</td>
 									<td width="40%">제목</td>
 									<td width="10%">작성자</td>
 									<td width="20%">등록일</td>
-									<td width="10%">좋아요 수</td>
-									<td width="10%">좋아요</td>
+									<td width="25%">좋아요</td>
 								</tr>
 							</thead>
 
+							<tbody style="text-align: center;" >
 
 							<c:forEach items="${boardList}" var="boardList">
 								<tr>
-									<td width="10%">${boardList.BOARD_NUMBER}</td>
+									<td width="5%"  >${boardList.BOARD_NUMBER}</td>
 									<td width="40%" onclick="boardRead(${boardList.BOARD_NUMBER})">${boardList.BOARD_TITLE}</td>
-									<td width="10%">${boardList.USER_NAME}</td>
+									<td width="10%">${boardList.BOARD_WRITER}</td>
 									<td width="20%">${boardList.BOARD_DATE}</td>
-									<td width="10%">0</td>
-									<td width="10%">0</td>
+									<td>
+										<span class="badge">2</span>
+												
+									</td>
 								</tr>
 							</c:forEach>
 							</tbody>
@@ -192,7 +194,7 @@
 
 	function boardRead(seq){
 		alert(seq);
-		$('#boardSeq').val(seq);
+		$('#boardNumber').val(seq);
 		$('#boardReadForm').submit();
 		
 	}

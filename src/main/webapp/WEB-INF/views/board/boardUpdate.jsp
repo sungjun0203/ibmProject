@@ -44,7 +44,7 @@
     </div>
 </div>
 
-<form id="boardWrite" name="boardWrite" method="POST" action="/board/boardWriteSubmit" enctype="multipart/form-data">
+<form id="boardUpdate" name="boardUpdate" method="POST" action="/board/boardUpdateSubmit" enctype="multipart/form-data">
 <input type="hidden" id="imgSrc" name="imgSrc">
     <div class="container">
         <div>
@@ -55,19 +55,22 @@
 
         <div class="form-group has-error">
             <label class="control-label" for="boardTitle">제목</label>
-            <input type="text" class="form-control" id="boardTitle" name="boardTitle">
+            <input type="text" class="form-control" id="boardTitle" name="boardTitle" value="${boardInformation.BOARD_TITLE}">
         </div>
         
+        
+        <p class="text-primary">수정 전 업로드 된 파일 : ${boardInformation.BOARD_FILE_ORIG}</p>
         <div class="form-group has-warning">
-            <label class="control-label" for="boardTitle">사진(jpg, png, gif) 첨부</label>
+        	
+            <label class="control-label" for="boardTitle">변경 사진(jpg, png, gif) 첨부</label> 
             <input type="file" class="form-control" id="file" name="file" placeholder="사진" onchange="imageCheck()">
         </div>
 
-        <textarea style="width: 100%" rows="25" name="boardContent" id="boardContent" cols="200"></textarea>
+        <textarea style="width: 100%" rows="25" name="boardContent" id="boardContent" cols="200" >${boardInformation.BOARD_CONTENT}</textarea>
 
         <div style="text-align: right; margin-top: 5px; margin-bottom: 5px">
             <button type="button" class="btn btn-warning btn-sm" onclick="boardBack();">Back</button>
-            <button type="button" class="btn btn-success btn-sm" onclick="boardSubmit();">Success</button>
+            <button type="button" class="btn btn-success btn-sm" onclick="boardUpdateSubmit();">Success</button>
         </div>
     </div>
     
@@ -76,6 +79,10 @@
             <p class="footer_text">이용약관 | 개인정보 취급방침 | Copyright® IBM 3조</p>
         </center>
     </div>
+    
+<input type="hidden" id="imgChangeCheck" name="imgChangeCheck">
+<input type="hidden" id="boardNumber" name="boardNumber">
+<input type="hidden" id="boardNumber" name="boardWriterName">
 
 </form>
 </body>
@@ -87,10 +94,13 @@
 		history.back(); 
 	}
 
-	function boardSubmit(){
-		$("#boardWrite").submit();
+	function boardUpdateSubmit(){
+		$('#boardNumber').val(${boardInformation.BOARD_NUMBER});
+		$("#boardUpdate").submit();
 	}
 	function imageCheck() {
+		
+		$("#imgChangeCheck").val("change");
 		
 		var fileSrc = $("#file").val();
 		var fileName = fileSrc.slice(fileSrc.lastIndexOf("\\") + 1).toLowerCase();

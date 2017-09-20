@@ -63,11 +63,11 @@
 
         <tbody>
         <tr>
-            <td width="10%">${notice.noticeNumber}</td>
-            <td width="40%">${notice.noticeTitle}</td>
-            <td width="20%">${notice.name}</td>
-            <td width="20%">${notice.noticeDate}</td>
-            <td width="10%">120022</td>
+            <td width="10%">${notice.NOTICE_NUMBER}</td>
+            <td width="40%">${notice.NOTICE_TITLE}</td>
+            <td width="20%">${notice.USER_NAME} (관리자)</td>
+            <td width="20%">${notice.NOTICE_DATE}</td>
+            <td width="10%">${notice.NOTICE_VIEW_AMT}</td>
         </tr>
         </c:forEach>
 

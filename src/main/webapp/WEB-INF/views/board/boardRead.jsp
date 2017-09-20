@@ -54,23 +54,25 @@
 <form id="boardRead" name="boardRead" method="POST" action="">
 <input type="hidden" id="imgSrc" name="imgSrc">
     <div class="container">
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover" style=border:solid>
 		  <thead>
 		    <tr>
 		      <th>게시글 번호</th>
 		      <th>${boardReadInformation.BOARD_NUMBER}</th>
+		      <th>좋아요</th>
+		      <th><span class="badge">${likeInformation.allLikeCount}</span></th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		    <tr>
 		      <td>작성자</td>
-		      <td>${boardReadInformation.USER_NAME}</td>
+		      <td>${boardReadInformation.BOARD_WRITER}</td>
 		      <td>작성일</td>
 		      <td>${boardReadInformation.BOARD_DATE}</td>
 		    </tr>
 		    
 		    <tr>
-		    <td>수정자</td>
+		    <td>수정자 E-mail</td>
 		      <td>${boardReadInformation.BOARD_EDITOR}</td>
 		      <td>수정일</td>
 		      <td>${boardReadInformation.BOARD_EDIT_DATE}</td>
@@ -80,16 +82,10 @@
 		  </tbody>
 		</table> 
 
-		<div class="panel panel-warning">
-			<div class="panel-heading">
-				<h3 class="panel-title">제목</h3>
-			</div>
-			<div class="panel-body">${boardReadInformation.BOARD_TITLE}</div>
-		</div>
 		
 		<div class="panel panel-info">
 		  <div class="panel-heading">
-		    <h3 class="panel-title">내용</h3>
+		   제목 :  ${fn:replace(boardReadInformation.BOARD_TITLE,cn,br)}
 		  </div>
 		  <div class="panel-body" style=height:50%>
 		  
@@ -99,26 +95,57 @@
 		  </div>
 		</div>
 		
+		<div class="text-center">
+			<c:if test='${likeInformation.myLikeCount==0}'>
+				<button type="button" id="unLikeBtn" name="unLikeBtn" onclick="unLikeBtnClick()" style="background-color:white; border:none"><img src= '${pageContext.request.contextPath}/resources/likeButton/unLike.png' style="max-width: 200px; height: auto; max-height: 100px;"></button>
+			</c:if>
+			
+			<c:if test='${likeInformation.myLikeCount>0}'>
+				<button type="button" id="LikeBtn" name="LikeBtn" onclick="likeBtnClick()" style="background-color:white; border:none"><img src= '${pageContext.request.contextPath}/resources/likeButton/like.png' style="max-width: 200px; height: auto; max-height: 100px;"></button>
+			</c:if>
+			<span class="badge">${likeInformation.allLikeCount}</span>
+		</div>
+		
 		<div style="text-align: right; margin-top: 5px; margin-bottom: 5px">
-            <button type="button" class="btn btn-warning btn-sm">돌아가기</button>
-            <button type="button" class="btn btn-success btn-sm" onclick="boardSubmit();">수정</button>
+            <button type="button" class="btn btn-warning btn-sm" onclick="boardBack()">돌아가기</button>
+            <button type="button" class="btn btn-success btn-sm" onclick="boardUpdate();">수정</button>
             <button type="button" class="btn btn-danger btn-sm" onclick="boardDelete();">삭제</button>
         </div>
-
-		<table class="table table-condensed">
+        
+        <table class="table table-condensed">
 			<tr>
 				<td>
 				<span class="form-inline" >
-					박성준
+				댓글작성
 						<div class="form-group" style="display:inline-block">
-							<button type="button" id="commentParentSubmit" name="commentParentSubmit" class="btn btn-default">확인</button>
+							<button type="button" id="replySubmitBtn" name="replySubmitBtn" class="btn btn-default" onclick=replySubmit(${boardReadInformation.BOARD_NUMBER});>확인</button>
 						</div>
-						</p> <textarea id="commentParentText" class="form-control col-lg-12"
-							style="width: 100%" rows="4"></textarea>
+						</p> <textarea id="replyContent" name="replyContent" class="form-control col-lg-12" style="width: 100%" rows="4"></textarea>
 				</span>
 				</td>
 			</tr>
 		</table>
+
+		<table class="table table-striped table-hover">
+
+				<tbody>
+					<c:forEach items="${boardReplyInformation}" var="reply">
+						 <div class="media">
+                           <p class="pull-right"><small>${reply.REPLY_DATE}</small></p>
+                            <a class="media-left" href="#">
+                              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/547014-200.png" width="50px">
+                            </a>
+                            <div class="media-body">
+                                
+                              <h4 class="media-heading user_name">${reply.REPLY_WRITER}</h4>
+                              ${reply.REPLY_CONTENT}
+                              
+                            </div>
+                          </div>
+
+					</c:forEach>
+				</tbody>
+			</table>
     </div>
     
     <div class="modal-footer">
@@ -128,6 +155,7 @@
     </div>
 
 <input type="hidden" id="boardNumber" name="boardNumber">
+<input type="hidden" id="likeCheck" name="likeCheck">
 </form>
 
 </body>
@@ -135,10 +163,106 @@
 
 <script type="text/javascript">
 
-function boardDelete(){
-	$('#boardNumber').val(${boardReadInformation.BOARD_NUMBER});
+$('#boardNumber').val(${boardReadInformation.BOARD_NUMBER});
+var boardNumber = $('#boardNumber').val();
+
+function unLikeBtnClick(){
 	
-	var boardNumber = $('#boardNumber').val();
+	$('#likeCheck').val("unlike");
+	
+	$.ajax({
+        url : "/board/boardLike",
+        dataType : "text",
+        async : false,
+        type : "POST",
+        data : $('#boardRead').serializeArray(),
+        success: function() {
+        	alert();
+        	window.location.reload();
+        },
+        error:function(request,status,error){
+            alert("code:"+request.status+"\n"+"error:"+error);
+        }
+	});
+}
+
+function likeBtnClick(){
+	$('#likeCheck').val("like");
+	alert($('#likeCheck').val());
+	
+	$.ajax({
+        url : "/board/boardLike",
+        dataType : "text",
+        async : false,
+        type : "POST",
+        data : $('#boardRead').serializeArray(),
+        success: function() {
+        	alert();
+        	window.location.reload();
+        },
+        error:function(request,status,error){
+            alert("code:"+request.status+"\n"+"error:"+error);
+        }
+	});
+}
+
+function replySubmit(num){
+	if($('#replyContent').val()==''){
+		alert("내용 입력하세요");
+	}
+	else{
+		
+		$.ajax({
+	        url : "/board/boardReplySubmit",
+	        dataType : "text",
+	        async : false,
+	        type : "POST",
+	        data : $('#boardRead').serializeArray(),
+	        success: function() {
+	        	window.location.reload();
+	        },
+	        error:function(request,status,error){
+	            alert("code:"+request.status+"\n"+"error:"+error);
+	        }
+		});
+	}
+	
+}
+
+function boardUpdate(){
+	
+	$.ajax({
+        url : "/board/boardUpdateCheck",
+        dataType : "text",
+        type : "POST",
+        data : {"boardNumber":boardNumber},
+        success: function(resultString) {
+        	alert();
+        	 if(resultString=="admin") {
+             	alert("관리자 권한 수정");
+             	$("#boardRead").attr("action", "/board/boardUpdate");
+             	$("#boardRead").submit();
+             }
+             else if(resultString=="authority ok"){
+             	$("#boardRead").attr("action", "/board/boardUpdate");
+             	$("#boardRead").submit();
+             	alert("일반사용자 수정");
+             }
+             else{
+                 alert("당신은 작성자가 아닙니다.");
+             }
+        },
+        error:function(request,status,error){
+            alert("code:"+request.status+"\n"+"error:"+error);
+        }
+	});
+}
+
+function boardBack(){
+	history.back(); 
+}
+
+function boardDelete(){
 	
 	$.ajax({
         url : "/board/boardDelete",
@@ -152,7 +276,7 @@ function boardDelete(){
             	$("#boardRead").attr("action", "/main/main");
             	$("#boardRead").submit();
             }
-            else if(resultString=="userDeleteSuccess"){
+            else if(resultString=="authority ok"){
             	$("#boardRead").attr("action", "/main/main");
             	$("#boardRead").submit();
             	alert("일반사용자 삭제");
