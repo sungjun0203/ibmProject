@@ -33,7 +33,6 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping("/boardReplySubmit")
 	public String boardReply(HttpServletRequest request, HttpSession session){
-		
 		boardService.replyInsert(request, session);
 		return "success";
 	}
@@ -41,7 +40,6 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping("/boardLike")
 	public String boardLike(HttpServletRequest request, HttpSession session){
-		System.out.println("aaa");
 		boardService.like(request, session);
 		return "success";
 	}
@@ -54,7 +52,6 @@ public class BoardController {
 	
 	@RequestMapping("/boardWriteSubmit")
 	public String boardWriteSubmit(RedirectAttributes redirectAttr,HttpServletRequest request, HttpSession session){
-		
 		boardService.boardWriteSubmit(request, session);
 		return "redirect:/main/main";
 	}
@@ -95,7 +92,6 @@ public class BoardController {
 		HashMap<String,Object> boardInformation = boardService.boardRead(request, session);
 		
 		boardUpdate.addObject("boardInformation", boardInformation);
-		System.out.println("nameCheck"+boardInformation);
 		boardUpdate.setViewName("/board/boardUpdate");
 		return boardUpdate;
 	}

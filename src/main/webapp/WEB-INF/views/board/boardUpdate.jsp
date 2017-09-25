@@ -10,39 +10,7 @@
 </head>
 <body>
 
-
-  <div class="page-header">
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a onclick="main()" class="navbar-brand">DanKook University Meeting System</a>
-            </div>
-            <div class="navbar-collapse collapse" id="navbar-main">
-                <ul class="nav navbar-nav">
-
-                    <li>
-                        <a onclick="notice()">공지사항</a>
-                    </li>
-
-                    <li>
-                        <a onclick="dating()">소개팅</a>
-                    </li>
-
-                    <li>
-                        <a onclick="meeting()">미팅</a>
-                    </li>
-
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a> '${userInformation.name}'님 안녕하세요 </a></li>
-                    <li><a target="_blank" onclick="contact()">내 정보</a></li>
-                    <li><a target="_blank" onclick="contact()">고객센터</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<jsp:include page="../headerAndFooter/header.jsp"></jsp:include>
 
 <form id="boardUpdate" name="boardUpdate" method="POST" action="/board/boardUpdateSubmit" enctype="multipart/form-data">
 <input type="hidden" id="imgSrc" name="imgSrc">
@@ -74,11 +42,7 @@
         </div>
     </div>
     
-    <div class="modal-footer">
-        <center>
-            <p class="footer_text">이용약관 | 개인정보 취급방침 | Copyright® IBM 3조</p>
-        </center>
-    </div>
+ <jsp:include page="../headerAndFooter/footer.jsp"></jsp:include>
     
 <input type="hidden" id="imgChangeCheck" name="imgChangeCheck">
 <input type="hidden" id="boardNumber" name="boardNumber">
@@ -89,6 +53,28 @@
 </html>
 
 <script type="text/javascript">
+
+function main() {
+	location.href = "/main/main";
+}
+function notice() {
+	location.href = "/notice/noticeList";
+}
+function myInformation() {
+	location.href = "/my/index";
+}
+function admin() {
+	location.href = "/admin/index";
+}
+function logout() {
+	$.ajax({
+        url : "/common/logout",
+        type : "POST",
+        success: function(data) {
+            location.href="/";
+        }
+    });
+}
 
 	function boardBack(){
 		history.back(); 

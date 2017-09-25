@@ -9,53 +9,20 @@
     <title>Title</title>
 </head>
 <body>
-
-
-  <div class="page-header">
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a onclick="main()" class="navbar-brand">DanKook University Meeting System</a>
-            </div>
-            <div class="navbar-collapse collapse" id="navbar-main">
-                <ul class="nav navbar-nav">
-
-                    <li>
-                        <a onclick="notice()">공지사항</a>
-                    </li>
-
-                    <li>
-                        <a onclick="dating()">소개팅</a>
-                    </li>
-
-                    <li>
-                        <a onclick="meeting()">미팅</a>
-                    </li>
-
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a> '${userInformation.name}'님 안녕하세요 </a></li>
-                    <li><a target="_blank" onclick="contact()">내 정보</a></li>
-                    <li><a target="_blank" onclick="contact()">고객센터</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<jsp:include page="../headerAndFooter/header.jsp"></jsp:include>
 
 <form id="boardWrite" name="boardWrite" method="POST" action="/board/boardWriteSubmit" enctype="multipart/form-data">
 <input type="hidden" id="imgSrc" name="imgSrc">
     <div class="container">
         <div>
             <div class="well">
-                게시글 수정
+                게시글 작성
             </div>
         </div>
 
         <div class="form-group has-error">
             <label class="control-label" for="boardTitle">제목</label>
-            <input type="text" class="form-control" id="boardTitle" name="boardTitle">
+            <input type="text" class="form-control" id="boardTitle" name="boardTitle" maxlength="25">
         </div>
         
         <div class="form-group has-warning">
@@ -83,12 +50,45 @@
 
 <script type="text/javascript">
 
+function main() {
+	location.href = "/main/main";
+}
+function notice() {
+	location.href = "/notice/noticeList";
+}
+function myInformation() {
+	location.href = "/my/index";
+}
+function admin() {
+	location.href = "/admin/index";
+}
+function logout() {
+	$.ajax({
+        url : "/common/logout",
+        type : "POST",
+        success: function(data) {
+            location.href="/";
+        }
+    });
+}
+
 	function boardBack(){
 		history.back(); 
 	}
 
 	function boardSubmit(){
-		$("#boardWrite").submit();
+		
+		var boardTitle = $("#boardTitle").val();
+		var boardTitleLength = boardTitle.length;
+		
+		if(boardTitleLength>25){
+			alert("제목이 너무 길어요!");
+		}
+		else{
+			$("#boardWrite").submit();
+		}
+		
+		
 	}
 	function imageCheck() {
 		

@@ -26,8 +26,8 @@ public class CommonController {
     @RequestMapping("/userTypeCheck")
     @ResponseBody
     public String userTypeCheck(HttpSession session){
-        String userType = commonService.userTypeCheck(session);
-
+       
+    	String userType = commonService.userTypeCheck(session);
         return userType;
     }
     

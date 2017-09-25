@@ -19,29 +19,7 @@
 
 </head>
 <body>
-	<div class="page-header">
-		<div class="navbar navbar-default navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<a onclick="main()" class="navbar-brand">IBM Board Project</a>
-				</div>
-				<div class="navbar-collapse collapse" id="navbar-main">
-					<ul class="nav navbar-nav">
-
-						<li><a onclick="notice()">공지사항</a></li>
-						<li><a onclick="notice()">내 정보</a></li>
-
-					</ul>
-
-					<ul class="nav navbar-nav navbar-right">
-						<li><a> '${userInformation.name}'님 안녕하세요 </a></li>
-						<li><a target="_blank" onclick="contact()">고객센터</a></li>
-						<li><a target="_blank" onclick="contact()">관리자</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	<jsp:include page="../headerAndFooter/header.jsp"></jsp:include>
 
 	<div class="container">
 	
@@ -49,39 +27,33 @@
 
 	</div>
 
-	<div class="modal-footer">
-		<center>
-			<p class="footer_text">이용약관 | 개인정보 취급방침 | Copyright® ParkSungJun</p>
-		</center>
-	</div>
+	<jsp:include page="../headerAndFooter/footer.jsp"></jsp:include>
 
 </body>
 
 <script language="javascript" type="text/javascript">
 
-    function main() {
-        location.reload();
-    }
-
-    function notice() {
-        location.href = "/notice/noticeList";
-    }
-
-    function dating() {
-        location.href = "/board/dating";
-    }
-
-    function meeting() {
-        location.href = "/board/meeting";
-    }
-
-    function contact() {
-        location.href = "/contact/";
-    }
-    
-    function admin() {
-    	location.href = "/admin"
-    }
+function main() {
+	location.href = "/main/main";
+}
+function notice() {
+	location.href = "/notice/noticeList";
+}
+function myInformation() {
+	location.href = "/my/index";
+}
+function admin() {
+	location.href = "/admin/index";
+}
+function logout() {
+	$.ajax({
+        url : "/common/logout",
+        type : "POST",
+        success: function(data) {
+            location.href="/";
+        }
+    });
+}
 
 
     //  End -->

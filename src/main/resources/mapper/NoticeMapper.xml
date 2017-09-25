@@ -3,8 +3,13 @@
 
 <mapper namespace="com.jun.board.Dao.NoticeDao">
 	<select id="noticeList" resultType="HashMap">
-    	SELECT noticeInfo.*, userInfo.USER_NAME
-		FROM NOTICE_INFORMATION noticeInfo, USER_INFORMATION userInfo
-		WHERE noticeInfo.NOTICE_WRITER = userInfo.USER_EMAIL
+    	SELECT noticeInfo.*
+		FROM NOTICE_INFORMATION noticeInfo
+    </select>
+    
+    <select id="noticeRead" resultType="HashMap" parameterType="Integer">
+    	SELECT noticeInfo.*
+    	FROM NOTICE_INFORMATION noticeInfo
+    	WHERE noticeInfo.NOTICE_NUMBER = #{noticeNumber}
     </select>
 </mapper>

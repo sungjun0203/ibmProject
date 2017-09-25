@@ -203,13 +203,7 @@
    </form>
    </article>
 </div>
-<footer class="footer" id="page_footer">
-<div class="container">
-   <center>
-      <p class="footer_text">이용약관 | 개인정보 취급방침 | Copyright® IBM 3조</p>
-   </center>
-</div>
-</footer>
+<jsp:include page="../headerAndFooter/footer.jsp"></jsp:include>
 
 
 <script type="text/javascript">

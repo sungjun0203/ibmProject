@@ -12,44 +12,14 @@
 <link rel="stylesheet/less" type="text/css" href="/resources/bootstrap/bootswatch.less"/>
 <link rel="stylesheet/less" type="text/css" href="/resources/bootstrap/variables.less"/>
 <html>
+<html>
 <head>
-    <title>Title</title>
+<title>IBM Board Project - 게시글 작성</title>
+
 </head>
-<body>
+<body >
 
-
-  <div class="page-header">
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a onclick="main()" class="navbar-brand">DanKook University Meeting System</a>
-            </div>
-            <div class="navbar-collapse collapse" id="navbar-main">
-                <ul class="nav navbar-nav">
-
-                    <li>
-                        <a onclick="notice()">공지사항</a>
-                    </li>
-
-                    <li>
-                        <a onclick="dating()">소개팅</a>
-                    </li>
-
-                    <li>
-                        <a onclick="meeting()">미팅</a>
-                    </li>
-
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a> '${userInformation.name}'님 안녕하세요 </a></li>
-                    <li><a target="_blank" onclick="contact()">내 정보</a></li>
-                    <li><a target="_blank" onclick="contact()">고객센터</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+	<jsp:include page="../headerAndFooter/header.jsp"></jsp:include>
 
 <form id="boardRead" name="boardRead" method="POST" action="">
 <input type="hidden" id="imgSrc" name="imgSrc">
@@ -66,7 +36,7 @@
 		  <tbody>
 		    <tr>
 		      <td>작성자</td>
-		      <td>${boardReadInformation.BOARD_WRITER}</td>
+		      <td name="cc" id="cc">${boardReadInformation.BOARD_WRITER}</td>
 		      <td>작성일</td>
 		      <td>${boardReadInformation.BOARD_DATE}</td>
 		    </tr>
@@ -87,9 +57,9 @@
 		  <div class="panel-heading">
 		   제목 :  ${fn:replace(boardReadInformation.BOARD_TITLE,cn,br)}
 		  </div>
-		  <div class="panel-body" style=height:50%>
+		  <div class="panel-body" style=height:70%>
 		  
-			<img src= '${pageContext.request.contextPath}/resources/boardImage/${boardReadInformation.BOARD_FILE_NAME}' style="max-width: 200px; height: auto; max-height: 300px;">
+			<img src= '${pageContext.request.contextPath}/resources/boardImage/${boardReadInformation.BOARD_FILE_NAME}' style="max-width: 500px; height: auto; max-height: 300px;">
 		    <p>${fn:replace(boardReadInformation.BOARD_CONTENT,cn,br)}<p>
 		    
 		  </div>
@@ -148,13 +118,11 @@
 			</table>
     </div>
     
-    <div class="modal-footer">
-        <center>
-            <p class="footer_text">이용약관 | 개인정보 취급방침 | Copyright® IBM 3조</p>
-        </center>
-    </div>
-
+   <jsp:include page="../headerAndFooter/footer.jsp"></jsp:include>
+    
 <input type="hidden" id="boardNumber" name="boardNumber">
+<input type="hidden" id="boardTitle" name="boardTitle">
+<input type="hidden" id="boardWriter" name="boardWriter">
 <input type="hidden" id="likeCheck" name="likeCheck">
 </form>
 
@@ -166,9 +134,36 @@
 $('#boardNumber').val(${boardReadInformation.BOARD_NUMBER});
 var boardNumber = $('#boardNumber').val();
 
+function main() {
+	location.href = "/main/main";
+}
+function notice() {
+	location.href = "/notice/noticeList";
+}
+function myInformation() {
+	location.href = "/my/index";
+}
+function admin() {
+	location.href = "/admin/index";
+}
+function logout() {
+	$.ajax({
+        url : "/common/logout",
+        type : "POST",
+        success: function(data) {
+            location.href="/";
+        }
+    });
+}
+
+
 function unLikeBtnClick(){
 	
 	$('#likeCheck').val("unlike");
+	$('#boardTitle').val('${boardReadInformation.BOARD_TITLE}');
+	$('#boardWriter').val('${boardReadInformation.BOARD_WRITER}');
+	
+	alert("알람 메일전송 중!");
 	
 	$.ajax({
         url : "/board/boardLike",
@@ -188,7 +183,6 @@ function unLikeBtnClick(){
 
 function likeBtnClick(){
 	$('#likeCheck').val("like");
-	alert($('#likeCheck').val());
 	
 	$.ajax({
         url : "/board/boardLike",
@@ -243,7 +237,7 @@ function boardUpdate(){
              	$("#boardRead").attr("action", "/board/boardUpdate");
              	$("#boardRead").submit();
              }
-             else if(resultString=="authority ok"){
+             else if(resultString=="userUpdateSuccess"){
              	$("#boardRead").attr("action", "/board/boardUpdate");
              	$("#boardRead").submit();
              	alert("일반사용자 수정");
@@ -259,7 +253,7 @@ function boardUpdate(){
 }
 
 function boardBack(){
-	history.back(); 
+	location.href="/main/main"
 }
 
 function boardDelete(){
@@ -276,7 +270,7 @@ function boardDelete(){
             	$("#boardRead").attr("action", "/main/main");
             	$("#boardRead").submit();
             }
-            else if(resultString=="authority ok"){
+            else if(resultString=="userDeleteSuccess"){
             	$("#boardRead").attr("action", "/main/main");
             	$("#boardRead").submit();
             	alert("일반사용자 삭제");

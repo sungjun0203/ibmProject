@@ -4,6 +4,18 @@
 
 <mapper namespace="com.jun.board.Dao.BoardDao">
 
+	<select id="myWriteCount" parameterType="String" resultType="Integer">
+		SELECT COUNT(*)
+		FROM BOARD_INFORMATION
+		WHERE BOARD_WRITER=#{userEmail}
+	</select>
+
+	<select id="myReplyCount" parameterType="String" resultType="Integer">
+		SELECT COUNT(*)
+		FROM REPLY_INFORMATION
+		WHERE REPLY_WRITER=#{userEmail}
+	</select>
+
 	<select id="myLikeCount" parameterType="HashMap" resultType="Integer">
 		SELECT COUNT(*)
 		FROM LIKE_INFORMATION
@@ -14,6 +26,18 @@
 		SELECT COUNT(*)
 		FROM LIKE_INFORMATION
 		WHERE BOARD_NUMBER = #{boardNumber}
+	</select>
+	
+	<select id="likeCountPlus" parameterType="Integer">
+		UPDATE BOARD_INFORMATION
+		SET LIKE_COUNT = LIKE_COUNT+1
+		WHERE BOARD_NUMBER =#{boardNumber}
+	</select>
+	
+	<select id="likeCountMinus" parameterType="Integer">
+		UPDATE BOARD_INFORMATION
+		SET LIKE_COUNT = LIKE_COUNT-1
+		WHERE BOARD_NUMBER =#{boardNumber}
 	</select>
 
 	<select id="likeInsert" parameterType="HashMap">
@@ -49,10 +73,28 @@
         VALUES (BOARD_NUMBER.NEXTVAL, #{boardTitle},#{boardContent},#{userEmail},TO_DATE(#{boardDate},'RRRR/MM/DD HH:MI:SS'),#{boardFileName},#{boardFilePath},#{boardFileSize},#{boardFileOrig})
     </select>
     
-    <select id="boardList" resultType="HashMap">
-    	SELECT boardInfo.*, userInfo.USER_NAME
-		FROM BOARD_INFORMATION boardInfo, USER_INFORMATION userInfo
-		WHERE boardInfo.BOARD_WRITER = userInfo.USER_EMAIL
+    <select id="boardListDateASC" resultType="HashMap">
+    	SELECT *
+		FROM BOARD_INFORMATION  
+		ORDER BY BOARD_NUMBER ASC
+    </select>
+    
+    <select id="boardListDateDESC" resultType="HashMap">
+    	SELECT *
+		FROM BOARD_INFORMATION  
+		ORDER BY BOARD_NUMBER DESC
+    </select>
+    
+    <select id="boardListLikeDESC" resultType="HashMap">
+    	SELECT *
+		FROM BOARD_INFORMATION  
+		ORDER BY LIKE_COUNT DESC
+    </select>
+    
+    <select id="boardListLikeASC" resultType="HashMap">
+    	SELECT *
+		FROM BOARD_INFORMATION  
+		ORDER BY LIKE_COUNT ASC
     </select>
     
     <select id="boardRead" resultType="HashMap" parameterType="Integer">
@@ -64,6 +106,18 @@
     <select id="boardDelete" parameterType="Integer">
     	DELETE
     	FROM BOARD_INFORMATION
+    	WHERE BOARD_NUMBER = #{boardNumber}
+    </select>
+    
+    <select id="deleteBoardReply" parameterType="Integer">
+    	DELETE
+    	FROM REPLY_INFORMATION
+    	WHERE BOARD_NUMBER = #{boardNumber}
+    </select>
+    
+     <select id="deleteBoardLike" parameterType="Integer">
+    	DELETE
+    	FROM LIKE_INFORMATION
     	WHERE BOARD_NUMBER = #{boardNumber}
     </select>
     

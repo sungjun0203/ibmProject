@@ -30,13 +30,16 @@ public class NoticeController {
     
     @Autowired
     NoticeListService noticeListService;
+    
+    @Autowired
+    NoticeListService noticeService;
+    
 
     @RequestMapping(value = "/noticeList")
     public ModelAndView noticeList(HttpServletRequest request, HttpSession session){
         String userEmail = (String) session.getAttribute("userEmail");
 
         ArrayList<HashMap<String,Object>> noticeInformation = noticeListService.noticeList();
-        System.out.println(noticeInformation);
 
         ModelAndView noticeListResult = new ModelAndView();
         noticeListResult.setViewName("/notice/noticeList");
@@ -44,13 +47,25 @@ public class NoticeController {
         return noticeListResult;
     }
     
-    @RequestMapping(value ="/noticeWrite")
+    @RequestMapping(value = "/noticeWrite")
     public String adminCheck(HttpServletRequest request, HttpSession session){
     	
-    	
     	return "notice/noticeWrite";
+    }
+    
+   
+    
+   ///게시글 읽기
+    @RequestMapping(value="/noticeRead")
+    public ModelAndView noticeRead(HttpServletRequest request, HttpSession session){
     	
+    	ModelAndView noticeReadModel = new ModelAndView();
     	
+    	HashMap<String, Object> noticeReadInformation = noticeService.noticeRead(request, session);
+    	noticeReadModel.addObject("noticeReadInformation",noticeReadInformation );
+    	noticeReadModel.setViewName("/notice/noticeRead");
+    	
+    	return noticeReadModel;
     }
 
 }

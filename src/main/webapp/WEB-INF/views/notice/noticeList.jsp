@@ -44,6 +44,8 @@
 </div>
 
 <div class="container">
+
+<input type ="hidden" id="noticeNumber" name="noticeNumber">
     <div class="well">
         공지사항
     </div>
@@ -64,8 +66,8 @@
         <tbody>
         <tr>
             <td width="10%">${notice.NOTICE_NUMBER}</td>
-            <td width="40%">${notice.NOTICE_TITLE}</td>
-            <td width="20%">${notice.USER_NAME} (관리자)</td>
+            <td width="40%" onclick="noticeRead(${notice.NOTICE_NUMBER});">${notice.NOTICE_TITLE}</td>
+            <td width="20%">${notice.NOTICE_WRITER} (관리자)</td>
             <td width="20%">${notice.NOTICE_DATE}</td>
             <td width="10%">${notice.NOTICE_VIEW_AMT}</td>
         </tr>
@@ -96,6 +98,10 @@
     }
     function notice() {
         location.href = "/notice/noticeList";
+    }
+    function noticeRead(boardNumberClick){
+    	alert(boardNumberClick);
+    	location.href = "/notice/noticeRead";
     }
     function dating() {
         location.href = "/board/dating";

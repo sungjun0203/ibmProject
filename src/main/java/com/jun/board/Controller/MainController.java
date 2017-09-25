@@ -23,23 +23,23 @@ public class MainController {
 	
 	@RequestMapping(value = "/main", method = {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView main(HttpSession session, HttpServletRequest request) {
-
+		
 		String userEmail = request.getParameter("email");
 		if(session.getAttribute("userEmail")==null){
 			session.setAttribute("userEmail", userEmail);
 		}
-
-//		HashMap<String, Object> userInformation = userInformationService
-//				.userInformation(session);
 		
-		ArrayList<HashMap<String,Object>> boardList = boardService.boardList();
+		ArrayList<HashMap<String,Object>> boardList = boardService.boardList(request);
+		HashMap<String,Object> myCountInformation = boardService.myCountInformation(session);
 		
 		ModelAndView mainModelAndView = new ModelAndView();
-		//mainModelAndView.addObject("userInformation", userInformation);
+		mainModelAndView.addObject("userEmail",userEmail);
 		mainModelAndView.addObject("boardList",boardList);
-
+		mainModelAndView.addObject("myCountInformation",myCountInformation);
 		mainModelAndView.setViewName("/main/main");
 
 		return mainModelAndView;
 	}
+	
+	
 }

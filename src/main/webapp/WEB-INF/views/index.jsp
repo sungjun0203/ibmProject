@@ -49,6 +49,8 @@
             <button type="submit" onclick="signIn();" >LOGIN</button>
             <button type="button" onclick ="signUp();">SIGN UP</button>
             <br/>
+            
+            <input type="hidden" id="selectArray" name="selectArray" value="normal">
         </form>
     </div>
 </div>
@@ -101,7 +103,6 @@ window.onpopstate = function(event) {
             }
 
         });
-
     }
 
     function signUp(){
