@@ -12,9 +12,6 @@ import org.springframework.stereotype.Service;
 import com.jun.board.Dao.BoardDao;
 import com.jun.board.Dao.UserDao;
 
-/**
- * Created by Jun on 2017-07-29.
- */
 @Service
 public class CommonService {
 
@@ -47,8 +44,7 @@ public class CommonService {
 
 		String userEmail = (String) session.getAttribute("userEmail");
 		String userType = userTypeCheck(session);
-		Integer boardNumber = Integer.parseInt(request
-				.getParameter("boardNumber"));
+		Integer boardNumber = Integer.parseInt(request.getParameter("boardNumber"));
 		String deleteResult = null;
 
 		if (userType.equals("관리자")) {
@@ -56,9 +52,9 @@ public class CommonService {
 		} else {
 			String boardWriter = boardDao.getBoardWriter(boardNumber);
 			if (userEmail.equals(boardWriter)) {
-				deleteResult = "authority ok";
+				deleteResult = "authorityOK";
 			} else {
-				deleteResult = "authority fail";
+				deleteResult = "authorityFAIL";
 			}
 		}
 

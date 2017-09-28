@@ -19,10 +19,6 @@ import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/**
- * Created by IONCOMMUNICATIONS on 2017-07-25.
- */
-
 @Service
 public class UserSignUpService {
 

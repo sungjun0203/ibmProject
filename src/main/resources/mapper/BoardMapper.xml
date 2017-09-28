@@ -140,6 +140,20 @@
 		WHERE BOARD_NUMBER= #{boardNumber} 
     </select>
     
+    <select id="myWriteBoardAll" parameterType="String" resultType="HashMap">
+    	SELECT *
+		FROM BOARD_INFORMATION
+		WHERE BOARD_WRITER = #{userEmail}
+		ORDER BY BOARD_NUMBER DESC
+    </select>
+    
+     <select id="myReplyAll" parameterType="String" resultType="HashMap">
+    	SELECT REPLY.* , BOARD.BOARD_TITLE
+		FROM REPLY_INFORMATION REPLY, BOARD_INFORMATION BOARD
+		WHERE REPLY.REPLY_WRITER = #{userEmail} AND REPLY.BOARD_NUMBER = BOARD.BOARD_NUMBER
+		ORDER BY REPLY_NUMBER DESC
+    </select>
+    
     
 
 

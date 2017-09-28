@@ -9,15 +9,94 @@
 
 <html>
 <head>
-<title>관리자</title>
+<title>내 정보</title>
 
 </head>
 <body>
 	<jsp:include page="../headerAndFooter/header.jsp"></jsp:include>
 
 	<div class="container">
-	
-		관리자 매니저
+
+		<blockquote>
+			<p>관리자페이지</p>
+			<small>IBM GBS 3조 <cite title="Source Title"></cite></small>
+		</blockquote>
+		
+		<div class =col-sm-12">
+			<div class="col-sm-6">
+				<div class="col-sm-12">
+					<p class="text-primary col-sm-6"> - 쓴 글 검색 - </p>
+					<div class="form-group col-sm-6">
+					  <div class="input-group">
+					    <input type="text" class="form-control">
+					    <span class="input-group-btn">
+					      <button class="btn btn-default" type="button" onClick="">검색</button>
+					    </span>
+					  </div>
+					</div>
+				</div>
+
+			
+				<table class="table table-striped table-hover "> 
+				  <thead>
+				    <tr class="warning">
+				      <th>#</th>
+				      <th>제목</th>
+				      <th>날짜</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				 <c:forEach items="${myWrite}" var="myWrite">
+				    <tr class ="active">
+				      <td style="text-overflow:ellipsis; overflow:hidden"> <nobr>${myWrite.BOARD_NUMBER}</td>
+				      <td style="text-overflow:ellipsis; overflow:hidden"> <nobr>${myWrite.BOARD_TITLE}</td>
+				      <td style="text-overflow:ellipsis; overflow:hidden"> <nobr>${myWrite.BOARD_DATE}</td>
+				    </tr>
+				    </c:forEach>
+				  </tbody>
+				</table> 
+			</div>
+			
+			<div class="col-sm-6">
+			
+			<div class="col-sm-12">
+					<p class="text-primary col-sm-6"> - 쓴 댓글 검색 - </p>
+					<div class="form-group col-sm-6">
+					  <div class="input-group">
+					    <input type="text" class="form-control">
+					    <span class="input-group-btn">
+					      <button class="btn btn-default" type="button">검색</button>
+					    </span>
+					  </div>
+					</div>
+				</div>
+			
+			
+				<table class="table table-striped table-hover " style="table-layout:fixed ">
+				  <thead>
+				    <tr class="info">
+				      <th>글 제목</th>
+				      <th>댓글 내용</th>
+				      <th>날짜</th>
+				    </tr>
+				  </thead>
+				  
+				  
+				  
+				  <tbody>
+				  <c:forEach items="${myReply}" var="myReply">
+				    <tr class="active">
+				      <td style="text-overflow:ellipsis; overflow:hidden"> <nobr>${myReply.BOARD_TITLE}</td>
+				      <td style="text-overflow:ellipsis; overflow:hidden"> <nobr>${myReply.REPLY_CONTENT}</td>
+				      <td style="text-overflow:ellipsis; overflow:hidden"> <nobr>${myReply.REPLY_DATE}</td>
+				    </tr>
+				   </c:forEach>
+				    
+				  </tbody>
+				</table> 
+			</div>
+		
+		</div>
 
 	</div>
 

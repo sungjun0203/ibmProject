@@ -16,6 +16,8 @@ public class NoticeListService {
     @Autowired
     NoticeDao noticeDao;
     
+    @Autowired
+    CommonService commonService;
 
     public ArrayList<HashMap<String,Object>> noticeList(){
 
@@ -23,20 +25,57 @@ public class NoticeListService {
         return noticeList;        
     
     }
-
-   /* public ArrayList<HashMap<String,Object>> recentNoticceList(){
-
-        ArrayList<HashMap<String,Object>> recentNoticeList = noticeDao.recentNoticeList();
-        return recentNoticeList;
-    }*/
+    
     
     public HashMap<String, Object> noticeRead (HttpServletRequest request, HttpSession session){
     	Integer noticeNumber = Integer.parseInt(request.getParameter("noticeNumber"));
+    	System.out.println(noticeNumber);
     	HashMap<String,Object> noticeRead = noticeDao.noticeRead(noticeNumber);
-    	noticeRead.put("sessionId", session.getAttribute("userEmail"));
     	
-    	
+
     	return noticeRead;
+    	
+    }
+    
+    public void noticeUpdateSubmit(HttpServletRequest request, HttpSession session){
+    	HashMap<String, Object> noticeInformation = new HashMap<String, Object>();
+    	
+    	String stringDateTime = commonService.nowTime();
+    	
+    	String userEmail = (String) session.getAttribute("userEmail");
+    	String noticeTitle = request.getParameter("noticeTitle");
+    	String noticeContent = request.getParameter("noticeContent");
+    	Integer noticeNumber = Integer.parseInt(request.getParameter("noticeNumber"));
+    	Integer noticeViewAmt = Integer.parseInt(request.getParameter("noticeViewAmt"));
+    	
+    	
+    	noticeInformation.put("userEmail", userEmail);
+    	noticeInformation.put("notictTitle", noticeTitle);
+    	noticeInformation.put("noticeContent", noticeContent);
+    	noticeInformation.put("noticeDate", stringDateTime);
+    	noticeInformation.put("noticeViewAmt", noticeViewAmt);
+    	
+    	noticeDao.onlyTextWrite(noticeInformation);
+    	
+    }
+    public void writeSubmit(HttpServletRequest request, HttpSession session){
+    	HashMap<String, Object> noticeInformation = new HashMap<String, Object>();
+    	
+    	
+    	String noticeTitle = request.getParameter("noticeTitle");
+    	String userEmail = (String) session.getAttribute("userEmail");
+    	String noticeContent = request.getParameter("noticeContent");
+    	String stringDateTime = commonService.nowTime();
+    	
+    	noticeInformation.put("notictTitle", noticeTitle);
+    	noticeInformation.put("noticeContent", noticeContent);
+    	noticeInformation.put("userEmail", userEmail);
+    	noticeInformation.put("noticeDate", stringDateTime);
+    	
+    	
+    	System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+noticeInformation);
+    	
+    	noticeDao.onlyTextWrite(noticeInformation);
     	
     }
     

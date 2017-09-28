@@ -9,10 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.util.HashMap;
 
-/**
- * Created by IONCOMMUNICATIONS on 2017-07-25.
- */
-
 @Service
 public class UserLoginService {
 

@@ -10,9 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import java.util.HashMap;
 
-/**
- * Created by Jun on 2017-07-29.
- */
 @Service
 public class ContactService {
 

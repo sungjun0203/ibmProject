@@ -1,9 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"type="text/javascript"></script>
+<link rel="stylesheet" type="text/css"	href="/resources/bootstrap/cosmo.css" />
+<link rel="stylesheet/less" type="text/css"	href="/resources/bootstrap/bootswatch.less" />
+<link rel="stylesheet/less" type="text/css"	href="/resources/bootstrap/variables.less" />
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
 <body>
@@ -12,19 +16,19 @@
 		<div class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
-					<a onclick="main()" class="navbar-brand">IBM Board Project</a>
+					<a onclick="main()" class="navbar-brand" style="cursor:pointer;">IBM Board Project</a>
 				</div>
 				<div class="navbar-collapse collapse" id="navbar-main">
 					<ul class="nav navbar-nav">
 
-						<li><a onclick="notice()">°øÁö»çÇ×</a></li>
-						<li><a onclick="myInformation()">³» Á¤º¸</a></li>
+						<li><a style="cursor:pointer;" onclick="notice()">ê³µì§€ì‚¬í•­</a></li>
+						<li><a style="cursor:pointer;" onclick="myInformation()">ë‚´ ì •ë³´</a></li>
 
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
-						<li><a target="_blank" onclick="admin()">°ü¸®ÀÚ</a></li>
-						<li><a target="_blank" style="color:red" onclick="logout();">·Î±×¾Æ¿ô</a></li>
+						<li><a style="cursor:pointer;" target="_blank" onclick="admin()">ê´€ë¦¬ì</a></li>
+						<li><a style="cursor:pointer;" target="_blank" style="color:red" onclick="logout();">ë¡œê·¸ì•„ì›ƒ</a></li>
 					</ul>
 					
 				</div>

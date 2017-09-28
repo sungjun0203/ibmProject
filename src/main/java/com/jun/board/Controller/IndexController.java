@@ -6,13 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-/**
- * Created by IONCOMMUNICATIONS on 2017-07-24.
- */
 
 @Controller
 public class IndexController {
+	
 
+	// 첫 화면
     @RequestMapping("/")
     public String indexPage(HttpSession session){
     	session.invalidate();

@@ -16,7 +16,7 @@
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a onclick="main()" class="navbar-brand">DanKook University Meeting System</a>
+                <a onclick="main()" class="navbar-brand">IBM Board Project</a>
             </div>
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
@@ -25,13 +25,6 @@
                         <a onclick="notice()">공지사항</a>
                     </li>
 
-                    <li>
-                        <a onclick="dating()">소개팅</a>
-                    </li>
-
-                    <li>
-                        <a onclick="meeting()">미팅</a>
-                    </li>
 
                 </ul>
 
@@ -61,8 +54,8 @@
         <textarea style="width: 100%" rows="25" name="noticeContent" id="noticeContent" cols="200"></textarea>
 
         <div style="text-align: right; margin-top: 5px; margin-bottom: 5px">
-            <button type="button" class="btn btn-warning btn-sm">Back</button>
-            <button type="button" class="btn btn-success btn-sm" onclick="noticeSubmit();">Success</button>
+            <button type="button" class="btn btn-warning btn-sm" onclick="noticeBack();">Back</button>
+            <button type="button" class="btn btn-success btn-sm" onclick="noticeSubmit();">Submit</button>
         </div>
     </div>
 
@@ -77,8 +70,10 @@
 </html>
 
 <script>
-    function noticeSubmit() {
-        var noticeHTMLValue = oEditors.getById["noticeContent"].exec("UPDATE_CONTENTS_FIELD", []);
-        $("#noticeWrite").submit();
+	function noticeSubmit() {
+    	$("#noticeWrite").submit();
+	}
+    function noticeBack() {
+    	location.href="/main/main"
     }
 </script>

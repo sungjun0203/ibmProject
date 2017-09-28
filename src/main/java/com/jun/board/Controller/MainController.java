@@ -18,9 +18,12 @@ import com.jun.board.Service.BoardService;
 @RequestMapping("/main")
 public class MainController {
 	
+	
+	
 	@Autowired
 	BoardService boardService;
 	
+	// 메인화면 출력
 	@RequestMapping(value = "/main", method = {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView main(HttpSession session, HttpServletRequest request) {
 		

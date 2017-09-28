@@ -16,6 +16,9 @@
 	<jsp:include page="../headerAndFooter/header.jsp"></jsp:include>
 
 	<div class="container">
+	
+	<form id="myInformationForm" name="myInformationForm" method="GET" action="">
+	
 
 		<blockquote>
 			<p>네 정보는 3조가 가져간다.</p>
@@ -28,56 +31,20 @@
 			
 				<table class="table table-striped table-hover "> 
 				  <thead>
-				    <tr>
+				    <tr class="warning">
 				      <th>#</th>
-				      <th>Column heading</th>
-				      <th>Column heading</th>
-				      <th>Column heading</th>
+				      <th>제목</th>
+				      <th>날짜</th>
 				    </tr>
 				  </thead>
 				  <tbody>
-				    <tr>
-				      <td>1</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
+				 <c:forEach items="${myWrite}" var="myWrite">
+				    <tr class ="active">
+				      <td style="text-overflow:ellipsis; overflow:hidden"> <nobr>${myWrite.BOARD_NUMBER}</td>
+				      <td style="cursor:point; text-overflow:ellipsis; overflow:hidden" onclick="clickMyWriteOrReply(${myWrite.BOARD_NUMBER})"> <nobr>${myWrite.BOARD_TITLE}</td>
+				      <td style="text-overflow:ellipsis; overflow:hidden"> <nobr>${myWrite.BOARD_DATE}</td>
 				    </tr>
-				    <tr>
-				      <td>2</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				    </tr>
-				    <tr class="info">
-				      <td>3</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				    </tr>
-				    <tr class="success">
-				      <td>4</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				    </tr>
-				    <tr class="danger">
-				      <td>5</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				    </tr>
-				    <tr class="warning">
-				      <td>6</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				    </tr>
-				    <tr class="active">
-				      <td>7</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				    </tr>
+				    </c:forEach>
 				  </tbody>
 				</table> 
 			</div>
@@ -85,63 +52,34 @@
 			<div class="col-sm-6">
 			
 			<p class="text-primary"> - 내가 쓴 댓글 - </p>
-				<table class="table table-striped table-hover ">
+				<table class="table table-striped table-hover " style="table-layout:fixed ">
 				  <thead>
-				    <tr>
-				      <th>#</th>
-				      <th>Column heading</th>
-				      <th>Column heading</th>
-				      <th>Column heading</th>
+				    <tr class="info">
+				      <th>글 제목</th>
+				      <th>댓글 내용</th>
+				      <th>날짜</th>
 				    </tr>
 				  </thead>
+				  
+				  
+				  
 				  <tbody>
-				    <tr>
-				      <td>1</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				    </tr>
-				    <tr>
-				      <td>2</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				    </tr>
-				    <tr class="info">
-				      <td>3</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				    </tr>
-				    <tr class="success">
-				      <td>4</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				    </tr>
-				    <tr class="danger">
-				      <td>5</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				    </tr>
-				    <tr class="warning">
-				      <td>6</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				    </tr>
+				  <c:forEach items="${myReply}" var="myReply">
 				    <tr class="active">
-				      <td>7</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
-				      <td>Column content</td>
+				      <td style="text-overflow:ellipsis; overflow:hidden"> <nobr>${myReply.BOARD_TITLE}</td>
+				      <td style="cursor:point; text-overflow:ellipsis; overflow:hidden" onclick="clickMyWriteOrReply(${myReply.BOARD_NUMBER})"> <nobr>${myReply.REPLY_CONTENT}</td>
+				      <td style="text-overflow:ellipsis; overflow:hidden"> <nobr>${myReply.REPLY_DATE}</td>
 				    </tr>
+				   </c:forEach>
+				    
 				  </tbody>
 				</table> 
 			</div>
 		
 		</div>
+		
+		<input type ="hidden" id="boardNumber" name ="boardNumber">
+		</form>
 
 	</div>
 
@@ -150,6 +88,12 @@
 </body>
 
 <script language="javascript" type="text/javascript">
+
+function clickMyWriteOrReply(boardNumber){
+	$("#boardNumber").val(boardNumber)
+	$("#myInformationForm").attr("action", "/board/boardRead");
+	$("#myInformationForm").submit();
+}
 
 function main() {
 	location.href = "/main/main";

@@ -10,41 +10,10 @@
     <title>Title</title>
 </head>
 <body>
-<div class="page-header">
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a onclick="main()" class="navbar-brand">DanKook University Meeting System</a>
-            </div>
-            <div class="navbar-collapse collapse" id="navbar-main">
-                <ul class="nav navbar-nav">
-
-                    <li>
-                        <a onclick="notice()">공지사항</a>
-                    </li>
-
-                    <li>
-                        <a onclick="dating()">소개팅</a>
-                    </li>
-
-                    <li>
-                        <a onclick="meeting()">미팅</a>
-                    </li>
-
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a> '${userInformation.name}'님 안녕하세요 </a></li>
-                    <li><a target="_blank" onclick="contact()">내 정보</a></li>
-                    <li><a target="_blank" onclick="contact()">고객센터</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<jsp:include page="../headerAndFooter/header.jsp"></jsp:include>
 
 <div class="container">
-
+<form id="noticeForm" name="noticeForm" method="POST" action="">
 <input type ="hidden" id="noticeNumber" name="noticeNumber">
     <div class="well">
         공지사항
@@ -100,8 +69,11 @@
         location.href = "/notice/noticeList";
     }
     function noticeRead(boardNumberClick){
-    	alert(boardNumberClick);
-    	location.href = "/notice/noticeRead";
+    	
+    	$("#noticeNumber").val(boardNumberClick);
+    	
+    	$("#noticeForm").attr("action", "/notice/noticeRead");
+		$("#noticeForm").submit();
     }
     function dating() {
         location.href = "/board/dating";

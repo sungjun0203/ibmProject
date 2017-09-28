@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jun.board.Dao.UserDao;
 import com.jun.board.Service.CommonService;
@@ -46,16 +47,23 @@ public class NoticeController {
         noticeListResult.addObject("noticeInformation",noticeInformation);
         return noticeListResult;
     }
-    
+    //공지사항 쓰기
     @RequestMapping(value = "/noticeWrite")
     public String adminCheck(HttpServletRequest request, HttpSession session){
     	
     	return "notice/noticeWrite";
     }
     
+    // 공지사항 제출
+    @RequestMapping(value = "/writeSubmit")
+    public String boardWriteSubmit(RedirectAttributes redirectAttr,HttpServletRequest request, HttpSession session){
+		noticeService.writeSubmit(request, session);
+		return "redirect:/main/main";
+	}
+    
    
     
-   ///게시글 읽기
+   ///공지사항 읽기
     @RequestMapping(value="/noticeRead")
     public ModelAndView noticeRead(HttpServletRequest request, HttpSession session){
     	

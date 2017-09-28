@@ -16,6 +16,7 @@ public class AdminManagementService {
 	@Autowired
 	UserDao userDao;
 	
+	// 관리자 확인
 	public String adminCheck(HttpSession session){
 		
 		String userEmail = (String)session.getAttribute("userEmail");
@@ -31,6 +32,7 @@ public class AdminManagementService {
 		}
 	}
 	
+	// 관리자 재 로그인
 	public String reLogin(HttpSession session, HttpServletRequest request){
 		
 		String email = (String)session.getAttribute("userEmail");

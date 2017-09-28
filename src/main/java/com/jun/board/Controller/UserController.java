@@ -17,13 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.util.HashMap;
 
-/**
- * Created by IONCOMMUNICATIONS on 2017-07-24.
- */
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+	
+	
 
     @Autowired
     private UserDao userDao;
@@ -34,6 +33,7 @@ public class UserController {
     @Autowired
     private UserLoginService userLoginService;
 
+    // 회원가입 이메일 전송
     @ResponseBody
     @RequestMapping("/signUpEmailSend")
     public HashMap<String, Object> signUpEmailSend(HttpServletRequest request){
@@ -41,12 +41,14 @@ public class UserController {
         return result;
     }
 
+    // 회원가입 완료
     @RequestMapping("/signUpSuccess")
     public String signUpSuccess(HttpServletRequest request){
         userSignUpService.userSignUpSuccess(request);
         return "redirect:/";
     }
 
+    // 로그인 체크
     @RequestMapping("/loginCheck")
     @ResponseBody
     public HashMap<String, Object> loginCheck(HttpServletRequest request){
@@ -57,6 +59,7 @@ public class UserController {
         return resultMap;
     }
 
+    // 회원가입 페이지
     @RequestMapping("/signUp")
     public String signUp(){
         return "/user/signUp";

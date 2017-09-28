@@ -8,7 +8,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -30,6 +32,8 @@ public class BoardController {
 	@Autowired
 	CommonService commonService;
 	
+	
+	// 댓글 작성 완료
 	@ResponseBody
 	@RequestMapping("/boardReplySubmit")
 	public String boardReply(HttpServletRequest request, HttpSession session){
@@ -37,6 +41,7 @@ public class BoardController {
 		return "success";
 	}
 	
+	// 좋아요
 	@ResponseBody
 	@RequestMapping("/boardLike")
 	public String boardLike(HttpServletRequest request, HttpSession session){
@@ -44,19 +49,21 @@ public class BoardController {
 		return "success";
 	}
 	
-	
+	// 글 작성 페이지 이동
 	@RequestMapping("/boardWrite")
 	public String boardWrite(){
 		return "/board/boardWrite";
 	}
 	
+	// 글 작성 완료
 	@RequestMapping("/boardWriteSubmit")
 	public String boardWriteSubmit(RedirectAttributes redirectAttr,HttpServletRequest request, HttpSession session){
 		boardService.boardWriteSubmit(request, session);
 		return "redirect:/main/main";
 	}
 	
-	@RequestMapping("/boardRead")
+	// 게시글 상세보기
+	@RequestMapping(value = "/boardRead", method = {RequestMethod.GET})
 	public ModelAndView boardRead(HttpServletRequest request, HttpSession session){
 		
 		ModelAndView boardReadModel = new ModelAndView();
@@ -68,23 +75,27 @@ public class BoardController {
 		boardReadModel.addObject("likeInformation", likeInformation);
 		boardReadModel.addObject("boardReadInformation", boardReadInformation);
 		boardReadModel.addObject("boardReplyInformation", boardReplyInformation);
+		
 		boardReadModel.setViewName("/board/boardRead");
 
 		return boardReadModel;
 	}
 	
+	// 게시글 삭제
 	@ResponseBody
 	@RequestMapping("/boardDelete")
 	public String boardDelete (HttpServletRequest request, HttpSession session){
 		return boardService.boardDelete(request, session);
 	}
 	
+	// 게시글 업데이트 유무 확인
 	@ResponseBody
 	@RequestMapping("/boardUpdateCheck")
 	public String boardUpdateCheck (HttpServletRequest request, HttpSession session){
 		return commonService.authorityCheck(request, session);
 	}
 	
+	// 게시글 수정 화면
 	@RequestMapping("/boardUpdate")
 	public ModelAndView boardUpdate (HttpServletRequest request, HttpSession session){
 		
@@ -96,6 +107,7 @@ public class BoardController {
 		return boardUpdate;
 	}
 	
+	// 게시글 수정 완료
 	@RequestMapping("/boardUpdateSubmit")
 	public String boardUpdateSubmit(HttpServletRequest request, HttpSession session){
 		

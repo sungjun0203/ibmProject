@@ -58,14 +58,23 @@
 		   제목 :  ${fn:replace(boardReadInformation.BOARD_TITLE,cn,br)}
 		  </div>
 		  <div class="panel-body" style=height:70%>
-		  
-			<img src= '${pageContext.request.contextPath}/resources/boardImage/${boardReadInformation.BOARD_FILE_NAME}' style="max-width: 500px; height: auto; max-height: 300px;">
+
+<c:choose>
+	<c:when test= '${boardReadInformation.BOARD_FILE_NAME eq null}' >
+	</c:when>
+	
+	<c:otherwise>
+		<img src= '${pageContext.request.contextPath}/resources/boardImage/${boardReadInformation.BOARD_FILE_NAME}' style="max-width: 500px; height: auto; max-height: 300px;">
+	</c:otherwise>
+ 
+</c:choose>
+
 		    <p>${fn:replace(boardReadInformation.BOARD_CONTENT,cn,br)}<p>
 		    
 		  </div>
 		</div>
 		
-		<div class="text-center">
+		<div class="text-center" id="like" name="like">
 			<c:if test='${likeInformation.myLikeCount==0}'>
 				<button type="button" id="unLikeBtn" name="unLikeBtn" onclick="unLikeBtnClick()" style="background-color:white; border:none"><img src= '${pageContext.request.contextPath}/resources/likeButton/unLike.png' style="max-width: 200px; height: auto; max-height: 100px;"></button>
 			</c:if>
@@ -82,19 +91,21 @@
             <button type="button" class="btn btn-danger btn-sm" onclick="boardDelete();">삭제</button>
         </div>
         
+        <div id="aa">
         <table class="table table-condensed">
 			<tr>
 				<td>
 				<span class="form-inline" >
-				댓글작성
+				댓글
 						<div class="form-group" style="display:inline-block">
-							<button type="button" id="replySubmitBtn" name="replySubmitBtn" class="btn btn-default" onclick=replySubmit(${boardReadInformation.BOARD_NUMBER});>확인</button>
+							<button type="button" id="replySubmitBtn" name="replySubmitBtn" class="btn btn-default" onclick=replySubmit(${boardReadInformation.BOARD_NUMBER});>작성</button>
 						</div>
-						</p> <textarea id="replyContent" name="replyContent" class="form-control col-lg-12" style="width: 100%" rows="4"></textarea>
+						</p> <textarea id="replyContent" name="replyContent" maxlength="300" class="form-control col-lg-12" style="width: 100%" rows="4"></textarea>
 				</span>
 				</td>
 			</tr>
 		</table>
+		</div>
 
 		<table class="table table-striped table-hover">
 
@@ -130,7 +141,6 @@
 </html>
 
 <script type="text/javascript">
-
 $('#boardNumber').val(${boardReadInformation.BOARD_NUMBER});
 var boardNumber = $('#boardNumber').val();
 
@@ -148,6 +158,7 @@ function admin() {
 }
 function logout() {
 	$.ajax({
+		
         url : "/common/logout",
         type : "POST",
         success: function(data) {
@@ -166,13 +177,13 @@ function unLikeBtnClick(){
 	alert("알람 메일전송 중!");
 	
 	$.ajax({
+		cache: false,
         url : "/board/boardLike",
         dataType : "text",
         async : false,
-        type : "POST",
+        type : "GET",
         data : $('#boardRead').serializeArray(),
         success: function() {
-        	alert();
         	window.location.reload();
         },
         error:function(request,status,error){
@@ -185,13 +196,13 @@ function likeBtnClick(){
 	$('#likeCheck').val("like");
 	
 	$.ajax({
+		cache: false,
         url : "/board/boardLike",
         dataType : "text",
         async : false,
-        type : "POST",
+        type : "GET",
         data : $('#boardRead').serializeArray(),
         success: function() {
-        	alert();
         	window.location.reload();
         },
         error:function(request,status,error){
@@ -210,7 +221,7 @@ function replySubmit(num){
 	        url : "/board/boardReplySubmit",
 	        dataType : "text",
 	        async : false,
-	        type : "POST",
+	        type : "GET",
 	        data : $('#boardRead').serializeArray(),
 	        success: function() {
 	        	window.location.reload();
@@ -231,13 +242,12 @@ function boardUpdate(){
         type : "POST",
         data : {"boardNumber":boardNumber},
         success: function(resultString) {
-        	alert();
         	 if(resultString=="admin") {
              	alert("관리자 권한 수정");
              	$("#boardRead").attr("action", "/board/boardUpdate");
              	$("#boardRead").submit();
              }
-             else if(resultString=="userUpdateSuccess"){
+             else if(resultString=="authorityOK"){
              	$("#boardRead").attr("action", "/board/boardUpdate");
              	$("#boardRead").submit();
              	alert("일반사용자 수정");

@@ -1,16 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"type="text/javascript"></script>
+<link rel="stylesheet" type="text/css"	href="/resources/bootstrap/cosmo.css" />
+<link rel="stylesheet/less" type="text/css"	href="/resources/bootstrap/bootswatch.less" />
+<link rel="stylesheet/less" type="text/css"	href="/resources/bootstrap/variables.less" />
+
 <html>
 <head>
-<script src="/WEB-INF/js/common.js"type="text/javascript"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
 <body>
 <div class="modal-footer" >
 		<center >
-			<p class="footer_text">ÀÌ¿ë¾à°ü | °³ÀÎÁ¤º¸ Ãë±Þ¹æÄ§ | Copyright¢ç IBM GBS 3Á¶</p>
+			<p class="footer_text">ì´ìš©ì•½ê´€ | ê°œì¸ì •ë³´ ì·¨ê¸‰ë°©ì¹¨ | CopyrightÂ® IBM GBS 3ì¡°</p>
 		</center>
 	</div>
 

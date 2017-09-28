@@ -4,12 +4,17 @@
 <mapper namespace="com.jun.board.Dao.NoticeDao">
 	<select id="noticeList" resultType="HashMap">
     	SELECT noticeInfo.*
-		FROM NOTICE_INFORMATION noticeInfo
+		FROM NOTICE_TABLE noticeInfo
     </select>
     
     <select id="noticeRead" resultType="HashMap" parameterType="Integer">
     	SELECT noticeInfo.*
-    	FROM NOTICE_INFORMATION noticeInfo
+    	FROM NOTICE_TABLE noticeInfo
     	WHERE noticeInfo.NOTICE_NUMBER = #{noticeNumber}
+    </select>
+    
+    <select id="onlyTextWrite" parameterType = "HashMap">
+    	INSERT INTO NOTICE_TABLE(NOTICE_NUMBER,NOTICE_TITLE,NOTICE_CONTENT,NOTICE_WRITER,NOTICE_DATE)
+    	VALUES (NOTICE_NUMBER.NEXTVAL, #{notictTitle}, #{noticeContent}, #{userEmail}, TO_DATE(#{noticeDate},'RRRR/MM/DD HH:MI:SS'))
     </select>
 </mapper>

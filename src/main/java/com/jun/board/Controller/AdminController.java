@@ -14,10 +14,6 @@ import com.jun.board.Dao.UserDao;
 import com.jun.board.Service.AdminManagementService;
 import com.jun.board.Service.UserLoginService;
 
-/**
- * Created by IONCOMMUNICATIONS on 2017-07-24.
- */
-
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -31,11 +27,13 @@ public class AdminController {
     @Autowired
     UserLoginService userLoginService;
     
+    // 첫 화면
     @RequestMapping("/index")
     public String adminIndex(HttpSession session){
     	return adminManagementService.adminCheck(session);
     }
     
+    // 재 로그인 ajax
     @ResponseBody	
     @RequestMapping("/reLogin")
     public HashMap<String,Object> reLogin(HttpServletRequest request, HttpSession session){
@@ -46,9 +44,9 @@ public class AdminController {
          return resultMap;
     }
     
+    // 매니지먼트 화면
     @RequestMapping("/management")
     public String management(HttpServletRequest request){
-    	
     	return "admin/admin_management";
     }
     

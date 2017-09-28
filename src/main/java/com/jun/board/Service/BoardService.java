@@ -81,10 +81,10 @@ public class BoardService {
 
 	public void like(HttpServletRequest request, HttpSession session) {
 
+		
 		HashMap<String, Object> boardLikeInformation = new HashMap<String, Object>();
 
-		Integer boardNumber = Integer.parseInt(request
-				.getParameter("boardNumber"));
+		Integer boardNumber = Integer.parseInt(request.getParameter("boardNumber"));
 		String likeWriter = (String) session.getAttribute("userEmail");
 		String likeTime = commonService.nowTime();
 		String likeCheck = request.getParameter("likeCheck");
@@ -92,6 +92,9 @@ public class BoardService {
 		boardLikeInformation.put("boardNumber", boardNumber);
 		boardLikeInformation.put("likeWriter", likeWriter);
 		boardLikeInformation.put("likeTime", likeTime);
+		
+		System.out.println(boardLikeInformation);
+		System.out.println(likeCheck);
 
 		System.out.println(boardLikeInformation + likeCheck);
 
@@ -102,6 +105,9 @@ public class BoardService {
 			String nowTime = commonService.nowTime();
 			String boardWriter = request.getParameter("boardWriter");
 			String boardTitle = request.getParameter("boardTitle");
+			
+			System.out.println(boardWriter);
+			System.out.println(boardTitle);
 
 			String subject = "IBM 댓글알림 [ 제목 : " + boardTitle + " ]";
 			String text = "IBM Board 댓글알림 \n" + boardWriter + "님이 "
@@ -142,24 +148,6 @@ public class BoardService {
 
 		HashMap<String, Object> boardInformation = boardDao.boardRead(boardNumber);
 		return boardInformation;
-	}
-
-	public String boardUpdateCheck(HttpServletRequest request,
-			HttpSession session) {
-		String userEmail = (String) session.getAttribute("userEmail");
-		Integer boardNumber = Integer.parseInt(request
-				.getParameter("boardNumber"));
-		String updateResult = null;
-
-		String boardWriter = boardDao.getBoardWriter(boardNumber);
-
-		if (userEmail.equals(boardWriter)) {
-			updateResult = "userUpdateSuccess";
-		} else {
-			updateResult = "userUpdateFail";
-		}
-
-		return updateResult;
 	}
 
 	public ArrayList<HashMap<String, Object>> boardList(HttpServletRequest request) {
@@ -218,6 +206,7 @@ public class BoardService {
 			deleteResult = "admin";
 		} else {
 			String boardWriter = boardDao.getBoardWriter(boardNumber);
+			System.out.println(boardWriter);
 			if (userEmail.equals(boardWriter)) {
 				boardDao.boardDelete(boardNumber);
 				boardDao.deleteBoardLike(boardNumber);
@@ -288,20 +277,15 @@ public class BoardService {
 		String boardTitle = request.getParameter("boardTitle");
 		String boardContent = request.getParameter("boardContent");
 		String imgChangeCheck = request.getParameter("imgChangeCheck");
-		Integer boardNumber = Integer.parseInt(request
-				.getParameter("boardNumber"));
+		Integer boardNumber = Integer.parseInt(request.getParameter("boardNumber"));
 
 		String stringDateTime = commonService.nowTime();
-
-		System.out.println("12313321321132132" + boardNumber);
 
 		boardInformation.put("boardNumber", boardNumber);
 		boardInformation.put("boardUpdateWriter", userEmail);
 		boardInformation.put("boardTitle", boardTitle);
 		boardInformation.put("boardContent", boardContent);
 		boardInformation.put("boardUpdateDate", stringDateTime);
-
-		System.out.println(imgChangeCheck + " cccccccccccc");
 
 		if (imgChangeCheck.equals("change")) {
 
