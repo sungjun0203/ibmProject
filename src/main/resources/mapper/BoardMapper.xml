@@ -4,6 +4,12 @@
 
 <mapper namespace="com.jun.board.Dao.BoardDao">
 
+	<select id="boardBeingCheck" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*)
+		FROM BOARD_INFORMATION
+		WHERE BOARD_NUMBER = #{boardNumber}
+	</select>
+
 	<select id="myWriteCount" parameterType="String" resultType="Integer">
 		SELECT COUNT(*)
 		FROM BOARD_INFORMATION

@@ -50,8 +50,11 @@ public class CommonService {
 		String userType = userTypeCheck(session);
 		Integer boardNumber = Integer.parseInt(request.getParameter("boardNumber"));
 		String deleteResult = null;
-
-		if (userType.equals("관리자")) {
+		
+		if(boardDao.boardBeingCheck(boardNumber)==0){
+			deleteResult ="notBeing";
+		}
+		else if (userType.equals("관리자")) {
 			deleteResult = "admin";
 		} else {
 			String boardWriter = boardDao.getBoardWriter(boardNumber);

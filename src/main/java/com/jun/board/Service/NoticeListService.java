@@ -36,11 +36,17 @@ public class NoticeListService {
     }
     
     // 공지사항 삭제
-    public void noticeDelete (HttpServletRequest request, HttpSession session) {
-    	String userEmail = (String) session.getAttribute("userEmail");
-		Integer noticeNumber = Integer.parseInt(request.getParameter("noticeNumber"));
-		
-		noticeDao.noticeDelete(noticeNumber);
+    public String noticeDelete (HttpServletRequest request, HttpSession session) {
+    	Integer noticeNumber = Integer.parseInt(request.getParameter("noticeNumber"));
+    	
+    	String noticeCheck = commonService.userTypeCheck(session);
+    	if(noticeCheck.equals("관리자")){
+    		noticeDao.noticeDelete(noticeNumber);
+    		return "successDelete";
+    	}
+    	else{
+    		return "failDelete";
+    	}
     }
     
     // 공지사항 업데이트 완료

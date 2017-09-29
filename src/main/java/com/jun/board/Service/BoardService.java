@@ -78,7 +78,7 @@ public class BoardService {
 	}
 
 	// 좋아요 업데이트
-	public void like(HttpServletRequest request, HttpSession session) {
+	public String like(HttpServletRequest request, HttpSession session) {
 
 		
 		HashMap<String, Object> boardLikeInformation = new HashMap<String, Object>();
@@ -87,12 +87,17 @@ public class BoardService {
 		String likeWriter = (String) session.getAttribute("userEmail");
 		String likeTime = commonService.nowTime();
 		String likeCheck = request.getParameter("likeCheck");
+		String deleteResult = null;
 
 		boardLikeInformation.put("boardNumber", boardNumber);
 		boardLikeInformation.put("likeWriter", likeWriter);
 		boardLikeInformation.put("likeTime", likeTime);
 		
-		if (likeCheck.equals("unlike")) {
+		if(boardDao.boardBeingCheck(boardNumber)==0){
+			deleteResult ="notBeing";
+		}
+		
+		else if (likeCheck.equals("unlike")) {
 			boardDao.likeInsert(boardLikeInformation);
 			boardDao.likeCountPlus(boardNumber);
 
@@ -110,28 +115,43 @@ public class BoardService {
 			message.setSubject(subject);
 			message.setText(text);
 			emailSender.send(message);
+			
+			deleteResult = "likeSuccess";
 		} else {
 			boardDao.likeDelete(boardLikeInformation);
 			boardDao.likeCountMinus(boardNumber);
+			deleteResult = "likeFail";
 		}
+		
+		return deleteResult;
 	}
 
 	// 댓글 달기
-	public void replyInsert(HttpServletRequest request, HttpSession session) {
+	public String replyInsert(HttpServletRequest request, HttpSession session) {
 
 		HashMap<String, Object> boardReplyInformation = new HashMap<String, Object>();
 
-		String boardNumber = request.getParameter("boardNumber");
+		Integer boardNumber = Integer.parseInt(request.getParameter("boardNumber"));
 		String replyWriter = (String) session.getAttribute("userEmail");
 		String replyContent = request.getParameter("replyContent");
 		String replyTime = commonService.nowTime();
+		
+		String replyResult = null;
+		
+		if(boardDao.boardBeingCheck(boardNumber)==0){
+			replyResult ="notBeing";
+		}
+		else{
+			boardReplyInformation.put("boardNumber", boardNumber);
+			boardReplyInformation.put("replyContent", replyContent);
+			boardReplyInformation.put("replyTime", replyTime);
+			boardReplyInformation.put("replyWriter", replyWriter);
 
-		boardReplyInformation.put("boardNumber", boardNumber);
-		boardReplyInformation.put("replyContent", replyContent);
-		boardReplyInformation.put("replyTime", replyTime);
-		boardReplyInformation.put("replyWriter", replyWriter);
-
-		boardDao.replyInsert(boardReplyInformation);
+			boardDao.replyInsert(boardReplyInformation);
+			replyResult="success";
+		}
+		
+		return replyResult;
 	}
 
 	// 게시글 업데이트
@@ -194,24 +214,28 @@ public class BoardService {
 		String userType = commonService.userTypeCheck(session);
 		Integer boardNumber = Integer.parseInt(request.getParameter("boardNumber"));
 		String deleteResult = null;
-
-		if (userType.equals("관리자")) {
-			boardDao.boardDelete(boardNumber);
-			boardDao.deleteBoardLike(boardNumber);
-			boardDao.deleteBoardReply(boardNumber);
-			deleteResult = "admin";
-		} else {
-			String boardWriter = boardDao.getBoardWriter(boardNumber);
-			if (userEmail.equals(boardWriter)) {
+		
+		if(boardDao.boardBeingCheck(boardNumber)==0){
+			deleteResult ="notBeing";
+		}
+		else{
+			if (userType.equals("관리자")) {
 				boardDao.boardDelete(boardNumber);
 				boardDao.deleteBoardLike(boardNumber);
 				boardDao.deleteBoardReply(boardNumber);
-				deleteResult = "userDeleteSuccess";
+				deleteResult = "admin";
 			} else {
-				deleteResult = "userDeleteFail";
+				String boardWriter = boardDao.getBoardWriter(boardNumber);
+				if (userEmail.equals(boardWriter)) {
+					boardDao.boardDelete(boardNumber);
+					boardDao.deleteBoardLike(boardNumber);
+					boardDao.deleteBoardReply(boardNumber);
+					deleteResult = "userDeleteSuccess";
+				} else {
+					deleteResult = "userDeleteFail";
+				}
 			}
 		}
-
 		return deleteResult;
 	}
 

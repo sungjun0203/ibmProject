@@ -69,6 +69,9 @@
 
 <script>
 	function noticeSubmit() {
+		if($("#noticeTitle")).val()==null){
+			alert("제목을 입력하지 않으셨습니다.");
+		}
     	$("#noticeWrite").submit();
 	}
     function noticeBack() {

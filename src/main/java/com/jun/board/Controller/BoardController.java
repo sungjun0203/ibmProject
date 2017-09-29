@@ -37,16 +37,16 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping("/boardReplySubmit")
 	public String boardReply(HttpServletRequest request, HttpSession session){
-		boardService.replyInsert(request, session);
-		return "success";
+		String replyResult = boardService.replyInsert(request, session);
+		return replyResult;
 	}
 	
 	// 좋아요
 	@ResponseBody
 	@RequestMapping("/boardLike")
 	public String boardLike(HttpServletRequest request, HttpSession session){
-		boardService.like(request, session);
-		return "success";
+		String likeResult = boardService.like(request, session);
+		return likeResult;
 	}
 	
 	// 글 작성 페이지 이동

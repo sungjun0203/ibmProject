@@ -86,6 +86,9 @@
 	            	$("#noticeRead").attr("action", "/notice/noticeList");
 	            	$("#noticeRead").submit();
 	            }
+	            else{
+	            	alert("당신은 관리자가 아닙니다");
+	            }
 	        },
 	        error:function(request,status,error){
 	            alert("code:"+request.status+"\n"+"error:"+error);

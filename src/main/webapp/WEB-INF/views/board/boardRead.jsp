@@ -174,8 +174,6 @@ function unLikeBtnClick(){
 	$('#boardTitle').val('${boardReadInformation.BOARD_TITLE}');
 	$('#boardWriter').val('${boardReadInformation.BOARD_WRITER}');
 	
-	alert("알람 메일전송 중!");
-	
 	$.ajax({
 		cache: false,
         url : "/board/boardLike",
@@ -183,8 +181,15 @@ function unLikeBtnClick(){
         async : false,
         type : "GET",
         data : $('#boardRead').serializeArray(),
-        success: function() {
-        	window.location.reload();
+        success: function(data) {
+        	if(data=="notBeing"){
+        		alert("게시글이 이미 삭제 됐습니다");
+        		$("#boardRead").attr("action", "/main/main");
+            	$("#boardRead").submit();
+        	}
+        	else{
+        		window.location.reload();
+        	}
         },
         error:function(request,status,error){
             alert("code:"+request.status+"\n"+"error:"+error);
@@ -202,8 +207,16 @@ function likeBtnClick(){
         async : false,
         type : "GET",
         data : $('#boardRead').serializeArray(),
-        success: function() {
-        	window.location.reload();
+        success: function(data) {
+        	
+        	if(data=="notBeing"){
+        		alert("게시글이 이미 삭제 됐습니다");
+        		$("#boardRead").attr("action", "/main/main");
+            	$("#boardRead").submit();
+        	}
+        	else{
+        		window.location.reload();
+        	}
         },
         error:function(request,status,error){
             alert("code:"+request.status+"\n"+"error:"+error);
@@ -223,8 +236,15 @@ function replySubmit(num){
 	        async : false,
 	        type : "GET",
 	        data : $('#boardRead').serializeArray(),
-	        success: function() {
-	        	window.location.reload();
+	        success: function(data) {
+	        	if(data=="notBeing"){
+	        		alert("게시글이 이미 삭제 됐습니다");
+	        		$("#boardRead").attr("action", "/main/main");
+	            	$("#boardRead").submit();
+	        	}
+	        	else{
+	        		window.location.reload();
+	        	}
 	        },
 	        error:function(request,status,error){
 	            alert("code:"+request.status+"\n"+"error:"+error);
@@ -242,7 +262,14 @@ function boardUpdate(){
         type : "POST",
         data : {"boardNumber":boardNumber},
         success: function(resultString) {
-        	 if(resultString=="admin") {
+        	
+        	if(resultString=="notBeing"){
+        		alert("게시글이 이미 삭제 됐습니다");
+        		$("#boardRead").attr("action", "/main/main");
+            	$("#boardRead").submit();
+        	}
+        	
+        	else if(resultString=="admin") {
              	alert("관리자 권한 수정");
              	$("#boardRead").attr("action", "/board/boardUpdate");
              	$("#boardRead").submit();
@@ -275,7 +302,13 @@ function boardDelete(){
         data : {"boardNumber":boardNumber},
         success: function(resultString) {
         	
-            if(resultString=="admin") {
+        	if(resultString=="notBeing"){
+        		alert("게시글이 이미 삭제 됐습니다");
+        		$("#boardRead").attr("action", "/main/main");
+            	$("#boardRead").submit();
+        	}
+        	
+        	else if(resultString=="admin") {
             	alert("관리자 권한 삭제");
             	$("#boardRead").attr("action", "/main/main");
             	$("#boardRead").submit();

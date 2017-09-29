@@ -20,6 +20,8 @@ public interface BoardDao {
     HashMap<String,Object> boardRead(int boardNumber);
     void boardDelete(int boardNumber);
     
+    Integer boardBeingCheck(int boardNumber);
+    
     String getBoardWriter(int boardNumber);
     
     

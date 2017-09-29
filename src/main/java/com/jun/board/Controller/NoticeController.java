@@ -77,8 +77,8 @@ public class NoticeController {
     @ResponseBody
     @RequestMapping("/noticeDelete")
     public String noticeDelete (HttpServletRequest request, HttpSession session){
-    	noticeService.noticeDelete(request, session);
-    	return "successDelete";
+    	String noticeDeleteCheck = noticeService.noticeDelete(request, session);
+    	return noticeDeleteCheck;
     }
 
 }

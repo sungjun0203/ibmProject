@@ -81,7 +81,10 @@ function logout() {
 		var boardTitle = $("#boardTitle").val();
 		var boardTitleLength = boardTitle.length;
 		
-		if(boardTitleLength>25){
+		if(boardTitleLength==0){
+			alert("제목이 없습니다");
+		}
+		else if(boardTitleLength>25){
 			alert("제목이 너무 길어요!");
 		}
 		else{
