@@ -201,6 +201,7 @@ public class BoardService {
 	public HashMap<String, Object> boardRead(HttpServletRequest request,HttpSession session) {
 
 		Integer boardNumber = Integer.parseInt(request.getParameter("boardNumber"));
+		
 		HashMap<String, Object> boardRead = boardDao.boardRead(boardNumber);
 		boardRead.put("sessionId", session.getAttribute("userEmail"));
 

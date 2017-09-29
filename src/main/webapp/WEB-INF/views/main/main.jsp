@@ -68,7 +68,7 @@
 
 							<ul class="list-group">
 							
-								<li class="list-group-item">반갑습니다</li>
+								<li class="list-group-item">- IBM GBS 3조 -</li>
 								<li class="list-group-item">${userEmail}</li>
 								<li class="list-group-item" style="cursor:pointer;" onclick="myInformation();"><span class="badge">${myCountInformation.myWriteCount}</span>
 									내가 쓴 글</li>
@@ -83,7 +83,7 @@
 
 			<div>
 				&nbsp;
-				<div class="col-sm-12" 	style="margin-top: 11px; margin-bottom: 11px;">
+				<div class="col-sm-12" 	style="margin-top: 11px; margin-bottom: 11px; ">
 
 					<div class="col-sm-9">
 						<button class="btn btn-primary" onclick="boardWrite();">글쓰기</button>
@@ -108,8 +108,8 @@
 				<form id="boardReadForm" name="boardReadForm" method="GET" action="/board/boardRead">
 				<input type = "hidden" id="boardNumber" name="boardNumber">
 				<input type = "hidden" id="selectArray" name="selectArray">
-					<div class="col-sm-12">
-						<table class="table table-striped table-hover text-center ">
+					<div class="col-sm-12" style="padding-left:30px; padding-right:40px">
+						<table class="table table-striped table-hover text-center" >
 							<thead>
 								<tr style="background-color :#485563">
 									<td width="5%" style="color:white">번호</td>

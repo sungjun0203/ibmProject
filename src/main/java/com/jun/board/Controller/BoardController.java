@@ -8,13 +8,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.jun.board.Dao.BoardDao;
 import com.jun.board.Service.BoardService;
 import com.jun.board.Service.CommonService;
 import com.jun.board.Service.UserInformationService;
@@ -31,6 +31,9 @@ public class BoardController {
 	
 	@Autowired
 	CommonService commonService;
+	
+	@Autowired
+	BoardDao boardDao;
 	
 	
 	// 댓글 작성 완료
@@ -68,16 +71,29 @@ public class BoardController {
 		
 		ModelAndView boardReadModel = new ModelAndView();
 		
-		HashMap<String,Object> boardReadInformation = boardService.boardRead(request, session);
-		ArrayList<HashMap<String,Object>> boardReplyInformation = boardService.replyRead(request);
-		HashMap<String,Object> likeInformation = boardService.likeInformation(request,session);
+		System.out.println((session.getAttribute("userEmail")));
 		
-		boardReadModel.addObject("likeInformation", likeInformation);
-		boardReadModel.addObject("boardReadInformation", boardReadInformation);
-		boardReadModel.addObject("boardReplyInformation", boardReplyInformation);
+		if(session.getAttribute("userEmail")==null){
+			boardReadModel.setViewName("/index");
+		}
 		
-		boardReadModel.setViewName("/board/boardRead");
+		else if(boardDao.boardBeingCheck(Integer.parseInt(request.getParameter("boardNumber")))==0) {
+			boardReadModel.setViewName("/error/error");
+		}
+		
+		
 
+		else{
+			HashMap<String,Object> boardReadInformation = boardService.boardRead(request, session);
+			ArrayList<HashMap<String,Object>> boardReplyInformation = boardService.replyRead(request);
+			HashMap<String,Object> likeInformation = boardService.likeInformation(request,session);
+			
+			boardReadModel.addObject("likeInformation", likeInformation);
+			boardReadModel.addObject("boardReadInformation", boardReadInformation);
+			boardReadModel.addObject("boardReplyInformation", boardReplyInformation);
+			
+			boardReadModel.setViewName("/board/boardRead");
+		}
 		return boardReadModel;
 	}
 	
