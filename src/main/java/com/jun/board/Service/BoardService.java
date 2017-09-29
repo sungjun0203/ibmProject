@@ -35,6 +35,7 @@ public class BoardService {
 	@Autowired
 	HttpSession session;
 	
+	// 내가 쓴 글 및 게시글 수 확인
 	public HashMap<String, Object> myCountInformation(HttpSession session) {
 		String userEmail = (String) session.getAttribute("userEmail");
 
@@ -42,11 +43,11 @@ public class BoardService {
 
 		countHashMap.put("myWriteCount", boardDao.myWriteCount(userEmail));
 		countHashMap.put("myReplyCount", boardDao.myReplyCount(userEmail));
-		System.out.println(countHashMap);
 
 		return countHashMap;
 	}
 
+	// 좋아요 정보
 	public HashMap<String, Object> likeInformation(HttpServletRequest request,
 			HttpSession session) {
 
@@ -54,8 +55,7 @@ public class BoardService {
 		HashMap<String, Object> likeInformation = new HashMap<String, Object>();
 
 		String userEmail = (String) session.getAttribute("userEmail");
-		Integer boardNumber = Integer.parseInt(request
-				.getParameter("boardNumber"));
+		Integer boardNumber = Integer.parseInt(request.getParameter("boardNumber"));
 
 		likeCheck.put("userEmail", userEmail);
 		likeCheck.put("boardNumber", boardNumber);
@@ -66,19 +66,18 @@ public class BoardService {
 		likeInformation.put("myLikeCount", myLikeCount);
 		likeInformation.put("allLikeCount", allLikeCount);
 
-		System.out.println(likeInformation);
 
 		return likeInformation;
 	}
 
-	public ArrayList<HashMap<String, Object>> replyRead(
-			HttpServletRequest request) {
+	// 댓글 읽기
+	public ArrayList<HashMap<String, Object>> replyRead(HttpServletRequest request) {
 
-		Integer boardNumber = Integer.parseInt(request
-				.getParameter("boardNumber"));
+		Integer boardNumber = Integer.parseInt(request.getParameter("boardNumber"));
 		return boardDao.replyRead(boardNumber);
 	}
 
+	// 좋아요 업데이트
 	public void like(HttpServletRequest request, HttpSession session) {
 
 		
@@ -93,11 +92,6 @@ public class BoardService {
 		boardLikeInformation.put("likeWriter", likeWriter);
 		boardLikeInformation.put("likeTime", likeTime);
 		
-		System.out.println(boardLikeInformation);
-		System.out.println(likeCheck);
-
-		System.out.println(boardLikeInformation + likeCheck);
-
 		if (likeCheck.equals("unlike")) {
 			boardDao.likeInsert(boardLikeInformation);
 			boardDao.likeCountPlus(boardNumber);
@@ -106,9 +100,6 @@ public class BoardService {
 			String boardWriter = request.getParameter("boardWriter");
 			String boardTitle = request.getParameter("boardTitle");
 			
-			System.out.println(boardWriter);
-			System.out.println(boardTitle);
-
 			String subject = "IBM 댓글알림 [ 제목 : " + boardTitle + " ]";
 			String text = "IBM Board 댓글알림 \n" + boardWriter + "님이 "
 					+ boardTitle + " 글에 좋아요를 누르셨습니다.";
@@ -125,6 +116,7 @@ public class BoardService {
 		}
 	}
 
+	// 댓글 달기
 	public void replyInsert(HttpServletRequest request, HttpSession session) {
 
 		HashMap<String, Object> boardReplyInformation = new HashMap<String, Object>();
@@ -142,14 +134,15 @@ public class BoardService {
 		boardDao.replyInsert(boardReplyInformation);
 	}
 
-	public HashMap<String, Object> boardUpdate(HttpServletRequest request,
-			HttpSession session) {
+	// 게시글 업데이트
+	public HashMap<String, Object> boardUpdate(HttpServletRequest request,HttpSession session) {
 		Integer boardNumber = Integer.parseInt(request.getParameter("boardNumber"));
 
 		HashMap<String, Object> boardInformation = boardDao.boardRead(boardNumber);
 		return boardInformation;
 	}
-
+	
+	// 게시글 정렬
 	public ArrayList<HashMap<String, Object>> boardList(HttpServletRequest request) {
 		
 		ArrayList<HashMap<String, Object>> boardList = new ArrayList<HashMap<String,Object>>();
@@ -178,11 +171,13 @@ public class BoardService {
 		return boardList;
 	}
 
+	// 내 게시글 개수
 	public Integer myBoardListCount(HttpSession session) {
 		String userEmail = (String) session.getAttribute("userEmail");
 		return boardDao.myWriteCount(userEmail);
 	}
 
+	// 게시글 읽기
 	public HashMap<String, Object> boardRead(HttpServletRequest request,HttpSession session) {
 
 		Integer boardNumber = Integer.parseInt(request.getParameter("boardNumber"));
@@ -192,6 +187,7 @@ public class BoardService {
 		return boardRead;
 	}
 
+	// 게시글 삭제
 	public String boardDelete(HttpServletRequest request, HttpSession session) {
 
 		String userEmail = (String) session.getAttribute("userEmail");
@@ -206,7 +202,6 @@ public class BoardService {
 			deleteResult = "admin";
 		} else {
 			String boardWriter = boardDao.getBoardWriter(boardNumber);
-			System.out.println(boardWriter);
 			if (userEmail.equals(boardWriter)) {
 				boardDao.boardDelete(boardNumber);
 				boardDao.deleteBoardLike(boardNumber);
@@ -220,6 +215,7 @@ public class BoardService {
 		return deleteResult;
 	}
 
+	// 게시글 쓰기 업데이트
 	public void boardWriteSubmit(HttpServletRequest request, HttpSession session) {
 
 		HashMap<String, Object> boardInformation = new HashMap<String, Object>();
@@ -268,6 +264,8 @@ public class BoardService {
 		}
 	}
 
+	
+	// 게시판 수정 업데이트
 	public void boardUpdateSubmit(HttpServletRequest request,
 			HttpSession session) {
 
@@ -318,13 +316,11 @@ public class BoardService {
 					boardInformation.put("boardFileOrig",
 							request.getParameter("imgSrc")); // 원래 파일 명
 
-					System.out.println("toto" + boardInformation);
 					boardDao.imgTextUpdate(boardInformation);
 				}
 			}
 
 			else {
-				System.out.println("else~~~~");
 				boardDao.onlyTextUpdate(boardInformation);
 			}
 		} else {

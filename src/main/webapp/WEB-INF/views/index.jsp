@@ -101,7 +101,6 @@ window.onpopstate = function(event) {
             error:function(request,status,error){
                 alert("code:"+request.status+"\n"+"error:"+error);
             }
-
         });
     }
 

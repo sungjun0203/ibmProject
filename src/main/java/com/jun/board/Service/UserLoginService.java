@@ -15,6 +15,7 @@ public class UserLoginService {
     @Autowired
     private UserDao userDao;
 
+    // 유저 로그인 서비스
     public String userLoginService(HttpServletRequest request) {
 
         String email = request.getParameter("email");

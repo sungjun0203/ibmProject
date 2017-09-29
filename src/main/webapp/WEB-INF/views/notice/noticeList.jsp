@@ -26,7 +26,6 @@
             <th class=text-center>제목</th>
             <th class=text-center>작성자</th>
             <th class=text-center>등록일</th>
-            <th class=text-center>조회수</th>
         </tr>
         </thead>
 
@@ -36,9 +35,8 @@
         <tr>
             <td width="10%">${notice.NOTICE_NUMBER}</td>
             <td width="40%" onclick="noticeRead(${notice.NOTICE_NUMBER});">${notice.NOTICE_TITLE}</td>
-            <td width="20%">${notice.NOTICE_WRITER} (관리자)</td>
+            <td width="30%">${notice.NOTICE_WRITER} (관리자)</td>
             <td width="20%">${notice.NOTICE_DATE}</td>
-            <td width="10%">${notice.NOTICE_VIEW_AMT}</td>
         </tr>
         </c:forEach>
 
@@ -62,12 +60,20 @@
 </body>
 
 <script>
-    function main() {
-        location.href = "/main/main";
-    }
-    function notice() {
-        location.href = "/notice/noticeList";
-    }
+
+function main() {
+	location.href = "/main/main";
+}
+function notice() {
+	location.href = "/notice/noticeList";
+}
+function myInformation() {
+	location.href = "/my/index";
+}
+function admin() {
+	location.href = "/admin/index";
+}
+    
     function noticeRead(boardNumberClick){
     	
     	$("#noticeNumber").val(boardNumberClick);
@@ -75,12 +81,7 @@
     	$("#noticeForm").attr("action", "/notice/noticeRead");
 		$("#noticeForm").submit();
     }
-    function dating() {
-        location.href = "/board/dating";
-    }
-    function meeting() {
-        location.href = "/board/meeting";
-    }
+    
     function noticeWrite() {
     	
     	 $.ajax({
@@ -100,12 +101,18 @@
                  alert("code:" + request.status + "\n" + "error:" + error);
              }
          });
-    	
-       
     }
-    function contact() {
-        location.href = "/contact/";
-    }
+    
+    function logout() {
+		$.ajax({
+	        url : "/common/logout",
+	        type : "POST",
+	        success: function(data) {
+	            location.href="/";
+	        }
+	    });
+	}
+   
 </script>
 
 </html>

@@ -39,6 +39,7 @@ public class UserSignUpService {
 	private static Integer DUPLICATE = 1;
 	private static Integer NOTDUPLICATE = 0;
 
+	// 회원가입 할 경우 이메일 체크
 	public HashMap<String, Object> emailCheck(HttpServletRequest request) {
 
 		HashMap<String, Object> resultData = new HashMap<String, Object>();
@@ -47,10 +48,12 @@ public class UserSignUpService {
 		int randomNum = 0;
 		email = request.getParameter("email");
 
+		// 이메일이 있다면!
 		if (userDao.userEmailDuplicateCheck(email) > 0) {
 			resultString = "duplicate";
 		} else {
 
+			// 난수 생성 후 이메일 전송
 			Random rand = new Random();
 			int min = 10000;
 			int max = 100000;
@@ -73,12 +76,8 @@ public class UserSignUpService {
 		return resultData;
 	}
 
+	// 유저 회원가입 성공, 업데이트
 	public void userSignUpSuccess(HttpServletRequest request) {
-
-		// -----------------------------------------------------------------------------------------------------------------------------
-
-		long dateTime = System.currentTimeMillis(); // 또는 System.nanoTime();
-		SimpleDateFormat date = new SimpleDateFormat("yyyy:MM:dd-hh:mm:ss");
 
 		String email = request.getParameter("inputEmail");
 		String password = request.getParameter("inputPassword"); // null

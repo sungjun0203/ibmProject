@@ -43,13 +43,8 @@ public class AdminManagementService {
         loginInformation.put("email",email);
         loginInformation.put("password",password);
         
-        System.out.println("hello");
-        System.out.println(loginInformation);
-
         int loginCheck = userDao.userLogin(loginInformation);
         
-        System.out.println("loginCheck"+loginCheck);
-
         if(loginCheck==1){
             return "loginSuccess";
         }

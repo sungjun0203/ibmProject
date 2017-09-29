@@ -21,6 +21,7 @@ public class CommonService {
 	@Autowired
 	BoardDao boardDao;
 
+	// 유저의 타입 체크 (관리자,일반사용자)
 	public String userTypeCheck(HttpSession session) {
 
 		String userEmail = (String) session.getAttribute("userEmail");
@@ -28,10 +29,12 @@ public class CommonService {
 		return userType;
 	}
 
+	// 로그아웃
 	public void logout(HttpSession session) {
 		session.invalidate();
 	}
 	
+	// 현재시간 구하는 함수
 	public String nowTime(){
 		long dateTime = System.currentTimeMillis(); 
 		SimpleDateFormat nowDate = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
@@ -40,6 +43,7 @@ public class CommonService {
 		return stringDateTime;
 	}
 
+	// 게시글에 의한 사용자 권한 체크 (일반사용자의 게시글 수정 또는 관리자 수정 등등의 경우)
 	public String authorityCheck(HttpServletRequest request, HttpSession session) {
 
 		String userEmail = (String) session.getAttribute("userEmail");

@@ -10,16 +10,13 @@ import javax.swing.*;
 
 import java.util.HashMap;
 
-/**
- * Created by Jun on 2017-07-29.
- */
-
 @Service
 public class UserInformationService {
 
     @Autowired
     UserDao userDao;
 
+    // 유저의 정보를 가져옴
     public HashMap<String,Object> userInformation(HttpSession session){
 
         String userEmail = (String)session.getAttribute("userEmail");

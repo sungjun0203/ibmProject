@@ -4,7 +4,6 @@
 <link rel="stylesheet" type="text/css" href="/resources/bootstrap/cosmo.css"/>
 <link rel="stylesheet/less" type="text/css" href="/resources/bootstrap/bootswatch.less"/>
 <link rel="stylesheet/less" type="text/css" href="/resources/bootstrap/variables.less"/>
-<script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <html>
 <head>
     <title>Title</title>
@@ -24,7 +23,6 @@
                     <li>
                         <a onclick="notice()">공지사항</a>
                     </li>
-
 
                 </ul>
 
@@ -74,6 +72,29 @@
     	$("#noticeWrite").submit();
 	}
     function noticeBack() {
-    	location.href="/main/main"
+    	location.href="/notice/noticeList"
     }
+    
+    function main() {
+    	location.href = "/main/main";
+    }
+    function notice() {
+    	location.href = "/notice/noticeList";
+    }
+    function myInformation() {
+    	location.href = "/my/index";
+    }
+    function admin() {
+    	location.href = "/admin/index";
+    }
+    
+    function logout() {
+		$.ajax({
+	        url : "/common/logout",
+	        type : "POST",
+	        success: function(data) {
+	            location.href="/";
+	        }
+	    });
+	}
 </script>

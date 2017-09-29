@@ -92,7 +92,6 @@ function logout() {
 		var fileName = fileSrc.slice(fileSrc.lastIndexOf("\\") + 1).toLowerCase();
 		
 		$("#imgSrc").val(fileName);
-		alert($("#imgSrc").val());
 		var ext = fileSrc.slice(fileSrc.lastIndexOf(".") + 1).toLowerCase();
 		if (!(ext == "gif" || ext == "jpg" || ext == "png")) {
 			alert("이미지파일 (.jpg, .png, .gif ) 만 업로드 가능합니다.");

@@ -22,8 +22,6 @@ import java.util.HashMap;
 @RequestMapping("/user")
 public class UserController {
 	
-	
-
     @Autowired
     private UserDao userDao;
 

@@ -17,4 +17,11 @@
     	INSERT INTO NOTICE_TABLE(NOTICE_NUMBER,NOTICE_TITLE,NOTICE_CONTENT,NOTICE_WRITER,NOTICE_DATE)
     	VALUES (NOTICE_NUMBER.NEXTVAL, #{notictTitle}, #{noticeContent}, #{userEmail}, TO_DATE(#{noticeDate},'RRRR/MM/DD HH:MI:SS'))
     </select>
+    
+    <select id="noticeDelete" parameterType="Integer">
+	    DELETE
+	    FROM NOTICE_TABLE
+	    WHERE NOTICE_NUMBER = #{noticeNumber}
+    </select>
+    
 </mapper>

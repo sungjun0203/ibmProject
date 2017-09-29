@@ -14,8 +14,7 @@ public interface NoticeDao {
 	//공지사항 리스트 보기
 	ArrayList<HashMap<String,Object>> noticeList();
 	
-	HashMap<String, Object> noticeRead(int noticeSeq);
-	
-
+	HashMap<String, Object> noticeRead(int noticeNumber);
+	HashMap<String, Object> noticeDelete(int noticeNumber);
 
 }

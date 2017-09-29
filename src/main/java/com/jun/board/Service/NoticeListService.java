@@ -19,24 +19,31 @@ public class NoticeListService {
     @Autowired
     CommonService commonService;
 
+    // 공지사항 리스트 출력
     public ArrayList<HashMap<String,Object>> noticeList(){
-
         ArrayList<HashMap<String,Object>> noticeList = noticeDao.noticeList();
         return noticeList;        
     
     }
-    
-    
+
+    // 공지사항 읽기
     public HashMap<String, Object> noticeRead (HttpServletRequest request, HttpSession session){
     	Integer noticeNumber = Integer.parseInt(request.getParameter("noticeNumber"));
     	System.out.println(noticeNumber);
     	HashMap<String,Object> noticeRead = noticeDao.noticeRead(noticeNumber);
-    	
 
     	return noticeRead;
-    	
     }
     
+    // 공지사항 삭제
+    public void noticeDelete (HttpServletRequest request, HttpSession session) {
+    	String userEmail = (String) session.getAttribute("userEmail");
+		Integer noticeNumber = Integer.parseInt(request.getParameter("noticeNumber"));
+		
+		noticeDao.noticeDelete(noticeNumber);
+    }
+    
+    // 공지사항 업데이트 완료
     public void noticeUpdateSubmit(HttpServletRequest request, HttpSession session){
     	HashMap<String, Object> noticeInformation = new HashMap<String, Object>();
     	
@@ -48,7 +55,6 @@ public class NoticeListService {
     	Integer noticeNumber = Integer.parseInt(request.getParameter("noticeNumber"));
     	Integer noticeViewAmt = Integer.parseInt(request.getParameter("noticeViewAmt"));
     	
-    	
     	noticeInformation.put("userEmail", userEmail);
     	noticeInformation.put("notictTitle", noticeTitle);
     	noticeInformation.put("noticeContent", noticeContent);
@@ -58,9 +64,10 @@ public class NoticeListService {
     	noticeDao.onlyTextWrite(noticeInformation);
     	
     }
+    
+    // 공지사항 글쓰기 완료
     public void writeSubmit(HttpServletRequest request, HttpSession session){
     	HashMap<String, Object> noticeInformation = new HashMap<String, Object>();
-    	
     	
     	String noticeTitle = request.getParameter("noticeTitle");
     	String userEmail = (String) session.getAttribute("userEmail");
@@ -71,10 +78,7 @@ public class NoticeListService {
     	noticeInformation.put("noticeContent", noticeContent);
     	noticeInformation.put("userEmail", userEmail);
     	noticeInformation.put("noticeDate", stringDateTime);
-    	
-    	
-    	System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+noticeInformation);
-    	
+
     	noticeDao.onlyTextWrite(noticeInformation);
     	
     }

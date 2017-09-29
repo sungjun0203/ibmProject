@@ -19,8 +19,11 @@
 	<div>
 		<div class="container">
 
-			<div style="height: 30%">
+<div style="height: 30%">
 
+<form id="noticeReadForm" name="noticeReadForm" method="POST" action="">
+<input type="hidden" id="noticeNumber" name="noticeNumber">
+</form>
 				<div class="col-sm-12">
 					<div class="col-sm-8">
 						&nbsp;
@@ -33,40 +36,25 @@
 
 						</div>
 
-						<table class="table table-striped table-hover text-center">
+						<table class="table table-striped table-hover text-center ">
 							<thead>
-								<tr style="background-color :#485563">
-									<th>번호</th>
-									<th>제목</th>
-									<th>작성자</th>
-									<th>등록일</th>
+								<tr style="background-color :#cc0000">
+									<td width = "40%" style="color:white">제목</th>
+									<td width = "30%" style="color:white">작성자</th>
+									<td width = "30%" style="color:white">등록일</th>
 								</tr>
 							</thead>
 							<tbody>
+<c:forEach items="${noticeInformation}" var="noticeList">
 								<tr>
-									<td>1</td>
-									<td>Column content</td>
-									<td>Column content</td>
-									<td>Column content</td>
+									<td width = "40%" onClick="noticeClick(${noticeList.NOTICE_NUMBER})">${noticeList.NOTICE_TITLE}</td>
+									<td width = "30%">${noticeList.NOTICE_WRITER}</td>
+									<td width = "30%">${noticeList.NOTICE_DATE}</td>
 								</tr>
-								<tr>
-									<td>2</td>
-									<td>Column content</td>
-									<td>Column content</td>
-									<td>Column content</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>Column content</td>
-									<td>Column content</td>
-									<td>Column content</td>
-								</tr>
-
+</c:forEach>
 							</tbody>
 						</table>
 					</div>
-
-
 
 					<div class="col-sm-4">
 
@@ -152,16 +140,19 @@
 					</div>
 				</form>
 			</div>
-				 
 			</div>
 		</div>
-		
-	
-
 	<jsp:include page="../headerAndFooter/footer.jsp"></jsp:include>
 </body>
 
 <script language="javascript" type="text/javascript">
+
+
+	function noticeClick(seq){
+		$("#noticeNumber").val(seq);
+		$("#noticeReadForm").attr("action","/notice/noticeRead");
+		$("#noticeReadForm").submit();
+	}
 
 	
 	function arrayChange(){
@@ -174,6 +165,11 @@
 	}
 
 	function boardRead(seq){
+		$('#boardNumber').val(seq);
+		$('#boardReadForm').submit();
+	}
+	
+	function noticeRead(seq){
 		$('#boardNumber').val(seq);
 		$('#boardReadForm').submit();
 	}
