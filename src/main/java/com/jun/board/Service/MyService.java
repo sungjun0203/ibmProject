@@ -28,7 +28,7 @@ public class MyService {
 	}
 	
 	// 내가 쓴 댓글 정보 출력
-	public ArrayList<HashMap<String,Object>> myReply(HttpSession session){
+	public ArrayList<HashMap<String,Object>>  myReply(HttpSession session){
 		
 		String userEmail = (String)session.getAttribute("userEmail");
 		return boardDao.myReplyAll(userEmail);
