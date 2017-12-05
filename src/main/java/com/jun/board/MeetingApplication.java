@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class MeetingApplication {
 	
-
+ 
 	public static void main(String[] args) {
 		SpringApplication.run(MeetingApplication.class, args);
 	}
